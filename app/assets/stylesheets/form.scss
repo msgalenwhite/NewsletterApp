@@ -1,0 +1,19 @@
+@import 'mix_ins';
+
+.form-div {
+  display: flex;
+  justify-content: center;
+}
+form {
+  width: 70%;
+
+  .actions {
+    text-align: center;
+    input[type='submit'] {
+      @include general-button;
+    }
+    input[type='submit']:hover {
+      @include general-button-hover;
+    }
+  }
+}

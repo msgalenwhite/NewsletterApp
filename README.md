@@ -2,9 +2,9 @@
 [![Code Climate](https://codeclimate.com/github/msgalenwhite/NewsletterApp/badges/gpa.svg)](https://codeclimate.com/github/msgalenwhite/NewsletterApp)
 [![Coverage Status](https://coveralls.io/repos/github/msgalenwhite/NewsletterApp/badge.svg?branch=master)](https://coveralls.io/github/msgalenwhite/NewsletterApp?branch=master)
 
-### NewsletterApp
+# NewsletterApp
 
-# To initialize the database:
+### Initialize the database
 
 This project uses a postgresql database.
 
@@ -12,7 +12,7 @@ Before viewing the project on localhost, make sure you:
 1. Create a database (rake db:create)
 2. Load the schema (rake db:schema:load)
 
-# To view on localhost/3000:
+### View at localhost:3000
 
 1. Install Ruby gems with 'bundle install'
 2. Install NPM packages with 'npm install' or 'yarn install'
@@ -20,7 +20,7 @@ Before viewing the project on localhost, make sure you:
 4. Start a javascript server with 'npm start'
 5. Navigate to localhost/3000
 
-# To run test suite:
+### Run test suite
 
 1. Rspec tests can be run with 'rspec'
 2. React tests need to be run with 'npm test'

@@ -15,3 +15,36 @@
  *= require foundation_and_overrides
 
  */
+
+@import 'mix_ins';
+
+.page-header {
+  font-size: 2em;
+  margin: .3em;
+  text-align: center;
+}
+
+.additional-links-div {
+  text-align: right;
+  width: 85%;
+  margin-top: .5em;
+  line-height: 2em;
+
+  .link-description {
+    margin-right: .7em;
+    margin-bottom: 0;
+  }
+}
+
+.general-button {
+  @include general-button;
+}
+.general-button:hover {
+  @include general-button-hover;
+}
+
+.flash {
+  background-color: $purple-navy;
+  color: white;
+  padding: .3em 0.9375rem;
+}

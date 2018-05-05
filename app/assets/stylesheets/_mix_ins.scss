@@ -1,0 +1,15 @@
+@import 'colors';
+
+@mixin general-button {
+  background-color: $robin-egg-blue;
+  color: $jet;
+  padding: .4em 1em .5em 1em;
+  border-radius: .6em;
+  border: none;
+  font-size: .8em;
+}
+
+@mixin general-button-hover {
+  background-color: $darker-robin;
+  color: white;
+}
