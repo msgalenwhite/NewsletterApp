@@ -42,3 +42,9 @@
 .general-button:hover {
   @include general-button-hover;
 }
+
+.flash {
+  background-color: $purple-navy;
+  color: white;
+  padding: .3em 0.9375rem;
+}
