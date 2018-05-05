@@ -4,9 +4,17 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
 
+    <div class="field name-field">
+      <%= f.label :first_name, 'First Name' %><br />
+      <%= f.text_field :first_name, autofocus: true %>
+
+      <%= f.label :last_name, 'Last Name' %><br />
+      <%= f.text_field :last_name %>
+    </div>
+
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, autocomplete: "email" %>
     </div>
 
     <div class="field">
@@ -21,6 +29,30 @@
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
+
+    <fieldset>
+      <div class="field">
+        <%= f.label :pic_url, 'Picture' %><br />
+        <%= f.text_field :pic_url %>
+      </div>
+
+      <div class="field">
+        <%= f.label :bio, 'Tell us about yourself:' %><br />
+        <%= f.text_field :bio %>
+      </div>
+
+      <div class="extra-form-text">
+        <div class="field">
+          <%= f.label :current_city, 'City'%><br />
+          <%= f.text_field :current_city %>
+        </div>
+
+        <div class="field">
+          <%= f.label :current_state, 'State' %><br />
+          <%= f.text_field :current_state %>
+        </div>
+      </div>
+    </fieldset>
 
     <div class="actions">
       <%= f.submit "Sign up" %>
