@@ -28,8 +28,17 @@
   text-align: right;
   width: 85%;
   margin-top: .5em;
+  line-height: 2em;
 
   .link-description {
+    margin-right: .7em;
     margin-bottom: 0;
   }
+}
+
+.general-button {
+  @include general-button;
+}
+.general-button:hover {
+  @include general-button-hover;
 }
