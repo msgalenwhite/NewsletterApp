@@ -29,3 +29,8 @@
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+# Ignore the reports created when code coverage is run.
+/coverage
+
+.env
