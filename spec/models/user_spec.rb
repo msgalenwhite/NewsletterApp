@@ -7,9 +7,6 @@ describe User, :type => :model do
     it { should have_valid(:last_name).when("name") }
     it { should_not have_valid(:last_name).when(nil, "") }
 
-    it { should have_valid(:pic_url).when("url") }
-    it { should_not have_valid(:pic_url).when(nil, "") }
-
     it { should have_valid(:bio).when("bio") }
     it { should_not have_valid(:bio).when(nil, "") }
 

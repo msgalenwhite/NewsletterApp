@@ -37,7 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # Not added by devise:
       t.string :first_name, null: false
       t.string :last_name, null: false
-      t.string :pic_url, null: false
+      t.string :profile_photo
 
       t.text :bio, null: false
 

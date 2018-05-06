@@ -20,7 +20,7 @@ feature 'user registers', %Q{
     fill_in 'Password confirmation', with: 'password'
     fill_in 'First Name', with: 'John'
     fill_in 'Last Name', with: 'Smith'
-    fill_in 'Picture', with: 'picture.com'
+    attach_file :user_profile_photo, "#{Rails.root}/spec/support/images/purple_flowers.jpg"
     fill_in 'Biography', with: 'I am cool.'
     fill_in 'City', with: 'Boston'
     fill_in 'State', with: 'MA'
