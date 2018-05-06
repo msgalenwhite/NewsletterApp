@@ -7,6 +7,7 @@ FactoryBot.define do
     password_confirmation 'password'
     first_name 'first-name'
     last_name 'last_name'
+    profile_photo { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'purple_flowers.jpg')) }
     bio 'bio'
     current_city 'current_city'
     current_state 'current_state'
