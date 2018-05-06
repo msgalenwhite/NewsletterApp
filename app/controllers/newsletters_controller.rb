@@ -8,7 +8,7 @@ class NewslettersController < ApplicationController
 
     if @newsletter.save
       flash[:success] = 'Your newsletter is up and ready to go!'
-      redirect_to "homes#index"
+      redirect_to root_path
     else
       flash[:alert] = @newsletter.errors.full_messages.join("\n")
       render 'new'

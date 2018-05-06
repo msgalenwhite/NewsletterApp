@@ -23,7 +23,6 @@ feature 'user creates a newsletter', %Q{
     click_button 'Create'
 
     expect(page).to have_content('Your newsletter is up and ready to go!')
-    #THIS IS NOT PASSING
   end
 
   scenario 'get an error if description is missing' do
