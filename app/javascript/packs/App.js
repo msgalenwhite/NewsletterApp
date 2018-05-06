@@ -1,14 +1,15 @@
-import App from '../../app/javascript/packs/App'
-import UserHomePage from '../../app/javascript/containers/UserHomePage'
-import { Route } from 'react-router'
+import React from 'react'
+import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 
-it('renders correct routes', () => {
-  const wrapper = shallow(<App />);
-  const pathMap = wrapper.find(Route).reduce((pathMap, route) => {
-    const routeProps = route.props();
-    pathMap[routeProps.path] = routeProps.component;
-    return pathMap;
-  }, {});
+import UserHomePage from '../containers/UserHomePage'
 
-  expect(pathMap['/']).toBe(UserHomePage);
-});
+const App = props => {
+
+  return(
+    <Router history={browserHistory} >
+      <Route path='/' component={UserHomePage} />
+    </Router>
+  )
+}
+
+export default App
