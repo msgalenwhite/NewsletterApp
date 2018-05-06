@@ -17,6 +17,7 @@ feature 'user creates a newsletter', %Q{
     click_button 'Log in'
     visit new_newsletter_path
 
+    fill_in 'Title', with 'title'
     fill_in 'Description', with: 'description'
     attach_file :newsletter_thumb_photo, "#{Rails.root}/spec/support/images/purple_flowers.jpg"
 
