@@ -1,0 +1,24 @@
+<h2 class='page-header'>Create a Newsletter</h2>
+
+<div class='form-div'>
+  <%= form_for @newsletter do |f| %>
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :thumb_photo, 'Picture' %><br />
+      <%= f.file_field :thumb_photo %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Create" %>
+    </div>
+  <% end %>
+</div>
