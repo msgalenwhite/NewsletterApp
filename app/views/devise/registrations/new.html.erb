@@ -4,23 +4,68 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class='skinny'>
+      <div class="field multi-field">
+        <div class='left-half'>
+          <%= f.label :first_name, 'First Name' %><br />
+          <%= f.text_field :first_name, autofocus: true %>
+        </div>
+
+        <div class='right-half'>
+          <%= f.label :last_name, 'Last Name' %><br />
+          <%= f.text_field :last_name %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+    <fieldset>
+      <div class='extra-text-div'>
+        <h5>All About You</h5>
+        <p>It's always nice to learn a little more about our Newsletter members.  Sharing some information about yourself is a great way for people to know who you are.  Your picture will be included (along with your name) whenever you submit an entry.</p>
+      </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+      <div class='skinny'>
+        <div class="field">
+          <%= f.label :pic_url, 'Picture' %><br />
+          <%= f.text_field :pic_url %>
+        </div>
+
+        <div class="field">
+          <%= f.label :bio, 'Biography' %><br />
+          <%= f.text_area :bio %>
+        </div>
+
+        <div class="field multi-field">
+          <div class='left-half'>
+            <%= f.label :current_city, 'City' %><br />
+            <%= f.text_field :current_city %>
+          </div>
+
+          <div class='right-half'>
+            <%= f.label :current_state, 'State' %><br />
+            <%= f.text_field :current_state %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
 
     <div class="actions">
       <%= f.submit "Sign up" %>
