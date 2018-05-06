@@ -6,7 +6,7 @@ feature 'user creates a newsletter', %Q{
   so I can keep in touch with my family.
 } do
 
-  scenario 'supply both a description and a picture' do
+  scenario 'user submits title, description and picture' do
     user = FactoryBot.create(:user)
 
     visit new_user_session_path
@@ -17,7 +17,7 @@ feature 'user creates a newsletter', %Q{
     click_button 'Log in'
     visit new_newsletter_path
 
-    fill_in 'Title', with 'title'
+    fill_in 'Title', with: 'This is a title'
     fill_in 'Description', with: 'description'
     attach_file :newsletter_thumb_photo, "#{Rails.root}/spec/support/images/purple_flowers.jpg"
 
