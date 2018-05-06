@@ -1,0 +1,15 @@
+<h2 class='page-header'>Create a Newsletter</h2>
+
+<div class='form-div'>
+  <%= form_for @newsletter %>
+    <div class="field">
+      <%= f.label :thumb_photo, 'Picture' %><br />
+      <%= f.file_field :thumb_photo %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, autofocus: true %>
+    </div>
+  <% end %>
+</div>
