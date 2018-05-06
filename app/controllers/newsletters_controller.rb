@@ -18,6 +18,6 @@ class NewslettersController < ApplicationController
   private
 
   def newsletter_params
-    params.require(:newsletter).permit(:description, :thumb_photo)
+    params.require(:newsletter).permit(:title, :description, :thumb_photo)
   end
 end
