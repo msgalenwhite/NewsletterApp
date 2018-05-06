@@ -1,4 +1,4 @@
-class NewsletterController < ApplicationController
+class NewslettersController < ApplicationController
   def new
     @newsletter = Newsletter.new
   end
@@ -8,10 +8,11 @@ class NewsletterController < ApplicationController
 
     if @newsletter.save
       flash[:success] = 'Your newsletter is up and ready to go!'
-      redirect_to 'root'
+      redirect_to "homes#index"
     else
       flash[:alert] = @newsletter.errors.full_messages.join("\n")
       render 'new'
+    end
   end
 
   private
