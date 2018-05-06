@@ -21,7 +21,7 @@ feature 'user registers', %Q{
     fill_in 'First Name', with: 'John'
     fill_in 'Last Name', with: 'Smith'
     fill_in 'Picture', with: 'picture.com'
-    fill_in 'Tell us about yourself:', with: 'I am cool.'
+    fill_in 'Biography', with: 'I am cool.'
     fill_in 'City', with: 'Boston'
     fill_in 'State', with: 'MA'
 

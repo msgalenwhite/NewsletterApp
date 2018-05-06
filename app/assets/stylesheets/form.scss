@@ -7,6 +7,11 @@
 form {
   width: 70%;
 
+  .skinny {
+    width: 80%;
+    margin: auto;
+  }
+
   .actions {
     text-align: center;
     input[type='submit'] {
@@ -14,6 +19,39 @@ form {
     }
     input[type='submit']:hover {
       @include general-button-hover;
+    }
+  }
+
+  .multi-field {
+    display: flex;
+    justify-content: space-around;
+
+    label {
+      text-align: center;
+    }
+
+    .left-half, .right-half {
+      display: inline-block;
+      width: 40%;
+    }
+  }
+
+  fieldset {
+    background: rgb(255,255,255); /* Fall-back support for browsers that don't support rgba */
+    background: rgba(255,255,255,.9);
+    border-radius: 5px;
+
+    .extra-text-div {
+      width: 80%;
+      margin: auto;
+      h5 {
+        text-align: center;
+        font-size: 1.4em;
+      }
+      p {
+        text-align: justify;
+        font-size: 1em;
+      }
     }
   }
 }
