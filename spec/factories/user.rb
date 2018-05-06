@@ -7,7 +7,6 @@ FactoryBot.define do
     password_confirmation 'password'
     first_name 'first-name'
     last_name 'last_name'
-    pic_url 'pic_url'
     bio 'bio'
     current_city 'current_city'
     current_state 'current_state'
