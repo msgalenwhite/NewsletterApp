@@ -42,35 +42,23 @@ describe ('UserHomePage', () => {
 
   afterEach(fetchMock.restore)
 
-  // Testing State and its changes
-  it ('initializes with the correct state', () => {
-    expect(wrapper.state()).toEqual({
-      foundedNewsletters: [],
-      userInfo: {}
-    })
-  })
-
-  // Testing rendered components
-  it('contains a header', () => {
-    expect(wrapper.text()).toContain('Newsletter Home Page')
-  })
-  it('has a "link" to create a Newsletter', () => {
-    expect(wrapper.text()).toContain('Create a Newsletter')
-    expect(wrapper.find('a').text()).toContain('Create a Newsletter')
-  })
-  it ('has a list of newsletters', () => {
-    expect(wrapper.find(NewsletterList)).toBePresent()
-  })
-
-  // Test fetch call
-  it ('changes state to reflect the content of an api call', (done) => {
-    setTimeout(() => {
+  describe('state initializes and updates correctly', () => {
+    it ('initializes with the correct state', () => {
       expect(wrapper.state()).toEqual({
-        foundedNewsletters: fetchedData,
-        userInfo: fetchedData[0]["founder"]
+        foundedNewsletters: [],
+        userInfo: {}
       })
-      done()
-    }, 0)
+    })
+
+    it ('changes state to reflect the content of an api call', (done) => {
+      setTimeout(() => {
+        expect(wrapper.state()).toEqual({
+          foundedNewsletters: fetchedData,
+          userInfo: fetchedData[0]["founder"]
+        })
+        done();
+      }, 0)
+    })
   })
 
   it ('passes the correct props to NewsletterList', () => {
@@ -78,7 +66,20 @@ describe ('UserHomePage', () => {
       expect(wrapper.find(NewsletterList).props()).toEqual ({
         newsletters: fetchedData
       })
-      done()
+      done();
     }, 0)
+  })
+
+  describe('rendered components', () => {
+    it('contains a header', () => {
+      expect(wrapper.text()).toContain('Newsletter Home Page')
+    })
+    it('has a "link" to create a Newsletter', () => {
+      expect(wrapper.text()).toContain('Create a Newsletter')
+      expect(wrapper.find('a').text()).toContain('Create a Newsletter')
+    })
+    it ('has a list of newsletters', () => {
+      expect(wrapper.find(NewsletterList)).toBePresent()
+    })
   })
 })

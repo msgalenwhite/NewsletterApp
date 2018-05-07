@@ -39,7 +39,6 @@ class UserHomePage extends Component {
   }
 
   render() {
-    console.log(this.state)
     return(
       <div>
         <h1 className='page-header'>Newsletter Home Page</h1>
