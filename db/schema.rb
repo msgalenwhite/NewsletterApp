@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_06_235922) do
+ActiveRecord::Schema.define(version: 2018_05_07_000211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "entries", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "newsletter_id"
+    t.string "title", null: false
+    t.text "body", null: false
+    t.string "photo"
+    t.index ["newsletter_id"], name: "index_entries_on_newsletter_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
 
   create_table "newsletters", force: :cascade do |t|
     t.text "description", null: false
