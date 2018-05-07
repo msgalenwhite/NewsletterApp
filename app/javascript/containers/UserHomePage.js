@@ -6,7 +6,17 @@ class UserHomePage extends Component {
     super(props);
     this.state = {
       foundedNewsletters: [],
-      userInfo: {}
+      userInfo: {},
+      selectedNewsletter: null
+    }
+    this.displayOrHideForm = this.displayOrHideForm.bind(this)
+  }
+
+  displayOrHideForm(id) {
+    if (id === this.state.selectedNewsletter) {
+      this.setState({ selectedNewsletter: null })
+    } else {
+      this.setState({ selectedNewsletter: id })
     }
   }
 
@@ -47,6 +57,8 @@ class UserHomePage extends Component {
         <h3>Founded Newsletters</h3>
         <NewsletterList
           newsletters={this.state.foundedNewsletters}
+          showForm={this.displayOrHideForm}
+          selectedNewsletter={this.state.selectedNewsletter}
         />
       </div>
     )
