@@ -7,8 +7,5 @@ describe ('NewsletterList', () => {
   beforeEach(() => {
     wrapper = mount(<NewsletterList />)
   })
-
-  it ("contains a list of Newsletters", () => {
-    expect(wrapper.find(NewsletterDisplayTile)).toBePresent()
-  })
+  
 })
