@@ -6,4 +6,5 @@ class Newsletter < ApplicationRecord
 
   has_many :subscriptions
   has_many :users, through: :subscriptions
+  belongs_to :founder, class_name: "User", foreign_key: "founder"
 end

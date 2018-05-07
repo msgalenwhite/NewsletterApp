@@ -40,4 +40,10 @@ feature 'user creates a newsletter', %Q{
 
     expect(page).to have_content("can't be blank")
   end
+
+  scenario 'user must be logged in to create a newsletter' do
+    visit new_newsletter_path
+
+    expect(page).to have_content('You must be logged in to create a newsletter!')
+  end
 end
