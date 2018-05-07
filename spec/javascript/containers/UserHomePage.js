@@ -1,4 +1,5 @@
-import UserHomePage from '../../app/javascript/containers/UserHomePage'
+import UserHomePage from '../../../app/javascript/containers/UserHomePage'
+import NewsletterList from '../../../app/javascript/components/NewsletterList'
 
 describe ('UserHomePage', () => {
   let wrapper;
@@ -22,5 +23,8 @@ describe ('UserHomePage', () => {
   it('has a "link" to create a Newsletter', () => {
     expect(wrapper.text()).toContain('Create a Newsletter')
     expect(wrapper.find('a').text()).toContain('Create a Newsletter')
+  })
+  it ('has a list of newsletters', () => {
+    expect(wrapper.find(NewsletterList)).toBePresent()
   })
 })
