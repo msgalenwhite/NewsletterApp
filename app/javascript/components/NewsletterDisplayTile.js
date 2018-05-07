@@ -7,7 +7,6 @@ const NewsletterDisplayTile = props => {
 
   if (props.showEntryForm) {
     entryForm = <EntryFormContainer />
-    button = <button>Submit!</button>
   } else {
     button =
       <button
