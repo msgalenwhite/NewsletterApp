@@ -12,4 +12,7 @@ class User < ApplicationRecord
   validates :current_state, presence: true
 
   mount_uploader :profile_photo, PhotoUploader
+
+  has_many :subscriptions
+  has_many :newsletters, through: :subscriptions
 end
