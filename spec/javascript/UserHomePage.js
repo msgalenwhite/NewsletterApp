@@ -10,7 +10,8 @@ describe ('UserHomePage', () => {
   // Testing State and its changes
   it ('initializes with the correct state', () => {
     expect(wrapper.state()).toEqual({
-      newsletters: []
+      foundedNewsletters: [],
+      userInfo: {}
     })
   })
 
