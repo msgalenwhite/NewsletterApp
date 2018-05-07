@@ -9,17 +9,25 @@ class EntryFormContainer extends Component {
       photo: null
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange() {
 
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit() {
+    event.preventDefault()
   }
 
   render() {
 
     return(
       <div className='form-div'>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <h3>Submit an Entry</h3>
 
           <label htmlFor='title'>Title</label>

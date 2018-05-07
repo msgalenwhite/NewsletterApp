@@ -6,7 +6,8 @@ const NewsletterDisplayTile = props => {
   let button;
 
   if (props.showEntryForm) {
-    entryForm = <EntryFormContainer />
+    entryForm =
+      <EntryFormContainer/>
   } else {
     button =
       <button
