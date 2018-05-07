@@ -7,4 +7,8 @@ describe ('NewsletterDisplayTile', () => {
     wrapper = mount(<NewsletterDisplayTile />)
   })
 
+  it ('renders a div containing a paragraph and an image', () => {
+    expect(wrapper.find("p")).toBePresent()
+    expect(wrapper.find("img")).toBePresent()
+  })
 })
