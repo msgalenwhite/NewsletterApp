@@ -41,7 +41,7 @@ class EntryFormContainer extends Component {
   }
 
   submitEntry() {
-    fetch("/api/v1/entries/new.json")
+    fetch("/api/v1/entries.json")
       .then ( response => {
         if ( response.ok ) {
           return response;
