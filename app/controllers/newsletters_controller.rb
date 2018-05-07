@@ -1,5 +1,10 @@
 class NewslettersController < ApplicationController
   def new
+    if !current_user
+      flash[:alert] = 'You must be logged in to create a newsletter!'
+      redirect_to root_path
+    end
+
     @newsletter = Newsletter.new
   end
 
