@@ -10,6 +10,7 @@ class NewslettersController < ApplicationController
 
   def create
     @newsletter = Newsletter.new(newsletter_params)
+    @newsletter.user = current_user
 
     if @newsletter.save
       flash[:success] = 'Your newsletter is up and ready to go!'

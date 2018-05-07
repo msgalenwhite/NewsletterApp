@@ -29,8 +29,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_123041) do
     t.text "description", null: false
     t.string "thumb_photo"
     t.string "title", null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_newsletters_on_user_id"
+    t.integer "user_id", null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
