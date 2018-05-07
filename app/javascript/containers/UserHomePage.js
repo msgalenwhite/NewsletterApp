@@ -59,6 +59,7 @@ class UserHomePage extends Component {
           newsletters={this.state.foundedNewsletters}
           showForm={this.displayOrHideForm}
           selectedNewsletter={this.state.selectedNewsletter}
+          userId={this.state.userInfo["id"]}
         />
       </div>
     )

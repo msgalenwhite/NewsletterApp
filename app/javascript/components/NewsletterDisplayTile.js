@@ -7,7 +7,10 @@ const NewsletterDisplayTile = props => {
 
   if (props.showEntryForm) {
     entryForm =
-      <EntryFormContainer/>
+      <EntryFormContainer
+        newsletterId={props.id}
+        userId={props.userId}
+      />
   } else {
     button =
       <button

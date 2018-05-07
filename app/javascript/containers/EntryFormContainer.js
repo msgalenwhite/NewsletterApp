@@ -6,12 +6,21 @@ class EntryFormContainer extends Component {
     this.state = {
       title: '',
       body: '',
-      photo: null
+      photo: null,
+      errorMessage: ""
     }
+    this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.submitEntry = this.submitEntry.bind(this)
   }
 
+  formIsComplete() {
+    if (this.state.title === "" || this.state.body === "") {
+      return false
+    }
+    return true
+  }
 
   handleChange(event) {
     this.setState({
@@ -19,8 +28,34 @@ class EntryFormContainer extends Component {
     })
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     event.preventDefault()
+
+    if (this.formIsComplete()) {
+      this.submitEntry()
+    } else {
+      this.setState({
+        errorMessage: 'Please complete the form before submitting!'
+      })
+    }
+  }
+
+  submitEntry() {
+    fetch("/api/v1/entries/new.json")
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        console.log(response)
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
@@ -28,6 +63,7 @@ class EntryFormContainer extends Component {
     return(
       <div className='form-div'>
         <form onSubmit={this.handleSubmit}>
+          <p>{this.state.errorMessage}</p>
           <h3>Submit an Entry</h3>
 
           <label htmlFor='title'>Title</label>
