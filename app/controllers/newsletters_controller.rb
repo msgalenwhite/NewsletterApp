@@ -10,7 +10,7 @@ class NewslettersController < ApplicationController
 
   def create
     @newsletter = Newsletter.new(newsletter_params)
-    @newsletter.user = current_user
+    @newsletter.founder = current_user
     subscription = Subscription.new(user: current_user, newsletter: @newsletter)
 
     if @newsletter.save && subscription.save
