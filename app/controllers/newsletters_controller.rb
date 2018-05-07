@@ -11,8 +11,9 @@ class NewslettersController < ApplicationController
   def create
     @newsletter = Newsletter.new(newsletter_params)
     @newsletter.user = current_user
+    subscription = Subscription.new(user: current_user, newsletter: @newsletter)
 
-    if @newsletter.save
+    if @newsletter.save && subscription.save
       flash[:success] = 'Your newsletter is up and ready to go!'
       redirect_to root_path
     else
