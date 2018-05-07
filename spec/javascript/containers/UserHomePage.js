@@ -61,13 +61,11 @@ describe ('UserHomePage', () => {
     })
   })
 
-  xit ('passes the correct props to NewsletterList', () => {
-    setTimeout(() => {
-      expect(wrapper.find(NewsletterList).props()).toEqual ({
-        newsletters: fetchedData
-      })
-      done();
-    }, 0)
+  it ('passes the correct props to NewsletterList', () => {
+    expect(wrapper.find(NewsletterList)).toHaveProp(
+      'newsletters',
+      wrapper.state('foundedNewsletters')
+    )
   })
 
   describe('rendered components', () => {
