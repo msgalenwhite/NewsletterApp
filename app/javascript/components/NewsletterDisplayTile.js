@@ -6,27 +6,35 @@ const NewsletterDisplayTile = props => {
   let button;
 
   if (props.showEntryForm) {
-    entryForm =
-      <EntryFormContainer
-        newsletterId={props.id}
-        userId={props.userId}
-      />
+    <EntryFormContainer
+      newsletterId={props.id}
+      userId={props.userId}
+    />
   } else {
     button =
       <button
         className='general-button'
-        onClick={props.handleClick}>
-      Submit an Entry
+        onClick={props.handleClick}
+      >
+        Submit an Entry
       </button>
   }
 
-  return(
-    <div>
-      <h4>{props.title}</h4>
-      <p>{props.description}</p>
-      <img src={props.pic_url} alt='Newsletter Thumbnail' />
-      {button}
-      {entryForm}
+  return (
+    <div className = 'newsletter-display-tile' >
+      <div className = 'opaque-tile row' >
+        <span className = 'columns small-5' >
+          <img
+          src = {props.pic_url}
+          alt = 'Newsletter Thumbnail' />
+        </span>
+        {button}
+        <span className = 'columns small-7'>
+          <h4>{props.title}</h4>
+          <p> {props.description} </p>
+        </span>
+        {entryForm}
+      </div>
     </div>
   )
 }
