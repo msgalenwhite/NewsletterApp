@@ -36,8 +36,8 @@ class EntryFormContainer extends Component {
       const formPayload = {
         title: this.state.title,
         body: this.state.body,
-        newsletterId: this.props.newsletterId,
-        userId: this.props.userId
+        newsletter_id: this.props.newsletterId,
+        user_id: this.props.userId
       }
 
       this.submitEntry(formPayload)
@@ -53,7 +53,7 @@ class EntryFormContainer extends Component {
       credentials: 'same-origin',
       method: 'POST',
       body: JSON.stringify(formPayload),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     })
       .then ( response => {
         if ( response.ok ) {
@@ -66,6 +66,7 @@ class EntryFormContainer extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
+
         console.log(response)
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
