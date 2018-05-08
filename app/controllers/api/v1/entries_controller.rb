@@ -7,7 +7,7 @@ class Api::V1::EntriesController < ApplicationController
     if @entry.save
       render json: @entry
     else
-      render json: {error: "Failed to save"}
+      render json: @entry.errors.full_messages.join(" // ")
     end
   end
 

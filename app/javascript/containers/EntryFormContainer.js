@@ -66,14 +66,16 @@ class EntryFormContainer extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
-
-        console.log(response)
+        if (response["error"]) {
+          this.props.setMessage(response["error"])
+        } else {
+          this.props.setMessage("Success!")
+        }
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
-
     return (
       <div className = 'form-div' >
         <form onSubmit = {this.handleSubmit}>
