@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 
-class DropZone extends React.Component {
+class DropZoneComponent extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = { files: [] }
   }
 
@@ -18,11 +18,11 @@ class DropZone extends React.Component {
       <section>
         <div className="dropzone">
           <Dropzone onDrop={this.onDrop.bind(this)}>
-            <p>Try dropping some files here, or click to select files to upload.</p>
+            <p>Submit some pictures to go with your entry!</p>
           </Dropzone>
         </div>
         <aside>
-          <h2>Dropped files</h2>
+          <p>Included Pictures</p>
           <ul>
             {this.state.files.map(f =>
               <li key={f.name}>
@@ -36,4 +36,4 @@ class DropZone extends React.Component {
   }
 }
 
-export default DropZone
+export default DropZoneComponent
