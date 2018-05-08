@@ -2609,6 +2609,10 @@ dotenv@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-5.0.1.tgz#a5317459bd3d79ab88cff6e44057a6a3fbb1fcef"
 
+dropzone@^4.2.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-4.3.0.tgz#48b0b8f2ad092872e4b535b672a7c3f1a1d67c91"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -7462,6 +7466,12 @@ react-dom@~15.4.2:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react-dropzone-component@~0.6.0:
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/react-dropzone-component/-/react-dropzone-component-0.6.4.tgz#b76b6c23b80d6d05646e7ba609d8f02dbf3063a7"
+  dependencies:
+    dropzone "^4.2.0"
 
 react-router@~3.2.0:
   version "3.2.1"

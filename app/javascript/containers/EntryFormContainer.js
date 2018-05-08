@@ -83,13 +83,7 @@ class EntryFormContainer extends Component {
             onChange = {this.handleChange}
           />
 
-          <form
-            action="/file-upload"
-            className="dropzone"
-            id="my-awesome-dropzone">
-          </form>
-
-          <input 
+          <input
             type='submit'
             value='Submit'
             className='general-button'/>
