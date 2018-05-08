@@ -2,41 +2,48 @@ import React from 'react'
 import EntryFormContainer from '../containers/EntryFormContainer'
 
 const NewsletterDisplayTile = props => {
-  let entryForm;
+  let displayItem;
   let button;
+  let description;
 
   if (props.showEntryForm) {
-    entryForm =
+    displayItem =
       <EntryFormContainer
         newsletterId={props.id}
         userId={props.userId}
         setMessage={props.setMessage}
       />
-  } else {
-    button =
-      <button
-        className='general-button'
-        onClick={props.handleClick}>
-        Submit an Entry
-      </button>
+  } else if (props.showNewsletterBoolean) {
+    displayItem =
+    <div>
+      <p> {props.description} </p>
+      <span className='entry-button'>
+        <button
+          className='general-button'
+          onClick={props.showDetails}
+        >
+          Submit an Entry
+        </button>
+      </span>
+    </div>
   }
 
   return (
-    <div className = 'newsletter-display-tile' >
-      <div className = 'opaque-tile row' >
-        <span className = 'columns small-5' >
+    <div className='newsletter-display-tile' >
+      <div className='opaque-tile row' >
+        <span className='columns small-5' >
           <img
-          src = {props.pic_url}
-          alt = 'Newsletter Thumbnail' />
+          src={props.pic_url}
+          alt='Newsletter Thumbnail' />
         </span>
 
-        <span className = 'columns small-7'>
-          <h4>{props.title}</h4>
-          <p> {props.description} </p>
-          <span className='entry-button'>{button}</span>
+        <span className='columns small-7'>
+          <h4 onClick={props.showDetails}>
+            {props.title}
+          </h4>
         </span>
         <div className='columns small-12'>
-          {entryForm}
+          {displayItem}
         </div>
       </div>
     </div>

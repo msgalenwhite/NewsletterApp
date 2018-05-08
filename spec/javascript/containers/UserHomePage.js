@@ -47,7 +47,7 @@ describe ('UserHomePage', () => {
       expect(wrapper.state()).toEqual({
         foundedNewsletters: [],
         userInfo: {},
-        selectedNewsletter: null,
+        newsletterNeedingEntry: null,
         displayMessage: null
       })
     })
@@ -57,7 +57,7 @@ describe ('UserHomePage', () => {
         expect(wrapper.state()).toEqual({
           foundedNewsletters: fetchedData,
           userInfo: fetchedData[0]["founder"],
-          selectedNewsletter: null,
+          newsletterNeedingEntry: null,
           displayMessage: null
         })
         done();
