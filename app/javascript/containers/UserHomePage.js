@@ -25,11 +25,10 @@ class UserHomePage extends Component {
   }
 
   displayOrHideNewsletterInfo(id) {
-    //selected newsletter means we have clicked on the newsletter's title and need to see more about it
     if (id === this.state.selectedNewsletter) {
       this.setState({
         selectedNewsletter: null,
-        newsletterNeedingEntry: null 
+        newsletterNeedingEntry: null
       })
     } else {
       this.setState({ selectedNewsletter: id })
@@ -88,7 +87,6 @@ class UserHomePage extends Component {
           <a href="#" className="close">&times;</a>
         </div>
     }
-
 
     return(
       <div>
