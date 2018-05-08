@@ -6,16 +6,16 @@ const NewsletterDisplayTile = props => {
   let button;
 
   if (props.showEntryForm) {
-    <EntryFormContainer
-      newsletterId={props.id}
-      userId={props.userId}
-    />
+    entryForm =
+      <EntryFormContainer
+        newsletterId={props.id}
+        userId={props.userId}
+      />
   } else {
     button =
       <button
         className='general-button'
-        onClick={props.handleClick}
-      >
+        onClick={props.handleClick}>
         Submit an Entry
       </button>
   }
@@ -28,12 +28,15 @@ const NewsletterDisplayTile = props => {
           src = {props.pic_url}
           alt = 'Newsletter Thumbnail' />
         </span>
-        {button}
+
         <span className = 'columns small-7'>
           <h4>{props.title}</h4>
           <p> {props.description} </p>
+          <span className='entry-button'>{button}</span>
         </span>
-        {entryForm}
+        <div className='columns small-12'>
+          {entryForm}
+        </div>
       </div>
     </div>
   )
