@@ -35,12 +35,15 @@ class UserHomePage extends Component {
 
   setMessage(message) {
     let id = this.state.newsletterNeedingEntry;
+    let letter = this.state.selectedNewsletter
     if (message.includes("Success!")) {
       id = null
+      letter = null
     }
     this.setState({
       flashMessage: message,
-      newsletterNeedingEntry: id
+      newsletterNeedingEntry: id,
+      selectedNewsletter: letter
     })
   }
 

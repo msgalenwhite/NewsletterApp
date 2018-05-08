@@ -20,7 +20,7 @@ const NewsletterDisplayTile = props => {
       <span className='entry-button'>
         <button
           className='general-button'
-          onClick={props.showDetails}
+          onClick={props.handleClick}
         >
           Submit an Entry
         </button>
