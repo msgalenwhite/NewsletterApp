@@ -1,7 +1,9 @@
-import React, {Component} from 'react'
+import React, {
+  Component
+} from 'react'
 
 class EntryFormContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       title: '',
@@ -60,25 +62,37 @@ class EntryFormContainer extends Component {
 
   render() {
 
-    return(
-      <div className='form-div'>
-        <form onSubmit={this.handleSubmit}>
+    return (
+      <div className = 'form-div' >
+        <form onSubmit = {this.handleSubmit}>
           <p>{this.state.errorMessage}</p>
           <h3>Submit an Entry</h3>
 
           <label htmlFor='title'>Title</label>
           <input
             type='text'
-            name='title'
-            value={this.state.title}
-            onChange={this.handleChange} />
+            name = 'title'
+            value = {this.state.title}
+            onChange = {this.handleChange}
+          />
 
           <label htmlFor='body'>Entry Text</label>
           <textarea
-            name='body'
-            value={this.state.body}
-            onChange={this.handleChange}/>
-          <input type='submit' value='Submit' className='general-button'/>
+            name = 'body'
+            value = {this.state.body}
+            onChange = {this.handleChange}
+          />
+
+          <form
+            action="/file-upload"
+            className="dropzone"
+            id="my-awesome-dropzone">
+          </form>
+
+          <input 
+            type='submit'
+            value='Submit'
+            className='general-button'/>
         </form>
       </div>
     )
