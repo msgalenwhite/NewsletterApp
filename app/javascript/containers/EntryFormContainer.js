@@ -8,7 +8,6 @@ class EntryFormContainer extends Component {
     this.state = {
       title: '',
       body: '',
-      photo: null,
       errorMessage: ""
     }
     this.formIsComplete = this.formIsComplete.bind(this)
@@ -34,7 +33,14 @@ class EntryFormContainer extends Component {
     event.preventDefault()
 
     if (this.formIsComplete()) {
-      this.submitEntry()
+      const formPayload = {
+        title: this.state.title,
+        body: this.state.body,
+        newsletterId: this.props.newsletterId,
+        userId: this.props.userId
+      }
+
+      this.submitEntry(formPayload)
     } else {
       this.setState({
         errorMessage: 'Please complete the form before submitting!'
@@ -42,22 +48,27 @@ class EntryFormContainer extends Component {
     }
   }
 
-  submitEntry() {
-    // fetch("/api/v1/entries.json")
-    //   .then ( response => {
-    //     if ( response.ok ) {
-    //       return response;
-    //     } else {
-    //       let errorMessage = `${response.status} (${response.statusText})`;
-    //       let error = new Error(errorMessage);
-    //       throw(error);
-    //     }
-    //   })
-    //   .then ( response => response.json() )
-    //   .then ( response => {
-    //     console.log(response)
-    //   })
-    //   .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+  submitEntry(formPayload) {
+    fetch("/api/v1/entries.json", {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        console.log(response)
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
