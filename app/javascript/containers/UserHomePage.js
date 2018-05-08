@@ -7,29 +7,45 @@ class UserHomePage extends Component {
     this.state = {
       foundedNewsletters: [],
       userInfo: {},
+      newsletterNeedingEntry: null,
       selectedNewsletter: null,
-      displayMessage: null
+      flashMessage: null
     }
     this.displayOrHideForm = this.displayOrHideForm.bind(this)
+    this.displayOrHideNewsletterInfo = this.displayOrHideNewsletterInfo.bind(this)
     this.setMessage = this.setMessage.bind(this)
   }
 
   displayOrHideForm(id) {
+    if (id === this.state.newsletterNeedingEntry) {
+      this.setState({ newsletterNeedingEntry: null })
+    } else {
+      this.setState({ newsletterNeedingEntry: id })
+    }
+  }
+
+  displayOrHideNewsletterInfo(id) {
     if (id === this.state.selectedNewsletter) {
-      this.setState({ selectedNewsletter: null })
+      this.setState({
+        selectedNewsletter: null,
+        newsletterNeedingEntry: null
+      })
     } else {
       this.setState({ selectedNewsletter: id })
     }
   }
 
   setMessage(message) {
-    let id = this.state.selectedNewsletter;
+    let id = this.state.newsletterNeedingEntry;
+    let letter = this.state.selectedNewsletter
     if (message.includes("Success!")) {
       id = null
+      letter = null
     }
     this.setState({
-      displayMessage: message,
-      selectedNewsletter: id 
+      flashMessage: message,
+      newsletterNeedingEntry: id,
+      selectedNewsletter: letter
     })
   }
 
@@ -64,14 +80,13 @@ class UserHomePage extends Component {
   render() {
     let message;
 
-    if (this.state.displayMessage) {
+    if (this.state.flashMessage) {
       message =
         <div data-alert className="alert-box">
-          {this.state.displayMessage}
+          {this.state.flashMessage}
           <a href="#" className="close">&times;</a>
         </div>
     }
-
 
     return(
       <div>
@@ -83,9 +98,11 @@ class UserHomePage extends Component {
         <NewsletterList
           newsletters={this.state.foundedNewsletters}
           showForm={this.displayOrHideForm}
-          selectedNewsletter={this.state.selectedNewsletter}
+          newsletterNeedingEntry={this.state.newsletterNeedingEntry}
           userId={this.state.userInfo["id"]}
           setMessage={this.setMessage}
+          displayOrHideNewsletterInfo={this.displayOrHideNewsletterInfo}
+          selectedNewsletter={this.state.selectedNewsletter}
         />
       </div>
     )
