@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DropZoneComponent from '../components/DropZoneComponent'
+import Dropzone from 'react-dropzone'
 
 
 class EntryFormContainer extends Component {
@@ -8,12 +8,23 @@ class EntryFormContainer extends Component {
     this.state = {
       title: '',
       body: '',
-      errorMessage: ""
+      errorMessage: "",
+      pictureFiles: []
     }
+    this.addToPictures = this.addToPictures.bind(this)
     this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.onDrop = this.onDrop.bind(this)
     this.submitEntry = this.submitEntry.bind(this)
+  }
+
+  addToPictures(something) {
+    let allPictures = this.state.pictureFiles.concat(something)
+
+    this.setState({
+      pictureFiles: allPictures
+    })
   }
 
   formIsComplete() {
@@ -37,7 +48,8 @@ class EntryFormContainer extends Component {
         title: this.state.title,
         body: this.state.body,
         newsletter_id: this.props.newsletterId,
-        user_id: this.props.userId
+        user_id: this.props.userId,
+        photo: this.state.pictureFiles
       }
 
       this.submitEntry(formPayload)
@@ -46,6 +58,13 @@ class EntryFormContainer extends Component {
         errorMessage: 'Please complete the form before submitting!'
       })
     }
+  }
+
+  onDrop(files) {
+    var formData = new FormData();
+    formData.append('file', files[0]);
+
+    this.addToPictures(formData)
   }
 
   submitEntry(formPayload) {
@@ -76,28 +95,33 @@ class EntryFormContainer extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
-      <div className = 'form-div' >
-        <form onSubmit = {this.handleSubmit}>
+      <div className='form-div' >
+        <form onSubmit={this.handleSubmit}>
           <p>{this.state.errorMessage}</p>
           <h3>Submit an Entry</h3>
 
           <label htmlFor='title'>Title</label>
           <input
             type='text'
-            name = 'title'
-            value = {this.state.title}
-            onChange = {this.handleChange}
+            name='title'
+            value={this.state.title}
+            onChange={this.handleChange}
           />
 
           <label htmlFor='body'>Entry Text</label>
           <textarea
-            name = 'body'
-            value = {this.state.body}
-            onChange = {this.handleChange}
+            name='body'
+            value={this.state.body}
+            onChange={this.handleChange}
           />
 
-          <DropZoneComponent />
+          <div className="dropzone">
+            <Dropzone onDrop={this.onDrop}>
+              <p>Try dropping some files here, or click to select files to upload.</p>
+            </Dropzone>
+          </div>
 
           <input
             type='submit'
