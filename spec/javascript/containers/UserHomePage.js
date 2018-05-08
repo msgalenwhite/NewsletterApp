@@ -42,11 +42,13 @@ describe ('UserHomePage', () => {
 
   afterEach(fetchMock.restore)
 
-  describe('state initializes and updates correctly', () => {
+  describe('fetch statement', () => {
     it ('initializes with the correct state', () => {
       expect(wrapper.state()).toEqual({
         foundedNewsletters: [],
-        userInfo: {}
+        userInfo: {},
+        selectedNewsletter: null,
+        displayMessage: null
       })
     })
 
@@ -54,18 +56,20 @@ describe ('UserHomePage', () => {
       setTimeout(() => {
         expect(wrapper.state()).toEqual({
           foundedNewsletters: fetchedData,
-          userInfo: fetchedData[0]["founder"]
+          userInfo: fetchedData[0]["founder"],
+          selectedNewsletter: null,
+          displayMessage: null
         })
         done();
       }, 0)
     })
-  })
 
-  it ('passes the correct props to NewsletterList', () => {
-    expect(wrapper.find(NewsletterList)).toHaveProp(
-      'newsletters',
-      wrapper.state('foundedNewsletters')
-    )
+    it ('passes the correct props to NewsletterList', () => {
+      expect(wrapper.find(NewsletterList)).toHaveProp(
+        'newsletters',
+        wrapper.state('foundedNewsletters')
+      )
+    })
   })
 
   describe('rendered components', () => {

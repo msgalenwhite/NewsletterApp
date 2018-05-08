@@ -34,7 +34,7 @@ describe ('NewsletterList', () => {
     />)
   })
 
-  it ('renders a list of NewsletterDisplayTile', () => {
+  it ('renders a list of NewsletterDisplayTiles', () => {
     expect(wrapper.find(NewsletterDisplayTile).length).toEqual(propData.length)
   })
 })
