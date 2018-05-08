@@ -58,7 +58,8 @@ describe ('UserHomePage', () => {
           foundedNewsletters: fetchedData,
           userInfo: fetchedData[0]["founder"],
           newsletterNeedingEntry: null,
-          displayMessage: null
+          selectedNewsletter: null,
+          flashMessage: null
         })
         done();
       }, 0)

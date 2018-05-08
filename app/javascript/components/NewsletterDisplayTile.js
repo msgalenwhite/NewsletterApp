@@ -3,8 +3,6 @@ import EntryFormContainer from '../containers/EntryFormContainer'
 
 const NewsletterDisplayTile = props => {
   let displayItem;
-  let button;
-  let description;
 
   if (props.showEntryForm) {
     displayItem =

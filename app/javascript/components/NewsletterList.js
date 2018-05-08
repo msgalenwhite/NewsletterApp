@@ -4,11 +4,9 @@ import NewsletterDisplayTile from '../components/NewsletterDisplayTile'
 const NewsletterList = props => {
   let newsletters;
 
-
-
-
   if (props.newsletters.length > 0) {
     newsletters = props.newsletters.map((newsletterObject) => {
+      
       let showEntryForm;
       let showNewsletterBoolean;
       const id = newsletterObject["id"]
