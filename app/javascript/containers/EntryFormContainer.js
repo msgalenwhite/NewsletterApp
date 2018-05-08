@@ -8,10 +8,9 @@ class EntryFormContainer extends Component {
     this.state = {
       title: '',
       body: '',
-      errorMessage: "",
-      pictureFiles: []
+      errorMessage: '',
+      photo: null
     }
-    this.addToPictures = this.addToPictures.bind(this)
     this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,16 +18,8 @@ class EntryFormContainer extends Component {
     this.submitEntry = this.submitEntry.bind(this)
   }
 
-  addToPictures(something) {
-    let allPictures = this.state.pictureFiles.concat(something)
-
-    this.setState({
-      pictureFiles: allPictures
-    })
-  }
-
   formIsComplete() {
-    if (this.state.title === "" || this.state.body === "") {
+    if (this.state.title === '' || this.state.body === '') {
       return false
     }
     return true
@@ -44,15 +35,21 @@ class EntryFormContainer extends Component {
     event.preventDefault()
 
     if (this.formIsComplete()) {
+      let formDataObject = new FormData()
+
       const formPayload = {
         title: this.state.title,
         body: this.state.body,
         newsletter_id: this.props.newsletterId,
-        user_id: this.props.userId,
-        photo: this.state.pictureFiles
+        photo: this.state.photo
       }
 
-      this.submitEntry(formPayload)
+      // Object.entries(formPayload).map((miniArray) => {
+      //   formDataObject.append(miniArray[0], miniArray[1])
+      // })
+
+      formDataObject.append("title", this.state.title)
+      this.submitEntry(formDataObject)
     } else {
       this.setState({
         errorMessage: 'Please complete the form before submitting!'
@@ -60,18 +57,15 @@ class EntryFormContainer extends Component {
     }
   }
 
-  onDrop(files) {
-    var formData = new FormData();
-    formData.append('file', files[0]);
-
-    this.addToPictures(formData)
+  onDrop(photo) {
+    this.setState({ photo: photo })
   }
 
-  submitEntry(formPayload) {
+  submitEntry(formDataObject) {
     fetch("/api/v1/entries.json", {
       credentials: 'same-origin',
       method: 'POST',
-      body: JSON.stringify(formPayload),
+      body: formDataObject,
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     })
       .then ( response => {

@@ -2,7 +2,9 @@ class Api::V1::EntriesController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def create
+    binding.pry
     @entry = Entry.new(entries_params)
+    @entry.user = current_user
 
     if @entry.save
       render json: @entry
@@ -14,6 +16,6 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entries_params
-    params.require(:entry).permit(:title, :body, :user_id, :newsletter_id)
+    params.require(:entry).permit(:title, :body, :newsletter_id)
   end
 end
