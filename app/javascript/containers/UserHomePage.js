@@ -7,9 +7,11 @@ class UserHomePage extends Component {
     this.state = {
       foundedNewsletters: [],
       userInfo: {},
-      selectedNewsletter: null
+      selectedNewsletter: null,
+      displayMessage: null
     }
     this.displayOrHideForm = this.displayOrHideForm.bind(this)
+    this.setMessage = this.setMessage.bind(this)
   }
 
   displayOrHideForm(id) {
@@ -18,6 +20,17 @@ class UserHomePage extends Component {
     } else {
       this.setState({ selectedNewsletter: id })
     }
+  }
+
+  setMessage(message) {
+    let id = this.state.selectedNewsletter;
+    if (message.includes("Success!")) {
+      id = null
+    }
+    this.setState({
+      displayMessage: message,
+      selectedNewsletter: id 
+    })
   }
 
   componentDidMount() {
@@ -49,8 +62,20 @@ class UserHomePage extends Component {
   }
 
   render() {
+    let message;
+
+    if (this.state.displayMessage) {
+      message =
+        <div data-alert className="alert-box">
+          {this.state.displayMessage}
+          <a href="#" className="close">&times;</a>
+        </div>
+    }
+
+
     return(
       <div>
+        {message}
         <h1 className='page-header'>Newsletter Home Page</h1>
         <a href='/newsletters/new'>Create a Newsletter</a>
 
@@ -60,6 +85,7 @@ class UserHomePage extends Component {
           showForm={this.displayOrHideForm}
           selectedNewsletter={this.state.selectedNewsletter}
           userId={this.state.userInfo["id"]}
+          setMessage={this.setMessage}
         />
       </div>
     )

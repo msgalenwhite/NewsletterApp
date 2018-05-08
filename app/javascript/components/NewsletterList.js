@@ -25,7 +25,9 @@ const NewsletterList = props => {
           pic_url={newsletterObject["thumb_photo"]["url"]}
           handleClick={handleClick}
           showEntryForm={showEntryForm}
-          userId={props.userId}/>
+          userId={props.userId}
+          setMessage={props.setMessage}
+        />
       )
     })
   }

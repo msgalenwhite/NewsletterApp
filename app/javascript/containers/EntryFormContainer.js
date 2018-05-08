@@ -8,7 +8,6 @@ class EntryFormContainer extends Component {
     this.state = {
       title: '',
       body: '',
-      photo: null,
       errorMessage: ""
     }
     this.formIsComplete = this.formIsComplete.bind(this)
@@ -34,7 +33,14 @@ class EntryFormContainer extends Component {
     event.preventDefault()
 
     if (this.formIsComplete()) {
-      this.submitEntry()
+      const formPayload = {
+        title: this.state.title,
+        body: this.state.body,
+        newsletter_id: this.props.newsletterId,
+        user_id: this.props.userId
+      }
+
+      this.submitEntry(formPayload)
     } else {
       this.setState({
         errorMessage: 'Please complete the form before submitting!'
@@ -42,53 +48,34 @@ class EntryFormContainer extends Component {
     }
   }
 
-  // onDrop(acceptedFiles, rejectedFiles) {
-  //   //accept prop is what determines if it's accepted or rejected
-  //
-  //   onDrop: acceptedFiles => {
-  //   acceptedFiles.forEach(file => {
-  //       const reader = new FileReader();
-  //       reader.onload = () => {
-  //           const fileAsBinaryString = reader.result;
-  //           // do whatever you want with the file content
-  //
-  //       };
-  //       reader.onabort = () => console.log('file reading was aborted');
-  //       reader.onerror = () => console.log('file reading has failed');
-  //
-  //       reader.readAsBinaryString(file);
-  //   });
-  // }
-  //
-  //   // https://www.w3.org/wiki/HTML/Elements/input/file
-  //   // notes re: what pieces are required/optional in an input field
-  //
-  //   //caution with previews:
-  //   // Important: react-dropzone doesn't manage dropped files. You need to destroy the object URL yourself whenever you don't need the preview by calling window.URL.revokeObjectURL(file.preview); to avoid memory leaks.
-  //
-  //
-  // }
-
-  submitEntry() {
-    // fetch("/api/v1/entries.json")
-    //   .then ( response => {
-    //     if ( response.ok ) {
-    //       return response;
-    //     } else {
-    //       let errorMessage = `${response.status} (${response.statusText})`;
-    //       let error = new Error(errorMessage);
-    //       throw(error);
-    //     }
-    //   })
-    //   .then ( response => response.json() )
-    //   .then ( response => {
-    //     console.log(response)
-    //   })
-    //   .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+  submitEntry(formPayload) {
+    fetch("/api/v1/entries.json", {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        if (response["error"]) {
+          this.props.setMessage(response["error"])
+        } else {
+          this.props.setMessage("Success!")
+        }
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
-
     return (
       <div className = 'form-div' >
         <form onSubmit = {this.handleSubmit}>
