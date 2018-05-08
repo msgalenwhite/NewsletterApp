@@ -35,7 +35,7 @@ const NewsletterList = props => {
           userId={props.userId}
           setMessage={props.setMessage}
           showDetails={handleSelectNewsletter}
-          showNewsletterBoolean={showNewsletterBoo}
+          showNewsletterBoolean={showNewsletterBoolean}
         />
       )
     })

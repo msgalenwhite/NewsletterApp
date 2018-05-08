@@ -29,9 +29,9 @@ describe ('NewsletterList', () => {
   ]
 
   beforeEach(() => {
-    wrapper = mount(<NewsletterList
-      newsletters={propData}
-    />)
+    wrapper = mount(
+      <NewsletterList newsletters={propData}/>
+    )
   })
 
   it ('renders a list of NewsletterDisplayTiles', () => {

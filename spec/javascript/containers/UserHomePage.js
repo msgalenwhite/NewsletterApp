@@ -48,7 +48,8 @@ describe ('UserHomePage', () => {
         foundedNewsletters: [],
         userInfo: {},
         newsletterNeedingEntry: null,
-        displayMessage: null
+        selectedNewsletter: null,
+        flashMessage: null
       })
     })
 
