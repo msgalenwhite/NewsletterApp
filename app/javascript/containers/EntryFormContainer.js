@@ -1,6 +1,6 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
+import DropZoneComponent from '../components/DropZoneComponent'
+
 
 class EntryFormContainer extends Component {
   constructor(props) {
@@ -42,6 +42,33 @@ class EntryFormContainer extends Component {
     }
   }
 
+  // onDrop(acceptedFiles, rejectedFiles) {
+  //   //accept prop is what determines if it's accepted or rejected
+  //
+  //   onDrop: acceptedFiles => {
+  //   acceptedFiles.forEach(file => {
+  //       const reader = new FileReader();
+  //       reader.onload = () => {
+  //           const fileAsBinaryString = reader.result;
+  //           // do whatever you want with the file content
+  //
+  //       };
+  //       reader.onabort = () => console.log('file reading was aborted');
+  //       reader.onerror = () => console.log('file reading has failed');
+  //
+  //       reader.readAsBinaryString(file);
+  //   });
+  // }
+  //
+  //   // https://www.w3.org/wiki/HTML/Elements/input/file
+  //   // notes re: what pieces are required/optional in an input field
+  //
+  //   //caution with previews:
+  //   // Important: react-dropzone doesn't manage dropped files. You need to destroy the object URL yourself whenever you don't need the preview by calling window.URL.revokeObjectURL(file.preview); to avoid memory leaks.
+  //
+  //
+  // }
+
   submitEntry() {
     // fetch("/api/v1/entries.json")
     //   .then ( response => {
@@ -82,6 +109,8 @@ class EntryFormContainer extends Component {
             value = {this.state.body}
             onChange = {this.handleChange}
           />
+
+          <DropZoneComponent />
 
           <input
             type='submit'
