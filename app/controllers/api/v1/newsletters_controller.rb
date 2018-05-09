@@ -6,6 +6,7 @@ class Api::V1::NewslettersController < ApplicationController
   end
 
   def show
-    binding.pry
+    newsletter_id = params["id"].to_i
+    render json: Newsletter.find(newsletter_id)
   end
 end
