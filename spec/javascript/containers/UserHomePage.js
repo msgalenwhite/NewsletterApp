@@ -56,7 +56,7 @@ describe ('UserHomePage', () => {
     it ('changes state to reflect the content of an api call', (done) => {
       setTimeout(() => {
         expect(wrapper.state()).toEqual({
-          foundedNewsletters: fetchedData,
+          subscribedNewsletters: fetchedData,
           userInfo: fetchedData[0]["founder"],
           newsletterNeedingEntry: null,
           selectedNewsletter: null,

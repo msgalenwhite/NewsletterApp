@@ -5,7 +5,7 @@ class UserHomePage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      foundedNewsletters: [],
+      subscribedNewsletters: [],
       userInfo: {},
       newsletterNeedingEntry: null,
       selectedNewsletter: null,
@@ -70,7 +70,7 @@ class UserHomePage extends Component {
         const userInfo = response[0]["founder"]
 
         this.setState({
-          foundedNewsletters: newsletters,
+          subscribedNewsletters: newsletters,
           userInfo: userInfo
         })
       })
@@ -96,7 +96,7 @@ class UserHomePage extends Component {
 
         <h3>Founded Newsletters</h3>
         <NewsletterList
-          newsletters={this.state.foundedNewsletters}
+          newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}
           newsletterNeedingEntry={this.state.newsletterNeedingEntry}
           userId={this.state.userInfo["id"]}
