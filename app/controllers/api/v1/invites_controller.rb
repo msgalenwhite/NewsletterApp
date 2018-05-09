@@ -9,10 +9,10 @@ class Api::V1::InvitesController < ApplicationController
 
       if invite.save
         #return something
-
+        flash[:success] = "Your emails have been sent!"
 
       else
-        #return an error
+        flash[:error] = invite.errors.full_messages.join(' // ')
       end
     end
 
