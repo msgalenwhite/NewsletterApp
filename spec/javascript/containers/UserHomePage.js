@@ -39,7 +39,7 @@ describe ('UserHomePage', () => {
   describe('fetch statement', () => {
     it ('initializes with the correct state', () => {
       expect(wrapper.state()).toEqual({
-        foundedNewsletters: [],
+        subscribedNewsletters: [],
         newsletterNeedingEntry: null,
         selectedNewsletter: null,
         flashMessage: null
@@ -61,7 +61,7 @@ describe ('UserHomePage', () => {
     it ('passes the correct props to NewsletterList', () => {
       expect(wrapper.find(NewsletterList)).toHaveProp(
         'newsletters',
-        wrapper.state('foundedNewsletters')
+        wrapper.state('subscribedNewsletters')
       )
     })
   })
