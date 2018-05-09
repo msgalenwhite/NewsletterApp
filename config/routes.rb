@@ -11,4 +11,6 @@ Rails.application.routes.draw do
       resources :entries, only: [:create]
     end
   end
+
+  get '*path' => 'homes#index'
 end
