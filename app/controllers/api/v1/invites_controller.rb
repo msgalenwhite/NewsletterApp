@@ -9,6 +9,7 @@ class Api::V1::InvitesController < ApplicationController
 
       if invite.save
         #return something
+        InvitationMailer.new_invitation(invite).deliver_now
         flash[:success] = "Your emails have been sent!"
 
       else
