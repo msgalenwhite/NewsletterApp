@@ -51,7 +51,7 @@ describe ('UserHomePage', () => {
       setTimeout(() => {
         expect(wrapper.state()).toEqual({
           foundedNewsletters: fetchedData,
-          userInfo: fetchedData[0]["founder"],
+          userInfo: {},
           newsletterNeedingEntry: null,
           selectedNewsletter: null,
           flashMessage: null
