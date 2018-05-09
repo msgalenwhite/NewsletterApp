@@ -26,7 +26,9 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.find(params[:id])
     if !current_user
       flash[:alert] = 'You must be logged in to view this page!'
+      redirect_to new_user_session_path
     elsif !current_user.newsletters.include?(@newsletter)
+      flash[:alert] = 'You must be a member before you can view a Newsletter.'
       redirect_to root_path
     else
       render 'show'
