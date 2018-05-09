@@ -13,7 +13,8 @@ class NewsletterShowPage extends Component {
       showInviteForm: false,
       invitedEmails: [],
       newEmail: '',
-      newName: ''
+      newName: '',
+      flashMessage: null
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
@@ -65,6 +66,14 @@ class NewsletterShowPage extends Component {
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
+  createFormPayload() {
+    const formPayload = {
+      emails: this.state.invitedEmails,
+      newsletterId: parseInt(this.props.params["id"])
+    }
+    return formPayload
+  }
+
   founderOptions() {
     const handleClick = () => { this.showInviteForm() }
     let returnedComponent;
@@ -89,6 +98,7 @@ class NewsletterShowPage extends Component {
           currentName={this.state.newName}
           handleChange={this.handleChange}
           addEmail={this.addToInvites}
+          handleSubmit={this.sendEmails}
         />
 
     }
@@ -105,11 +115,50 @@ class NewsletterShowPage extends Component {
     this.setState({ showInviteForm: !this.state.showInviteForm })
   }
 
+  sendEmails() {
+    const formPayload = this.createFormPayload()
+
+    fetch("/api/v1/invites.json", {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        if (response["error"]) {
+          this.props.setMessage(response["error"])
+        } else {
+          this.props.setMessage("Success!")
+        }
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+  }
+
   render() {
     const founderTag = this.founderOptions()
+    let message;
+
+    if (this.state.flashMessage) {
+      message =
+        <div data-alert className="alert-box">
+          {this.state.flashMessage}
+          <a href="#" className="close">&times;</a>
+        </div>
+    }
 
     return(
       <div>
+        {message}
         <h1 className='page-header'>{this.state.title}</h1>
         <img src={this.state.photo.url} alt='Newsletter Photo' />
         {founderTag}

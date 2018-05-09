@@ -3,11 +3,11 @@ import React from 'react'
 const InviteFormContainer = props => {
   let emailComponents = props.invitedEmails.map((emailObject) => {
     return (
-      <li>{emailObject.name}: {emailObject.email}</li>
+      <li>{emailObject.name} ({emailObject.email})</li>
     )
   })
 
-  // NEXT - fill out form, link fields with state of newsletter show page, VALIDATE forms of email
+  let submitEmails = () => { props.handleSubmit() }
 
   return(
     <div className='row'>
@@ -38,6 +38,12 @@ const InviteFormContainer = props => {
       <div className='columns small-12 medium-6'>
         <h3 className='sub-header'>Invites to Send:</h3>
         {emailComponents}
+        <button
+          className='general-button' 
+          onClick={submitEmails}
+        >
+          Send the Invites!
+        </button>
       </div>
       <div className='row'>
         <div className='columns small-12'>
