@@ -4,4 +4,6 @@ class Invitation < ApplicationRecord
 
   validates :email, presence: true
   validates :name, presence: true
+
+  validates :email, uniqueness: { scope: :newsletter_id }
 end
