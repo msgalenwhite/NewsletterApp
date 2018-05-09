@@ -22,6 +22,15 @@ class NewslettersController < ApplicationController
     end
   end
 
+  def show
+    newsletter = Newsletter.find(params[:id])
+    unless current_user || user.newsletters.include?(newsletter)
+      flash[:alert] = 'You must be a member to view this Newsletter.'
+      redirect_to root_path
+    end
+    render 'show'
+  end
+
   private
 
   def newsletter_params
