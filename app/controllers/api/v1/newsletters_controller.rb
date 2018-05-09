@@ -4,4 +4,8 @@ class Api::V1::NewslettersController < ApplicationController
   def index
     render json: current_user.newsletters
   end
+
+  def show
+    binding.pry
+  end
 end
