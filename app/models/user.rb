@@ -15,4 +15,8 @@ class User < ApplicationRecord
 
   has_many :subscriptions
   has_many :newsletters, through: :subscriptions
+
+  def full_name
+    first_name + " " + last_name
+  end
 end

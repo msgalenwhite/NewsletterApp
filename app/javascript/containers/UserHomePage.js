@@ -70,8 +70,7 @@ class UserHomePage extends Component {
         const userInfo = response[0]["founder"]
 
         this.setState({
-          foundedNewsletters: newsletters,
-          userInfo: userInfo
+          foundedNewsletters: newsletters
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
@@ -99,7 +98,6 @@ class UserHomePage extends Component {
           newsletters={this.state.foundedNewsletters}
           showForm={this.displayOrHideForm}
           newsletterNeedingEntry={this.state.newsletterNeedingEntry}
-          userId={this.state.userInfo["id"]}
           setMessage={this.setMessage}
           displayOrHideNewsletterInfo={this.displayOrHideNewsletterInfo}
           selectedNewsletter={this.state.selectedNewsletter}
