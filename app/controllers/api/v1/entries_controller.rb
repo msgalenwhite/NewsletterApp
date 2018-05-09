@@ -3,6 +3,7 @@ class Api::V1::EntriesController < ApplicationController
 
   def create
     entry = Entry.new(entries_params)
+    entry.user = current_user
 
     if entry.save
       render json: entry
