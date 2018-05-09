@@ -8,9 +8,11 @@ class NewsletterShowPage extends Component {
       description: '',
       photo: {},
       founderName: '',
-      isFounder: null
+      isFounder: null,
+      showInviteForm: false
     }
     this.founderOptions = this.founderOptions.bind(this)
+    this.showInviteForm = this.showInviteForm.bind(this)
   }
 
   componentDidMount() {
@@ -44,13 +46,23 @@ class NewsletterShowPage extends Component {
   }
 
   founderOptions() {
-    if (this.state.isFounder) {
+    if (this.state.isFounder && !this.state.showInviteForm) {
+      const handleClick = () => { this.showInviteForm() }
       return (
-        <button className='general-button'>Send Invites</button>
+        <button
+          className='general-button'
+          onClick={handleClick}
+        >
+          Send Invites
+        </button>
       )
-    } else {
+    } else if (!this.state.isFounder){
       return (<h4>Founded by: {this.state.founderName}</h4>)
     }
+  }
+
+  showInviteForm() {
+    this.setState({ showInviteForm: !this.state.showInviteForm })
   }
 
   render() {
