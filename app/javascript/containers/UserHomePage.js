@@ -94,7 +94,7 @@ class UserHomePage extends Component {
         <h1 className='page-header'>Newsletter Home Page</h1>
         <a href='/newsletters/new'>Create a Newsletter</a>
 
-        <h3>Your Newsletters</h3>
+        <h3>Your Subscriptions</h3>
         <NewsletterList
           newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}
