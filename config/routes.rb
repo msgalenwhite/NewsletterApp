@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :newsletters, only: [:index]
+      resources :newsletters, only: [:index, :show]
       resources :entries, only: [:create]
     end
   end
