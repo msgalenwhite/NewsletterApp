@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import InviteFormContainer from './InviteFormContainer'
 
 class NewsletterShowPage extends Component {
   constructor(props){
@@ -46,8 +47,9 @@ class NewsletterShowPage extends Component {
   }
 
   founderOptions() {
+    const handleClick = () => { this.showInviteForm() }
+
     if (this.state.isFounder && !this.state.showInviteForm) {
-      const handleClick = () => { this.showInviteForm() }
       return (
         <button
           className='general-button'
@@ -58,6 +60,8 @@ class NewsletterShowPage extends Component {
       )
     } else if (!this.state.isFounder){
       return (<h4>Founded by: {this.state.founderName}</h4>)
+    } else {
+      return (<InviteFormContainer hideMe={handleClick} />)
     }
   }
 
