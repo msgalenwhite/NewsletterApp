@@ -2,14 +2,13 @@ class Api::V1::EntriesController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def create
-    binding.pry
-    @entry = Entry.new(entries_params)
-    @entry.user = current_user
+    entry = Entry.new(entries_params)
+    entry.user = current_user
 
-    if @entry.save
-      render json: @entry
+    if entry.save
+      render json: entry
     else
-      render json: @entry.errors.full_messages.join(" // ")
+      render json: entry.errors.full_messages.join(" // ")
     end
   end
 

@@ -7,26 +7,35 @@ const NewsletterList = props => {
   if (props.newsletters.length > 0) {
     newsletters = props.newsletters.map((newsletterObject) => {
       let showEntryForm;
-
+      let showNewsletterBoolean;
       const id = newsletterObject["id"]
 
-      if (id === props.selectedNewsletter) {
+      if (id === props.newsletterNeedingEntry) {
         showEntryForm = true
       }
+      if (id === props.selectedNewsletter) {
+        showNewsletterBoolean = true
+      }
 
-      const handleClick = () => { props.showForm(id) }
+      const handleSelectNewsletter = () => {
+        props.displayOrHideNewsletterInfo(id)
+      }
 
+      const handleButtonClick = () => { props.showForm(id) }
+      
       return (
         <NewsletterDisplayTile
-          key={newsletterObject["id"]}
+          key={`subscribed-newsletter-${newsletterObject["id"]}`}
           id={newsletterObject["id"]}
           title={newsletterObject["title"]}
           description={newsletterObject["description"]}
           pic_url={newsletterObject["thumb_photo"]["url"]}
-          handleClick={handleClick}
+          handleClick={handleButtonClick}
           showEntryForm={showEntryForm}
           userId={props.userId}
           setMessage={props.setMessage}
+          showDetails={handleSelectNewsletter}
+          showNewsletterBoolean={showNewsletterBoolean}
         />
       )
     })

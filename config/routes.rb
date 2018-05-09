@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :newsletters, only: [:new, :create]
+  resources :newsletters, only: [:new, :create, :show]
 
   namespace :api do
     namespace :v1 do
-      resources :newsletters, only: [:index]
+      resources :newsletters, only: [:index, :show]
       resources :entries, only: [:create]
     end
   end
+
+  get '*path' => 'homes#index'
 end

@@ -5,31 +5,46 @@ class UserHomePage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      foundedNewsletters: [],
-      userInfo: {},
+      subscribedNewsletters: [],
+      newsletterNeedingEntry: null,
       selectedNewsletter: null,
-      displayMessage: null
+      flashMessage: null
     }
     this.displayOrHideForm = this.displayOrHideForm.bind(this)
+    this.displayOrHideNewsletterInfo = this.displayOrHideNewsletterInfo.bind(this)
     this.setMessage = this.setMessage.bind(this)
   }
 
   displayOrHideForm(id) {
+    if (id === this.state.newsletterNeedingEntry) {
+      this.setState({ newsletterNeedingEntry: null })
+    } else {
+      this.setState({ newsletterNeedingEntry: id })
+    }
+  }
+
+  displayOrHideNewsletterInfo(id) {
     if (id === this.state.selectedNewsletter) {
-      this.setState({ selectedNewsletter: null })
+      this.setState({
+        selectedNewsletter: null,
+        newsletterNeedingEntry: null
+      })
     } else {
       this.setState({ selectedNewsletter: id })
     }
   }
 
   setMessage(message) {
-    let id = this.state.selectedNewsletter;
+    let id = this.state.newsletterNeedingEntry;
+    let letter = this.state.selectedNewsletter
     if (message.includes("Success!")) {
       id = null
+      letter = null
     }
     this.setState({
-      displayMessage: message,
-      selectedNewsletter: id 
+      flashMessage: message,
+      newsletterNeedingEntry: id,
+      selectedNewsletter: letter
     })
   }
 
@@ -51,11 +66,9 @@ class UserHomePage extends Component {
       .then ( response => response.json() )
       .then ( response => {
         const newsletters = response
-        const userInfo = response[0]["founder"]
 
         this.setState({
-          foundedNewsletters: newsletters,
-          userInfo: userInfo
+          subscribedNewsletters: newsletters
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
@@ -64,28 +77,28 @@ class UserHomePage extends Component {
   render() {
     let message;
 
-    if (this.state.displayMessage) {
+    if (this.state.flashMessage) {
       message =
         <div data-alert className="alert-box">
-          {this.state.displayMessage}
+          {this.state.flashMessage}
           <a href="#" className="close">&times;</a>
         </div>
     }
-
 
     return(
       <div>
         {message}
         <h1 className='page-header'>Newsletter Home Page</h1>
-        <a href='/newsletters/new'>Create a Newsletter</a>
+        <a href='/newsletters/new' className='sub-header'>Create a Newsletter</a>
 
-        <h3>Founded Newsletters</h3>
+        <h3>Your Subscriptions</h3>
         <NewsletterList
-          newsletters={this.state.foundedNewsletters}
+          newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}
-          selectedNewsletter={this.state.selectedNewsletter}
-          userId={this.state.userInfo["id"]}
+          newsletterNeedingEntry={this.state.newsletterNeedingEntry}
           setMessage={this.setMessage}
+          displayOrHideNewsletterInfo={this.displayOrHideNewsletterInfo}
+          selectedNewsletter={this.state.selectedNewsletter}
         />
       </div>
     )
