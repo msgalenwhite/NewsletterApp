@@ -1,7 +1,9 @@
 class Api::V1::EntriesController < ApplicationController
-  protect_from_forgery unless: -> { request.format.json? }
-
+  # protect_from_forgery unless: -> { request.format.json? }
+  skip_before_action :verify_authenticity_token
+  
   def create
+    binding.pry
     entry = Entry.new(entries_params)
     entry.user = current_user
 

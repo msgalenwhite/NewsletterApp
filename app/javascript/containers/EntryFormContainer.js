@@ -49,6 +49,8 @@ class EntryFormContainer extends Component {
       // })
 
       formDataObject.append("title", this.state.title)
+      formDataObject.append("body", this.state.body)
+      formDataObject.append("photo", this.state.photo)
       this.submitEntry(formDataObject)
     } else {
       this.setState({
@@ -62,13 +64,16 @@ class EntryFormContainer extends Component {
   }
 
   submitEntry(formDataObject) {
-    fetch("/api/v1/entries.json", {
+    fetch("/api/v1/entries", {
       credentials: 'same-origin',
       method: 'POST',
-      body: formDataObject,
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      body: formDataObject
+      // headers: {
+      //   'Accept': 'application/json', 'Content-Type': 'multipart/form-data'
+      // }
     })
       .then ( response => {
+        debugger
         if ( response.ok ) {
           return response;
         } else {
