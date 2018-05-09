@@ -10,27 +10,21 @@ describe ('UserHomePage', () => {
   beforeEach(() => {
     fetchedData = [
       {
-        "id": 1,
         "description": "desc",
         "thumb_photo": {
           "url": "https://newsletter-app-development.s3.amazonaws.com/uploads/newsletter/thumb_photo/1/blue_flowers.jpg"
         },
         "title": "New",
-        "founder": {
-          "id": 1,
-          "email": "test@test.com",
-          "created_at": "2018-05-07T16:26:11.940Z",
-          "updated_at": "2018-05-07T17:51:11.270Z",
-          "first_name": "test",
-          "last_name": "user",
-          "profile_photo": {
-            "url": "https://newsletter-app-development.s3.amazonaws.com/uploads/user/profile_photo/1/purple_flowers.jpg"
-          },
-        "bio": "bio",
-        "current_city": "Boston",
-        "current_state": "MA"
-        }
-      }
+        "founder_name": "test user"
+      },
+      {
+        "description": "desc2",
+        "thumb_photo": {
+          "url": "https://newsletter-app-development.s3.amazonaws.com/uploads/newsletter/thumb_photo/1/blue_flowers.jpg"
+        },
+        "title": "Another",
+        "founder_name": "not the test user"
+      },
     ]
 
     fetchMock.get('/api/v1/newsletters.json', {
