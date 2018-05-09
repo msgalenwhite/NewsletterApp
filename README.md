@@ -6,6 +6,8 @@
 
 This is an app so that a user can receive a single email at the beginning of the month with all of the entries that their family members have submitted.  
 
+My Trello board to keep track of user stories and acceptance criteria: https://trello.com/b/NfrCdOQi
+
 ### Technologies
 
 I used a Rails backend and React frontend, styled with Scss and Foundation.
