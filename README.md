@@ -4,6 +4,12 @@
 
 # NewsletterApp
 
+This is an app so that a user can receive a single email at the beginning of the month with all of the entries that their family members have submitted.  
+
+### Technologies
+
+I used a Rails backend and React frontend, styled with Scss and Foundation.
+
 ### Initialize the database
 
 This project uses a postgresql database.

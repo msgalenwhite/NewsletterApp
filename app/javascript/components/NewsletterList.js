@@ -22,7 +22,7 @@ const NewsletterList = props => {
       }
 
       const handleButtonClick = () => { props.showForm(id) }
-
+      
       return (
         <NewsletterDisplayTile
           key={`subscribed-newsletter-${newsletterObject["id"]}`}
