@@ -9,11 +9,16 @@ class Api::V1::InvitesController < ApplicationController
 
       if invite.save
         #return something
+
         binding.pry
       else
         #return an error
       end
     end
+
+    #now I have all of my email information, send the emails!
+    #maybe pass off to a different method?
+    
   end
 
   private
