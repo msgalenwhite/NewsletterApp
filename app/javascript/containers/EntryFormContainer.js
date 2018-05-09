@@ -44,13 +44,10 @@ class EntryFormContainer extends Component {
         photo: this.state.photo
       }
 
-      // Object.entries(formPayload).map((miniArray) => {
-      //   formDataObject.append(miniArray[0], miniArray[1])
-      // })
-
       formDataObject.append("title", this.state.title)
       formDataObject.append("body", this.state.body)
       formDataObject.append("photo", this.state.photo)
+      
       this.submitEntry(formDataObject)
     } else {
       this.setState({
@@ -68,9 +65,6 @@ class EntryFormContainer extends Component {
       credentials: 'same-origin',
       method: 'POST',
       body: formDataObject
-      // headers: {
-      //   'Accept': 'application/json', 'Content-Type': 'multipart/form-data'
-      // }
     })
       .then ( response => {
         debugger
