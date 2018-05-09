@@ -23,6 +23,9 @@ const NewsletterDisplayTile = props => {
           Submit an Entry
         </button>
       </span>
+      <a href={`/newsletters/${props.id}`} className='general-button'>
+        View Newsletter
+      </a>
     </div>
   }
 

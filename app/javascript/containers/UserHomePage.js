@@ -6,7 +6,6 @@ class UserHomePage extends Component {
     super(props);
     this.state = {
       subscribedNewsletters: [],
-      userInfo: {},
       newsletterNeedingEntry: null,
       selectedNewsletter: null,
       flashMessage: null
@@ -67,11 +66,9 @@ class UserHomePage extends Component {
       .then ( response => response.json() )
       .then ( response => {
         const newsletters = response
-        const userInfo = response[0]["founder"]
 
         this.setState({
-          subscribedNewsletters: newsletters,
-          userInfo: userInfo
+          subscribedNewsletters: newsletters
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
@@ -99,7 +96,6 @@ class UserHomePage extends Component {
           newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}
           newsletterNeedingEntry={this.state.newsletterNeedingEntry}
-          userId={this.state.userInfo["id"]}
           setMessage={this.setMessage}
           displayOrHideNewsletterInfo={this.displayOrHideNewsletterInfo}
           selectedNewsletter={this.state.selectedNewsletter}
