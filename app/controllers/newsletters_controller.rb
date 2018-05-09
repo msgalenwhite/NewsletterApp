@@ -28,8 +28,9 @@ class NewslettersController < ApplicationController
       flash[:alert] = 'You must be logged in to view this page!'
     elsif current_user
       redirect_to root_path
+    else
+      render 'show'
     end
-    render 'show'
   end
 
   private
