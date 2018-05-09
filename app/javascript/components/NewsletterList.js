@@ -3,6 +3,7 @@ import NewsletterDisplayTile from '../components/NewsletterDisplayTile'
 
 const NewsletterList = props => {
   let newsletters;
+  debugger
 
   if (props.newsletters.length > 0) {
     newsletters = props.newsletters.map((newsletterObject) => {
