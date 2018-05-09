@@ -10,10 +10,22 @@ class NewsletterShowPage extends Component {
       photo: {},
       founderName: '',
       isFounder: null,
-      showInviteForm: false
+      showInviteForm: false,
+      invitedEmails: [],
+      currentEmail: "",
+      currentName: ""
     }
+    this.addToInvites = this.addToInvites.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
     this.showInviteForm = this.showInviteForm.bind(this)
+  }
+
+  addToInvites(email){
+    const currentInvites = this.state.invitedEmails
+
+    this.setState({
+      invitedEmails: currentInvites.concat(email)
+    })
   }
 
   componentDidMount() {
@@ -48,21 +60,30 @@ class NewsletterShowPage extends Component {
 
   founderOptions() {
     const handleClick = () => { this.showInviteForm() }
+    let returnedComponent;
 
     if (this.state.isFounder && !this.state.showInviteForm) {
-      return (
+      returnedComponent =
         <button
           className='general-button'
           onClick={handleClick}
         >
           Send Invites
         </button>
-      )
+
     } else if (!this.state.isFounder){
-      return (<h4>Founded by: {this.state.founderName}</h4>)
+      returnedComponent = <h4>Founded by: {this.state.founderName}</h4>
     } else {
-      return (<InviteFormContainer hideMe={handleClick} />)
+      returnedComponent =
+        <InviteFormContainer
+          hideMe={handleClick}
+          invitedEmails={this.state.invitedEmails}
+          currentEmail={this.state.currentEmail}
+          currentName={this.state.currentName}
+        />
+
     }
+    return returnedComponent
   }
 
   showInviteForm() {
