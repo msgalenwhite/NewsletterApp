@@ -26,7 +26,7 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.find(params[:id])
     if !current_user
       flash[:alert] = 'You must be logged in to view this page!'
-    elsif current_user
+    elsif !current_user.newsletters.include?(@newsletter)
       redirect_to root_path
     else
       render 'show'
