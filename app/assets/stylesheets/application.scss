@@ -43,7 +43,7 @@
   @include general-button-hover;
 }
 
-.flash, div .alert-box {
+.flash, .alert-box {
   background-color: $purple-navy;
   color: white;
   padding: .3em 0.9375rem;

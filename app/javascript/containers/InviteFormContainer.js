@@ -3,7 +3,7 @@ import React from 'react'
 const InviteFormContainer = props => {
   let emailComponents = props.invitedEmails.map((emailObject) => {
     return (
-      <li>{emailObject.name} ({emailObject.email})</li>
+      <li key={emailObject.email}>{emailObject.name} ({emailObject.email})</li>
     )
   })
 
@@ -39,7 +39,7 @@ const InviteFormContainer = props => {
         <h3 className='sub-header'>Invites to Send:</h3>
         {emailComponents}
         <button
-          className='general-button' 
+          className='general-button'
           onClick={submitEmails}
         >
           Send the Invites!

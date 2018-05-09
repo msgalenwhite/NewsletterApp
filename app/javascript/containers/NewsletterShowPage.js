@@ -18,22 +18,26 @@ class NewsletterShowPage extends Component {
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
+    this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.sendEmails = this.sendEmails.bind(this)
     this.showInviteForm = this.showInviteForm.bind(this)
   }
 
   addToInvites(){
-    const currentInvites = this.state.invitedEmails
-    const newInvite = {
-      email: this.state.newEmail,
-      name: this.state.newName
-    }
+    if (this.formIsComplete()){
+      const currentInvites = this.state.invitedEmails
+      const newInvite = {
+        email: this.state.newEmail,
+        name: this.state.newName
+      }
 
-    this.setState({
-      invitedEmails: currentInvites.concat(newInvite),
-      newEmail: '',
-      newName: ''
-    })
+      this.setState({
+        invitedEmails: currentInvites.concat(newInvite),
+        newEmail: '',
+        newName: ''
+      })
+    }
   }
 
   componentDidMount() {
@@ -72,6 +76,16 @@ class NewsletterShowPage extends Component {
       newsletterId: parseInt(this.props.params["id"])
     }
     return formPayload
+  }
+
+  formIsComplete() {
+    if (this.state.newEmail === '' || this.state.newName === '') {
+      this.setState({ flashMessage: 'Please enter an email and a name' })
+      return false
+    } else {
+      this.setState({ flashMessage: null })
+      return true
+    }
   }
 
   founderOptions() {
@@ -117,6 +131,7 @@ class NewsletterShowPage extends Component {
 
   sendEmails() {
     const formPayload = this.createFormPayload()
+    debugger
 
     fetch("/api/v1/invites.json", {
       credentials: 'same-origin',
