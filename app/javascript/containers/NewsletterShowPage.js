@@ -49,9 +49,7 @@ class NewsletterShowPage extends Component {
         <button className='general-button'>Send Invites</button>
       )
     } else {
-      return (
-        <h4>Founded by: {this.state.founderName}</h4>
-      )
+      return (<h4>Founded by: {this.state.founderName}</h4>)
     }
   }
 
