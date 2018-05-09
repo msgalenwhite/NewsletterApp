@@ -11,7 +11,7 @@ const InviteFormContainer = props => {
 
   return(
     <div className='row'>
-      <div className='columns small-12 medium-6 panel'>
+      <div className='columns small-12 medium-6'>
         <h3 className='sub-header'>Invite Someone New</h3>
         <div className='field'>
           <h5>Email</h5>
@@ -35,12 +35,15 @@ const InviteFormContainer = props => {
           </div>
         <button className='general-button' onClick={props.addEmail}>Add</button>
       </div>
-      <div className='columns small-12 medium-6 panel'>
+      <div className='columns small-12 medium-6'>
         <h3 className='sub-header'>Invites to Send:</h3>
         {emailComponents}
       </div>
       <div className='row'>
-        <button className='general-button' onClick={props.hideMe}>Nevermind!</button>
+        <div className='columns small-12'>
+          <h3 className='sub-header'>Changed your mind?</h3>
+          <button className='general-button' onClick={props.hideMe}>Nevermind!</button>
+        </div>
       </div>
     </div>
   )
