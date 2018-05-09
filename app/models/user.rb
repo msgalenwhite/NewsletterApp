@@ -15,4 +15,6 @@ class User < ApplicationRecord
 
   has_many :subscriptions
   has_many :newsletters, through: :subscriptions
+
+  has_many :founded_papers, class_name: "Newsletter"
 end
