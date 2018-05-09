@@ -22,6 +22,17 @@ class NewslettersController < ApplicationController
     end
   end
 
+  def show
+    @newsletter = Newsletter.find(params[:id])
+    if !current_user
+      flash[:alert] = 'You must be logged in to view this page!'
+    elsif !current_user.newsletters.include?(@newsletter)
+      redirect_to root_path
+    else
+      render 'show'
+    end
+  end
+
   private
 
   def newsletter_params
