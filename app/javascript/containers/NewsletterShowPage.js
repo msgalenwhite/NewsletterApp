@@ -10,6 +10,7 @@ class NewsletterShowPage extends Component {
       founderName: '',
       isFounder: null
     }
+    this.founderOptions = this.founderOptions.bind(this)
   }
 
   componentDidMount() {
@@ -42,13 +43,26 @@ class NewsletterShowPage extends Component {
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
+  founderOptions() {
+    if (this.state.isFounder) {
+      return (
+        <button className='general-button'>Send Invites</button>
+      )
+    } else {
+      return (
+        <h4>Founded by: {this.state.founderName}</h4>
+      )
+    }
+  }
+
   render() {
-    console.log(this.state)
+    const founderTag = this.founderOptions()
+
     return(
       <div>
         <h1 className='page-header'>{this.state.title}</h1>
-        <h4>Founded by: {this.state.founder}</h4>
         <img src={this.state.photo.url} alt='Newsletter Photo' />
+        {founderTag}
         <p>{this.state.description}</p>
       </div>
     )
