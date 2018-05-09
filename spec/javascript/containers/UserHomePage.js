@@ -39,8 +39,7 @@ describe ('UserHomePage', () => {
   describe('fetch statement', () => {
     it ('initializes with the correct state', () => {
       expect(wrapper.state()).toEqual({
-        foundedNewsletters: [],
-        userInfo: {},
+        subscribedNewsletters: [],
         newsletterNeedingEntry: null,
         selectedNewsletter: null,
         flashMessage: null
@@ -50,8 +49,7 @@ describe ('UserHomePage', () => {
     it ('changes state to reflect the content of an api call', (done) => {
       setTimeout(() => {
         expect(wrapper.state()).toEqual({
-          foundedNewsletters: fetchedData,
-          userInfo: {},
+          subscribedNewsletters: fetchedData,
           newsletterNeedingEntry: null,
           selectedNewsletter: null,
           flashMessage: null
@@ -63,7 +61,7 @@ describe ('UserHomePage', () => {
     it ('passes the correct props to NewsletterList', () => {
       expect(wrapper.find(NewsletterList)).toHaveProp(
         'newsletters',
-        wrapper.state('foundedNewsletters')
+        wrapper.state('subscribedNewsletters')
       )
     })
   })
