@@ -131,9 +131,8 @@ class NewsletterShowPage extends Component {
 
   sendEmails() {
     const formPayload = this.createFormPayload()
-    debugger
 
-    fetch("/api/v1/invites.json", {
+    fetch("/api/v1/invitations.json", {
       credentials: 'same-origin',
       method: 'POST',
       body: JSON.stringify(formPayload),

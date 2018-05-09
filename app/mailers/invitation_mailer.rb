@@ -1,4 +1,4 @@
-class ReviewMailer < ApplicationMailer
+class InvitationMailer < ApplicationMailer
   def new_invitation(invitation)
     @invitation = invitation
 

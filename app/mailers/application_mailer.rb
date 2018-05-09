@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "\"Family Newsletter\" <#{ENV[email]}>"
+  default from: ENV[EMAIL]
 end

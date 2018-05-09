@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :newsletters, only: [:index, :show]
       resources :entries, only: [:create]
-      resources :invites, only: [:create]
+      resources :invitations, only: [:create]
     end
   end
 end
