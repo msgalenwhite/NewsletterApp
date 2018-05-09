@@ -12,19 +12,26 @@ class NewsletterShowPage extends Component {
       isFounder: null,
       showInviteForm: false,
       invitedEmails: [],
-      currentEmail: "",
-      currentName: ""
+      newEmail: '',
+      newName: ''
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.showInviteForm = this.showInviteForm.bind(this)
   }
 
-  addToInvites(email){
+  addToInvites(){
     const currentInvites = this.state.invitedEmails
+    const newInvite = {
+      email: this.state.newEmail,
+      name: this.state.newName
+    }
 
     this.setState({
-      invitedEmails: currentInvites.concat(email)
+      invitedEmails: currentInvites.concat(newInvite),
+      newEmail: '',
+      newName: ''
     })
   }
 
@@ -78,12 +85,20 @@ class NewsletterShowPage extends Component {
         <InviteFormContainer
           hideMe={handleClick}
           invitedEmails={this.state.invitedEmails}
-          currentEmail={this.state.currentEmail}
-          currentName={this.state.currentName}
+          currentEmail={this.state.newEmail}
+          currentName={this.state.newName}
+          handleChange={this.handleChange}
+          addEmail={this.addToInvites}
         />
 
     }
     return returnedComponent
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   showInviteForm() {
