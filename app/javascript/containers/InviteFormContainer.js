@@ -8,9 +8,12 @@ const InviteFormContainer = props => {
   // NEXT - fill out form, link fields with state of newsletter show page, VALIDATE forms of email
 
   return(
-    <div className='form-div'>
+    <div>
       <button className='general-button' onClick={props.hideMe}>Nevermind!</button>
-      <h3>Emails to Invite</h3>
+      <div className='form-div'>
+        <h3>Emails to Invite</h3>
+
+      </div>
     </div>
   )
 }
