@@ -7,7 +7,8 @@ class NewsletterShowPage extends Component {
       title: '',
       description: '',
       photo: {},
-      founder: ''
+      founderName: '',
+      isFounder: null
     }
   }
 
@@ -31,10 +32,11 @@ class NewsletterShowPage extends Component {
       .then ( response => response.json() )
       .then ( response => {
         this.setState({
-          title: response["title"],
-          description: response["description"],
-          photo: response["thumb_photo"],
-          founder: response["founder_name"]
+          title: response["newsletter_data"]["title"],
+          description: response["newsletter_data"]["description"],
+          photo: response["newsletter_data"]["thumb_photo"],
+          founderName: response["newsletter_data"]["founder_name"],
+          isFounder: response["is_founder"]
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
