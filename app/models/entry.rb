@@ -5,4 +5,6 @@ class Entry < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+
+  mount_uploader :photo, PhotoUploader
 end

@@ -1,7 +1,7 @@
 class Api::V1::EntriesController < ApplicationController
   # protect_from_forgery unless: -> { request.format.json? }
   skip_before_action :verify_authenticity_token
-  
+
   def create
     binding.pry
     entry = Entry.new(entries_params)
@@ -17,6 +17,6 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entries_params
-    params.require(:entry).permit(:title, :body, :newsletter_id)
+    params.require(:entry).permit(:title, :body, :newsletter_id, :photo)
   end
 end
