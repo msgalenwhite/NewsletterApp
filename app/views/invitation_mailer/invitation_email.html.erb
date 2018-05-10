@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @name %>!</h1>
+    <p>
+      You have successfully signed up to example.com,
+      your username is: <%= @user.login %>.<br>
+    </p>
+    <p>
+      <%= @host %> has invited you to joing their family newsletter, <%= @newsletter %>.  They've described it as <%= @description %>
+    </p>
+    <p>I hope that you will be interested in checking it out!</p>
+    <div>
+      <h3>Thanks,<br/>the Family Newsletter</h3>
+    </div>
+  </body>
+</html>
