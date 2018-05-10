@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'database_cleaner'
+  gem 'shoulda'
 end
 
 group :development do
@@ -62,5 +63,5 @@ gem 'devise'
 gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
 gem 'coveralls', group: [:test], require: false
-gem 'shoulda'
+
 gem 'dotenv-rails'
