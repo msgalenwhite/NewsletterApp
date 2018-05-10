@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       resources :invitations, only: [:create]
     end
   end
+
+  get '*path' => 'homes#index'
 end

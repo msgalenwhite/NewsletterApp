@@ -117,10 +117,10 @@ $font-family-sans-serif: "Lato", sans-serif;
 // We use these as default colors throughout
 $primary-color: $robin-egg-blue;
 $secondary-color: $darker-robin;
-$alert-color: $light-purple;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$alert-color: $purple-navy;
+$success-color: $purple-navy;
+$warning-color: $purple-navy;
+$info-color: $purple-navy;
 
 // We use these to control various global styles
 $body-bg: $almost-white;
@@ -349,7 +349,7 @@ $body-font-color: $jet;
 // $include-html-alert-classes: $include-html-classes;
 
 // We use this to control alert padding.
-// $alert-padding-top: rem-calc(14);
+// $alert-padding-top: .3em;
 // $alert-padding-default-float: $alert-padding-top;
 // $alert-padding-opposite-direction: $alert-padding-top + rem-calc(10);
 // $alert-padding-bottom: $alert-padding-top;
@@ -357,7 +357,7 @@ $body-font-color: $jet;
 // We use these to control text style.
 // $alert-font-weight: $font-weight-normal;
 // $alert-font-size: rem-calc(13);
-// $alert-font-color: $white;
+$alert-font-color: white;
 // $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
 // $alert-test-align: center;
 
@@ -378,7 +378,7 @@ $body-font-color: $jet;
 // $alert-close-background: inherit;
 
 // We use this to control border radius
-// $alert-radius: 0;
+$alert-radius: 0;
 
 // $alert-transition-speed: 300ms;
 // $alert-transition-ease: ease-out;
