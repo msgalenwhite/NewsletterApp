@@ -3,9 +3,7 @@ class Api::V1::EntriesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    entry = Entry.new(
-      entries_params
-    )
+    entry = Entry.new(entries_params)
     entry.user = current_user
     entry.newsletter_id = params["newsletter_id"].to_i
 
@@ -16,8 +14,6 @@ class Api::V1::EntriesController < ApplicationController
       render json: entry.errors.full_messages.join(" // ")
     end
   end
-
-  #nested attributes for multiple files? otherwise only one
 
   private
 
