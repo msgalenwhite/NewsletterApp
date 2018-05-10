@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :newsletters, through: :subscriptions
 
-  has_many :founded_newsletters, class_name: "Newsletter"
+  has_many :founded_newsletters, class_name: "Newsletter", foreign_key: "founder_id"
   has_many :entries
 
   has_many :invitations
