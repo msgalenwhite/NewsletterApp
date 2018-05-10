@@ -9,7 +9,7 @@ class EntryFormContainer extends Component {
       title: '',
       body: '',
       errorMessage: '',
-      photo: null
+      photo: []
     }
     this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -51,7 +51,7 @@ class EntryFormContainer extends Component {
   }
 
   onDrop(photo) {
-    if (this.state.photo) {
+    if (this.state.photo.length >= 1) {
       this.props.setMessage("You can only submit 1 picture with your entry.")
     } else {
       this.setState({ photo: photo })
@@ -85,6 +85,12 @@ class EntryFormContainer extends Component {
   }
 
   render() {
+    let preview;
+
+    if (this.state.photo.length > 0) {
+      preview = <img className='drop-zone-preview' src={this.state.photo[0].preview} />
+    }
+
     return (
       <div className='form-div' >
         <form onSubmit={this.handleSubmit}>
@@ -108,7 +114,8 @@ class EntryFormContainer extends Component {
 
           <div className="dropzone">
             <Dropzone onDrop={this.onDrop}>
-              <p>Try dropping some files here, or click to select files to upload.</p>
+              <p className='dropzone-text'>Only one photo per entry: drag it here or click to upload!</p>
+              {preview}
             </Dropzone>
           </div>
 
