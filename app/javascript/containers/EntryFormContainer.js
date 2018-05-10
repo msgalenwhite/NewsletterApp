@@ -77,7 +77,7 @@ class EntryFormContainer extends Component {
 
   render() {
     return (
-      <div className = 'form-div' >
+      <div className = 'form-div entries-form' >
         <form onSubmit = {this.handleSubmit}>
           <p>{this.state.errorMessage}</p>
           <h3>Submit an Entry</h3>
