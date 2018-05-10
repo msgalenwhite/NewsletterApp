@@ -11,6 +11,7 @@ class NewslettersController < ApplicationController
   def create
     @newsletter = Newsletter.new(newsletter_params)
     @newsletter.founder = current_user
+
     subscription = Subscription.new(user: current_user, newsletter: @newsletter)
 
     if @newsletter.save && subscription.save
@@ -25,7 +26,7 @@ class NewslettersController < ApplicationController
   def show
     api_key = ENV["GOOGLE_MAPS_API_KEY"]
     @source = "https://maps.googleapis.com/maps/api/js?key=#{api_key}&callback=initMap"
-    
+
     @newsletter = Newsletter.find(params[:id])
     if !current_user
       flash[:alert] = 'You must be logged in to view this page!'

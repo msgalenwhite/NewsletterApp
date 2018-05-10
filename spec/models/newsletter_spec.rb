@@ -9,8 +9,5 @@ describe Newsletter, :type => :model do
 
     it { should have_valid(:description).when("description") }
     it { should_not have_valid(:description).when(nil, "") }
-
-    it { should have_valid(:founder).when(test_user) }
-    it { should_not have_valid(:founder).when(nil) }
   end
 end
