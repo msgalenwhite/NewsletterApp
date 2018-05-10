@@ -41,7 +41,6 @@ class NewsletterShowPage extends Component {
   }
 
   render() {
-    console.log(this.state)
     return(
       <div>
         <h1 className='page-header'>{this.state.title}</h1>
