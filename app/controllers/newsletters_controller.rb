@@ -23,6 +23,9 @@ class NewslettersController < ApplicationController
   end
 
   def show
+    api_key = ENV["GOOGLE_MAPS_API_KEY"]
+    @source = "https://maps.googleapis.com/maps/api/js?key=#{api_key}&callback=initMap"
+    
     @newsletter = Newsletter.find(params[:id])
     if !current_user
       flash[:alert] = 'You must be logged in to view this page!'

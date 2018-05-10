@@ -17,6 +17,16 @@
  */
 
 @import 'mix_ins';
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  width: 100%;
+  height: 200px;
+}
 
 .page-header {
   font-size: 2em;

@@ -1,1 +1,31 @@
+<div id="map"></div>
+<script>
+  //can write javascript inside of a script tag
+  var map;
+  function initMap() {
+    var myLatLng = {lat: 42.3601, lng: -71.0589};
+    map = new google.maps.Map(document.getElementById('map'), {
+
+      //center and zoom are both required options
+      center: myLatLng,
+
+      //zoom: 0 means a WHOLE GLOBE - must be an integer
+      zoom: 4
+
+// 1: World
+// 5: Landmass/continent
+// 10: City
+// 15: Streets
+// 20: Buildings
+    });
+
+    // Create a marker and set its position.
+    var marker = new google.maps.Marker({
+      map: map,
+      position: myLatLng,
+      title: 'Hello World!'
+    });
+  }
+</script>
+<script src="<%= @source %>" async defer></script>
 <div id='app'></div>
