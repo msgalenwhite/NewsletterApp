@@ -172,11 +172,21 @@ class NewsletterShowPage extends Component {
 
     return(
       <div>
-        {message}
-        <h1 className='page-header'>{this.state.title}</h1>
-        <img src={this.state.photo.url} alt='Newsletter Photo' />
-        {founderTag}
-        <p>{this.state.description}</p>
+        <div className='show-container '>
+          {message}
+          <h1 className='page-header'>{this.state.title}</h1>
+          <div className='row' data-equalizer>
+            <div className='columns small-6' data-equalizer-watch>
+              <img className='news-photo' src={this.state.photo.url} alt='Newsletter Photo' />
+            </div>
+            <div className='columns small-6' data-equalizer-watch>
+              <p className='news-desc'>{this.state.description}</p>
+            </div>
+          </div>
+        </div>
+        <div className='row invites-div'>
+          {founderTag}
+        </div>
       </div>
     )
   }
