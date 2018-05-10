@@ -63,5 +63,4 @@ gem 'devise'
 gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
 gem 'coveralls', group: [:test], require: false
-
 gem 'dotenv-rails'
