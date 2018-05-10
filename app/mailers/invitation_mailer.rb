@@ -1,13 +1,9 @@
-class InvitationMailer < ApplicationMailer::Base
-  def invitation_email
-    @host = params[:host].full_name.capitalize
-    @newsletter = params[:newsletter].capitalize
-    @description = params[:description]
-    @email = params[:email]
-    @name = params[:name].capitalize
+class InvitationMailer < ApplicationMailer
+  def new_invitation(invitation)
+    @invitation = invitation
 
     mail(
-      to: @email,
+      to: invitation.email,
       subject: "Come join #{current_user.full_name}'s Family Newsletter!"
     )
   end
