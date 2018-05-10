@@ -37,19 +37,10 @@ class EntryFormContainer extends Component {
     if (this.formIsComplete()) {
       let formDataObject = new FormData()
 
-      const formPayload = {
-        title: this.state.title,
-        body: this.state.body,
-        newsletter_id: this.props.newsletterId,
-        photo: this.state.photo
-      }
-      //read in the blob contents of photo before sending so it isn't a string?
-      // iterate through the photo array,
-
       formDataObject.append("title", this.state.title)
       formDataObject.append("body", this.state.body)
       formDataObject.append("photo", this.state.photo[0])
-      //can send 1
+      formDataObject.append("newsletter_id", this.props.newsletterId)
 
       this.submitEntry(formDataObject)
     } else {
@@ -60,7 +51,11 @@ class EntryFormContainer extends Component {
   }
 
   onDrop(photo) {
-    this.setState({ photo: photo })
+    if (this.state.photo) {
+      this.props.setMessage("You can only submit 1 picture with your entry.")
+    } else {
+      this.setState({ photo: photo })
+    }
   }
 
   submitEntry(formDataObject) {
@@ -70,7 +65,6 @@ class EntryFormContainer extends Component {
       body: formDataObject
     })
       .then ( response => {
-        debugger
         if ( response.ok ) {
           return response;
         } else {
@@ -91,7 +85,6 @@ class EntryFormContainer extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className='form-div' >
         <form onSubmit={this.handleSubmit}>
