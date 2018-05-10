@@ -14,6 +14,8 @@ class Api::V1::EntriesController < ApplicationController
     end
   end
 
+  #nested attributes for multiple files? otherwise only one
+
   private
 
   def entries_params

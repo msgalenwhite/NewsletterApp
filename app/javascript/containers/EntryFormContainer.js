@@ -43,11 +43,14 @@ class EntryFormContainer extends Component {
         newsletter_id: this.props.newsletterId,
         photo: this.state.photo
       }
+      //read in the blob contents of photo before sending so it isn't a string?
+      // iterate through the photo array,
 
       formDataObject.append("title", this.state.title)
       formDataObject.append("body", this.state.body)
-      formDataObject.append("photo", this.state.photo)
-      
+      formDataObject.append("photo", this.state.photo[0])
+      //can send 1
+
       this.submitEntry(formDataObject)
     } else {
       this.setState({
