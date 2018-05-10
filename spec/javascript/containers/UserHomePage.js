@@ -68,10 +68,9 @@ describe ('UserHomePage', () => {
 
   describe('rendered components', () => {
     it('contains a header', () => {
-      expect(wrapper.text()).toContain('Newsletter Home Page')
+      expect(wrapper.text()).toContain('Your Subscriptions')
     })
     it('has a "link" to create a Newsletter', () => {
-      expect(wrapper.text()).toContain('Create a Newsletter')
       expect(wrapper.find('a').text()).toContain('Create a Newsletter')
     })
     it ('has a list of newsletters', () => {

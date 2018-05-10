@@ -88,10 +88,16 @@ class UserHomePage extends Component {
     return(
       <div>
         {message}
-        <h1 className='page-header'>Newsletter Home Page</h1>
-        <a href='/newsletters/new' className='sub-header'>Create a Newsletter</a>
-
-        <h3>Your Subscriptions</h3>
+        <h1 className='page-header'>Your Subscriptions</h1>
+        <div className='row'>
+          <div className='columns small-12, medium-6'>
+            <a href='/newsletters/new' >
+              <h3 className='sub-header'>
+                Create a Newsletter
+              </h3>
+            </a>
+          </div>
+        </div>
         <NewsletterList
           newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}
