@@ -140,9 +140,6 @@ class NewsletterShowPage extends Component {
   }
 
   sendEmails() {
-    this.setState({
-      showCode: true
-    })
     const formPayload = this.createFormPayload()
 
     fetch("/api/v1/invitations.json", {

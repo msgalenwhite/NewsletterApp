@@ -1,11 +1,12 @@
 class InvitationBatch
+  attr_reader :errors, :invitees
   #may require some additional context around the newsletter
   def initialize(options)
     @invitees = options[:invitees]
     @host = options[:host]
     @newsletter = options[:newsletter]
     @invitations = []
-    @errors = {}
+    @errors = []
   end
 
   def dispatch
@@ -35,6 +36,10 @@ class InvitationBatch
     else
       binding.pry
       #TODO: build our error data structure
+      @errors = @invitations.map do |payload|
+        {payload.name: payload.errors.full_messages}
+      end
+
       return false
     end
 
