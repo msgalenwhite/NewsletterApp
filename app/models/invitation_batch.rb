@@ -23,17 +23,13 @@ class InvitationBatch
     end
 
     if all_valid?
-
       @invitations.each {|i| i.save! }
 
-      #TODO: this is where we dispatch all the emails
       @invitations.each do |invite|
         InvitationMailer.new_invite(invite).deliver_now
       end
       return true
     else
-
-      #TODO: build our error data structure
       @invitations.each do |invite|
         if invite.errors
           @errors << { invite.name: invite.errors.full_messages }
