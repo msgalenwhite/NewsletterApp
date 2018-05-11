@@ -6,7 +6,7 @@ class InvitationBatch
     @host = options[:host]
     @newsletter = options[:newsletter]
     @invitations = []
-    @errors = []
+    @errors = {}
   end
 
   def dispatch
@@ -36,8 +36,10 @@ class InvitationBatch
     else
       binding.pry
       #TODO: build our error data structure
-      @errors = @invitations.map do |payload|
-        {payload.name: payload.errors.full_messages}
+      @invitations.each do |invite|
+        if invite.errors
+          @errors[invite.name] = invite.errors.full_messages
+        end
       end
 
       return false
