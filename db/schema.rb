@@ -43,12 +43,6 @@ ActiveRecord::Schema.define(version: 2018_05_11_012752) do
     t.integer "founder_id", null: false
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string "picture", null: false
-    t.bigint "entry_id"
-    t.index ["entry_id"], name: "index_photos_on_entry_id"
-  end
-
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "newsletter_id"
     t.bigint "user_id"
