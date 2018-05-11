@@ -159,8 +159,25 @@ class NewsletterShowPage extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
-        console.log(response)
-        debugger
+        if (response.errors.length == 0) {
+          this.setState({
+            flashMessage: "Your emails were successfully sent!",
+            showInviteForm: false,
+            invitedEmails: [],
+            newEmail: '',
+            newName: ''
+          })
+        } else {
+          let errors;
+
+          Object.entries(response.errors).forEach((miniArray) => {
+            errors += `\n${miniArray[0]}: ${miniArray[1]}`
+          })
+
+          this.setState({
+            flashMessage: `I'm sorry, your emails were unable to be sent.\n\n${errors}`
+          })
+        }
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }

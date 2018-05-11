@@ -13,9 +13,9 @@ class Api::V1::InvitationsController < ApplicationController
     })
 
     if @batch.dispatch
-      render json: @batch.invitees
+      render json: @batch
     else
-      render json: @batch.errors
+      render json: @batch
     end
   end
 end
