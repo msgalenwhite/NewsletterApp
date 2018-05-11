@@ -84,10 +84,12 @@ class NewsletterShowPage extends Component {
 
   formIsComplete() {
     if (
-      this.state.newEmail === '' ||
-      this.state.newName === '' ||
       !this.validateEmail(this.state.newEmail)
     ) {
+      this.setState({flashMessage: 'Please enter a valid email.'})
+      return false
+    } else if (this.state.newEmail === '' ||
+    this.state.newName === '') {
       this.setState({ flashMessage: 'Please enter an email and a name' })
       return false
     } else {
@@ -167,10 +169,10 @@ class NewsletterShowPage extends Component {
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
-  validateEmail(email) (
-    const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
-    return regex.test(String(email).toLowerCase());
-  )
+  validateEmail(email) {
+    const regex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    return regex.test(email.toLowerCase())
+  }
 
   render() {
     const founderTag = this.founderOptions()
