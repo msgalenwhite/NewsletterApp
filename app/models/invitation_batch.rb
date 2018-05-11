@@ -24,13 +24,13 @@ class InvitationBatch
     if all_valid?
 
       @invitations.each {|i| i.save! }
-        binding.pry
       #TODO: this is where we dispatch all the emails
-      @invitation.each do |invite|
+      @invitations.each do |invite|
         binding.pry
         InvitationMailer.new_invite(invite).deliver_now
       end
 
+      #WHY would I get caught at the above if block and still hit the binding.pry below?
       return true
     else
       binding.pry
