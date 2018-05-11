@@ -15,7 +15,8 @@ class NewsletterShowPage extends Component {
       newEmail: '',
       newName: '',
       flashMessage: null,
-      showCode: false
+      showCode: false,
+      newsletterId: null
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
@@ -65,7 +66,8 @@ class NewsletterShowPage extends Component {
           description: response["newsletter_data"]["description"],
           photo: response["newsletter_data"]["thumb_photo"],
           founderName: response["newsletter_data"]["founder_name"],
-          isFounder: response["is_founder"]
+          isFounder: response["is_founder"],
+          newsletterId: newsletterId
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
@@ -115,6 +117,7 @@ class NewsletterShowPage extends Component {
           addEmail={this.addToInvites}
           handleSubmit={this.sendEmails}
           showCode={this.state.showCode}
+          newsletterId={this.state.newsletterId}
         />
 
     }

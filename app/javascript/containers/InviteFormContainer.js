@@ -17,7 +17,7 @@ const InviteFormContainer = props => {
   if (props.showCode) {
     codeOrButton =
       <QRCode
-        value='https://familynewsletter.herokuapp.com/'
+        value={`https://familynewsletter.herokuapp.com/invitation/${props.newsletterId}`}
         renderAs='canvas'
         size='128'
         bgColor='#FFFFFF'
