@@ -27,6 +27,7 @@ class InvitationBatch
         binding.pry
       #TODO: this is where we dispatch all the emails
       @invitation.each do |invite|
+        binding.pry
         InvitationMailer.new_invite(invite).deliver_now
       end
 

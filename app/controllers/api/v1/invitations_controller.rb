@@ -13,7 +13,7 @@ class Api::V1::InvitationsController < ApplicationController
     })
 
     if @batch.dispatch
-
+      binding.pry
     else
       render json: @batch.errors
     end

@@ -15,7 +15,6 @@ class NewsletterShowPage extends Component {
       newEmail: '',
       newName: '',
       flashMessage: null,
-      showCode: false,
       newsletterId: null
     }
     this.addToInvites = this.addToInvites.bind(this)
@@ -123,7 +122,6 @@ class NewsletterShowPage extends Component {
           handleChange={this.handleChange}
           addEmail={this.addToInvites}
           handleSubmit={this.sendEmails}
-          showCode={this.state.showCode}
           newsletterId={this.state.newsletterId}
         />
 
