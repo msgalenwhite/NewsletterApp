@@ -257,6 +257,10 @@ GEM
     foundation-rails (5.5.3.2)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
+    geokit (1.12.0)
+    geokit-rails (2.3.1)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
@@ -448,6 +452,7 @@ DEPENDENCIES
   factory_bot
   fog
   foundation-rails (~> 5.0)
+  geokit-rails
   jbuilder (~> 2.5)
   jquery-rails
   launchy
