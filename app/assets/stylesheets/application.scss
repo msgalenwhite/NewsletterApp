@@ -68,3 +68,12 @@ body {
 .center {
   text-align: center;
 }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  font-size: 13px;
+  text-align: center;
+}
