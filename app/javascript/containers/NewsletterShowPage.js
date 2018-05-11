@@ -14,7 +14,8 @@ class NewsletterShowPage extends Component {
       invitedEmails: [],
       newEmail: '',
       newName: '',
-      flashMessage: null
+      flashMessage: null,
+      showCode: false
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
@@ -113,6 +114,7 @@ class NewsletterShowPage extends Component {
           handleChange={this.handleChange}
           addEmail={this.addToInvites}
           handleSubmit={this.sendEmails}
+          showCode={this.state.showCode}
         />
 
     }
@@ -130,32 +132,35 @@ class NewsletterShowPage extends Component {
   }
 
   sendEmails() {
-    const formPayload = this.createFormPayload()
-
-    fetch("/api/v1/invitations.json", {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(formPayload),
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    this.setState({
+      showCode: true
     })
-      .then ( response => {
-        if ( response.ok ) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`;
-          let error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then ( response => response.json() )
-      .then ( response => {
-        if (response["error"]) {
-          this.props.setMessage(response["error"])
-        } else {
-          this.props.setMessage("Success!")
-        }
-      })
-      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+    // const formPayload = this.createFormPayload()
+    //
+    // fetch("/api/v1/invitations.json", {
+    //   credentials: 'same-origin',
+    //   method: 'POST',
+    //   body: JSON.stringify(formPayload),
+    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    // })
+    //   .then ( response => {
+    //     if ( response.ok ) {
+    //       return response;
+    //     } else {
+    //       let errorMessage = `${response.status} (${response.statusText})`;
+    //       let error = new Error(errorMessage);
+    //       throw(error);
+    //     }
+    //   })
+    //   .then ( response => response.json() )
+    //   .then ( response => {
+    //     if (response["error"]) {
+    //       this.props.setMessage(response["error"])
+    //     } else {
+    //       this.props.setMessage("Success!")
+    //     }
+    //   })
+    //   .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
@@ -171,7 +176,7 @@ class NewsletterShowPage extends Component {
     }
 
     return(
-      <div>
+      <div className='page'>
         <div className='show-container '>
           {message}
           <h1 className='page-header'>{this.state.title}</h1>

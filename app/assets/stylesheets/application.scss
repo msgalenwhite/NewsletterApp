@@ -71,6 +71,7 @@ body {
 
 .obligatory-empty-div {
   width: 0;
+  padding: 0;
 }
 
 .invites-div {
@@ -82,7 +83,7 @@ body {
 
 #footer {
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
   height: 30px;
   font-size: 13px;

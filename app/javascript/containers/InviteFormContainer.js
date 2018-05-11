@@ -1,4 +1,5 @@
 import React from 'react'
+import QRCode from 'qrcode.react'
 
 const InviteFormContainer = props => {
   let emailComponents = props.invitedEmails.map((emailObject) => {
@@ -7,7 +8,25 @@ const InviteFormContainer = props => {
     )
   })
 
-  let submitEmails = () => { props.handleSubmit() }
+  const submitEmails = () => { props.handleSubmit() }
+  let codeOrButton;
+
+  if (props.showCode) {
+    codeOrButton =
+      <QRCode
+        value='https://familynewsletter.herokuapp.com/'
+        renderAs='canvas'
+        size='128'
+        bgColor='#FFFFFF'
+        fgColor='#000000'
+      />
+  } else {
+    codeOrButton =
+      <div>
+        <h3 className='sub-header center'>Invites to Send:</h3>
+        {emailComponents}
+      </div>
+  }
 
   return(
     <div>
@@ -38,8 +57,7 @@ const InviteFormContainer = props => {
           <button className='general-button' onClick={props.addEmail}>Add</button>
         </div>
         <div className='columns small-12 medium-6 data-equalizer-watch'>
-          <h3 className='sub-header center'>Invites to Send:</h3>
-          {emailComponents}
+          {codeOrButton}
         </div>
       </div>
       <div className='row'>
