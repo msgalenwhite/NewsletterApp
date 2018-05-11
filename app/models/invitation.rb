@@ -1,4 +1,7 @@
 class Invitation < ApplicationRecord
+  belongs_to :host, class_name: "User"
+  belongs_to :newsletter
+
   validates :name, presence: true
   validates :email, presence: true
 

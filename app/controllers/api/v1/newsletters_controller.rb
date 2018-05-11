@@ -7,6 +7,18 @@ class Api::V1::NewslettersController < ApplicationController
 
   def show
     newsletter_id = params["id"].to_i
-    render json: Newsletter.find(newsletter_id)
+    newsletter = Newsletter.find(newsletter_id)
+    response = {
+      newsletter_data: newsletter,
+      is_founder: current_user_is_founder?(newsletter)
+    }
+
+    render json: response
+  end
+
+  private
+
+  def current_user_is_founder?(newsletter)
+    current_user == newsletter.founder
   end
 end

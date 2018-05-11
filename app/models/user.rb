@@ -19,6 +19,8 @@ class User < ApplicationRecord
   has_many :founded_newsletters, class_name: "Newsletter", foreign_key: "founder_id"
   has_many :entries
 
+  has_many :invitations
+
   def full_name
     first_name + " " + last_name
   end

@@ -86,7 +86,7 @@ class UserHomePage extends Component {
     }
 
     return(
-      <div>
+      <div className='page'>
         {message}
         <h1 className='page-header'>Your Subscriptions</h1>
         <div className='row'>
