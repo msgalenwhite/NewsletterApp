@@ -163,6 +163,7 @@ class NewsletterShowPage extends Component {
       .then ( response => response.json() )
       .then ( response => {
         console.log(response)
+        debugger
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
@@ -175,6 +176,7 @@ class NewsletterShowPage extends Component {
   render() {
     const founderTag = this.founderOptions()
     let message;
+    let picAndDesc;
 
     if (this.state.flashMessage) {
       message =
@@ -184,19 +186,24 @@ class NewsletterShowPage extends Component {
         </div>
     }
 
+    if (!this.state.showInviteForm) {
+      picAndDesc =
+        <div className='row' data-equalizer>
+          <div className='columns small-6' data-equalizer-watch>
+            <img className='news-photo' src={this.state.photo.url} alt='Newsletter Photo' />
+          </div>
+          <div className='columns small-6' data-equalizer-watch>
+            <p className='news-desc'>{this.state.description}</p>
+          </div>
+        </div>
+    }
+
     return(
       <div className='page'>
         <div className='show-container '>
           {message}
           <h1 className='page-header'>{this.state.title}</h1>
-          <div className='row' data-equalizer>
-            <div className='columns small-6' data-equalizer-watch>
-              <img className='news-photo' src={this.state.photo.url} alt='Newsletter Photo' />
-            </div>
-            <div className='columns small-6' data-equalizer-watch>
-              <p className='news-desc'>{this.state.description}</p>
-            </div>
-          </div>
+          {picAndDesc}
         </div>
         <div className='row invites-div'>
           {founderTag}

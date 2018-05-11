@@ -26,8 +26,8 @@ class InvitationBatch
       @invitations.each {|i| i.save! }
       #TODO: this is where we dispatch all the emails
       @invitations.each do |invite|
-        binding.pry
         InvitationMailer.new_invite(invite).deliver_now
+        binding.pry
       end
 
       #WHY would I get caught at the above if block and still hit the binding.pry below?

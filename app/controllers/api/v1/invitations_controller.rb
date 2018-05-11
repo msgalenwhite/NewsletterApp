@@ -13,31 +13,9 @@ class Api::V1::InvitationsController < ApplicationController
     })
 
     if @batch.dispatch
-      binding.pry
+      render json: @batch
     else
       render json: @batch.errors
     end
-
-
-### BEFORE MEETING WITH DAN:
-#     params["emails"].each do |data_hash|
-#       @invitation = Invitation.new(
-#         host_id: current_user.id,
-#         newsletter_id: params["newsletterId"],
-#         email: data_hash["email"],
-#         name: data_hash["name"]
-#       )
-#       if @invitation.save
-# ####
-#
-#
-#
-#
-#       else
-#         @failures << @invitation
-#       end
-#     end
-
-    # render json: response
   end
 end
