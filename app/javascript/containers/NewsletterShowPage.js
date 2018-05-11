@@ -24,6 +24,7 @@ class NewsletterShowPage extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.sendEmails = this.sendEmails.bind(this)
     this.showInviteForm = this.showInviteForm.bind(this)
+    this.validateEmail = this.validateEmail.bind(this)
   }
 
   addToInvites(){
@@ -82,7 +83,11 @@ class NewsletterShowPage extends Component {
   }
 
   formIsComplete() {
-    if (this.state.newEmail === '' || this.state.newName === '') {
+    if (
+      this.state.newEmail === '' ||
+      this.state.newName === '' ||
+      !this.validateEmail(this.state.newEmail)
+    ) {
       this.setState({ flashMessage: 'Please enter an email and a name' })
       return false
     } else {
@@ -161,6 +166,11 @@ class NewsletterShowPage extends Component {
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
+
+  validateEmail(email) (
+    const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
+    return regex.test(String(email).toLowerCase());
+  )
 
   render() {
     const founderTag = this.founderOptions()
