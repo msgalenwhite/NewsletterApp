@@ -66,4 +66,4 @@ gem 'coveralls', group: [:test], require: false
 gem 'dotenv-rails', group: [:development, :test]
 gem 'shoulda', group: [:test]
 
-gem 'geokit-rails'
+gem 'sendgrid-ruby'
