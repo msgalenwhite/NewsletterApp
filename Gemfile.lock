@@ -297,6 +297,7 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.4)
     multi_json (1.13.1)
+    mustermann (1.0.2)
     netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.8.2)
@@ -313,6 +314,8 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.5)
+    rack-protection (2.0.1)
+      rack
     rack-proxy (0.6.4)
       rack
     rack-test (1.0.0)
@@ -378,6 +381,7 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
     ruby_dep (1.5.0)
+    ruby_http_client (3.3.0)
     sass (3.4.25)
     sass-rails (5.0.7)
       railties (>= 4.0.0, < 6)
@@ -385,6 +389,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sendgrid-ruby (5.2.0)
+      ruby_http_client (~> 3.2)
+      sinatra (>= 1.4.7, < 3)
     shoulda (2.11.3)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
@@ -393,6 +400,11 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    sinatra (2.0.1)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.1)
+      tilt (~> 2.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -458,6 +470,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rspec-rails
   sass-rails (~> 5.0)
+  sendgrid-ruby
   shoulda
   shoulda-matchers
   tzinfo-data

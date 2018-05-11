@@ -12,25 +12,6 @@ const InviteFormContainer = props => {
     props.handleSubmit()
   }
 
-  let codeOrButton;
-
-  if (props.showCode) {
-    codeOrButton =
-      <QRCode
-        value={`https://familynewsletter.herokuapp.com/invitation/${props.newsletterId}`}
-        renderAs='canvas'
-        size='128'
-        bgColor='#FFFFFF'
-        fgColor='#000000'
-      />
-  } else {
-    codeOrButton =
-      <div>
-        <h3 className='sub-header center'>Invites to Send:</h3>
-        {emailComponents}
-      </div>
-  }
-
   return(
     <div>
       <div className='row data-equalizer'>
@@ -60,7 +41,8 @@ const InviteFormContainer = props => {
           <button className='general-button' onClick={props.addEmail}>Add</button>
         </div>
         <div className='columns small-12 medium-6 data-equalizer-watch'>
-          {codeOrButton}
+          <h3 className='sub-header center'>Invites to Send:</h3>
+          {emailComponents}
         </div>
       </div>
       <div className='row'>

@@ -15,7 +15,6 @@ class NewsletterShowPage extends Component {
       newEmail: '',
       newName: '',
       flashMessage: null,
-      showCode: false,
       newsletterId: null
     }
     this.addToInvites = this.addToInvites.bind(this)
@@ -123,7 +122,6 @@ class NewsletterShowPage extends Component {
           handleChange={this.handleChange}
           addEmail={this.addToInvites}
           handleSubmit={this.sendEmails}
-          showCode={this.state.showCode}
           newsletterId={this.state.newsletterId}
         />
 
@@ -142,9 +140,6 @@ class NewsletterShowPage extends Component {
   }
 
   sendEmails() {
-    this.setState({
-      showCode: true
-    })
     const formPayload = this.createFormPayload()
 
     fetch("/api/v1/invitations.json", {
@@ -164,7 +159,25 @@ class NewsletterShowPage extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
-        console.log(response)
+        if (response.errors.length == 0) {
+          this.setState({
+            flashMessage: "Your emails were successfully sent!",
+            showInviteForm: false,
+            invitedEmails: [],
+            newEmail: '',
+            newName: ''
+          })
+        } else {
+          let errors;
+
+          Object.entries(response.errors).forEach((miniArray) => {
+            errors += `\n${miniArray[0]}: ${miniArray[1]}`
+          })
+
+          this.setState({
+            flashMessage: `I'm sorry, your emails were unable to be sent.\n\n${errors}`
+          })
+        }
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
@@ -177,6 +190,7 @@ class NewsletterShowPage extends Component {
   render() {
     const founderTag = this.founderOptions()
     let message;
+    let picAndDesc;
 
     if (this.state.flashMessage) {
       message =
@@ -186,19 +200,24 @@ class NewsletterShowPage extends Component {
         </div>
     }
 
+    if (!this.state.showInviteForm) {
+      picAndDesc =
+        <div className='row' data-equalizer>
+          <div className='columns small-6' data-equalizer-watch>
+            <img className='news-photo' src={this.state.photo.url} alt='Newsletter Photo' />
+          </div>
+          <div className='columns small-6' data-equalizer-watch>
+            <p className='news-desc'>{this.state.description}</p>
+          </div>
+        </div>
+    }
+
     return(
       <div className='page'>
         <div className='show-container '>
           {message}
           <h1 className='page-header'>{this.state.title}</h1>
-          <div className='row' data-equalizer>
-            <div className='columns small-6' data-equalizer-watch>
-              <img className='news-photo' src={this.state.photo.url} alt='Newsletter Photo' />
-            </div>
-            <div className='columns small-6' data-equalizer-watch>
-              <p className='news-desc'>{this.state.description}</p>
-            </div>
-          </div>
+          {picAndDesc}
         </div>
         <div className='row invites-div'>
           {founderTag}
