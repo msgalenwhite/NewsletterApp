@@ -170,9 +170,14 @@ class NewsletterShowPage extends Component {
         } else {
           let errors;
 
-          Object.entries(response.errors).forEach((miniArray) => {
-            errors += `\n${miniArray[0]}: ${miniArray[1]}`
+          response.errors.forEach((object) => {
+            errors += `\n${object.name}: ${object.errors.full_messages.join(" // ")}`
           })
+
+          // //errors is an ARRAY of OBJECTS - key: name, value: ARRAY of errors
+          // Object.entries(response.errors).forEach((miniArray) => {
+          //   errors += `\n${miniArray[0]}: ${miniArray[1]}`
+          // })
 
           this.setState({
             flashMessage: `I'm sorry, your emails were unable to be sent.\n\n${errors}`
