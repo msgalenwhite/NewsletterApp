@@ -43,7 +43,6 @@ class NewsletterShowPage extends Component {
   render() {
     return(
       <div>
-        <div id='map'></div>
         <h1 className='page-header'>{this.state.title}</h1>
         <h4>Founded by: {this.state.founder}</h4>
         <img src={this.state.photo.url} alt='Newsletter Photo' />

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_11_015429) do
+ActiveRecord::Schema.define(version: 2018_05_11_012752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,6 @@ ActiveRecord::Schema.define(version: 2018_05_11_015429) do
     t.string "photo"
     t.index ["newsletter_id"], name: "index_entries_on_newsletter_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
-  end
-
-  create_table "geolocations", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "latitude", null: false
-    t.string "longitude", null: false
-    t.index ["user_id"], name: "index_geolocations_on_user_id"
   end
 
   create_table "invitations", force: :cascade do |t|
