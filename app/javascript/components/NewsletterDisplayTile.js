@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 
 import EntryFormContainer from '../containers/EntryFormContainer'
 
@@ -29,11 +28,10 @@ const NewsletterDisplayTile = props => {
             onClick={props.handleClick}>
             Submit an Entry
           </button>
-          <Link
-            to={`/newsletters/${props.id}`}
+          <a href={`/newsletters/${props.id}`}
             className='general-button'>
             View Newsletter
-          </Link>
+          </a>
         </div>
       </div>
     </div>
