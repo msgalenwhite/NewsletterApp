@@ -54,4 +54,18 @@ form {
       }
     }
   }
+
+  .email-input, .email-name-input {
+    width: 30%;
+  }
+}
+.dropzone {
+  text-align: center;
+}
+.dropzone-text {
+  padding: .2em;
+}
+.drop-zone-preview {
+  margin: auto;
+  margin-bottom : .3em;
 }

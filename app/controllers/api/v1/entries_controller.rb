@@ -1,19 +1,23 @@
 class Api::V1::EntriesController < ApplicationController
-  protect_from_forgery unless: -> { request.format.json? }
+  # protect_from_forgery unless: -> { request.format.json? }
+  skip_before_action :verify_authenticity_token
 
   def create
-    @entry = Entry.new(entries_params)
+    entry = Entry.new(entries_params)
+    entry.user = current_user
+    entry.newsletter_id = params["newsletter_id"].to_i
 
-    if @entry.save
-      render json: @entry
+    if entry.save
+      render json: entry
     else
-      render json: @entry.errors.full_messages.join(" // ")
+      flash[:message] = "Your entry could not be submitted."
+      render json: entry.errors.full_messages.join(" // ")
     end
   end
 
   private
 
   def entries_params
-    params.require(:entry).permit(:title, :body, :user_id, :newsletter_id)
+    params.permit(:title, :body, :photo)
   end
 end

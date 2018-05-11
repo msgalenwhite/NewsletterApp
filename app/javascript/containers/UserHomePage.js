@@ -5,8 +5,7 @@ class UserHomePage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      foundedNewsletters: [],
-      userInfo: {},
+      subscribedNewsletters: [],
       newsletterNeedingEntry: null,
       selectedNewsletter: null,
       flashMessage: null
@@ -67,11 +66,9 @@ class UserHomePage extends Component {
       .then ( response => response.json() )
       .then ( response => {
         const newsletters = response
-        const userInfo = response[0]["founder"]
 
         this.setState({
-          foundedNewsletters: newsletters,
-          userInfo: userInfo
+          subscribedNewsletters: newsletters
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
@@ -89,17 +86,22 @@ class UserHomePage extends Component {
     }
 
     return(
-      <div>
+      <div className='page'>
         {message}
-        <h1 className='page-header'>Newsletter Home Page</h1>
-        <a href='/newsletters/new'>Create a Newsletter</a>
-
-        <h3>Founded Newsletters</h3>
+        <h1 className='page-header'>Your Subscriptions</h1>
+        <div className='row'>
+          <div className='columns small-12, medium-6'>
+            <a href='/newsletters/new' >
+              <h3 className='sub-header'>
+                Create a Newsletter
+              </h3>
+            </a>
+          </div>
+        </div>
         <NewsletterList
-          newsletters={this.state.foundedNewsletters}
+          newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}
           newsletterNeedingEntry={this.state.newsletterNeedingEntry}
-          userId={this.state.userInfo["id"]}
           setMessage={this.setMessage}
           displayOrHideNewsletterInfo={this.displayOrHideNewsletterInfo}
           selectedNewsletter={this.state.selectedNewsletter}

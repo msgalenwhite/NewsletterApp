@@ -5,6 +5,8 @@ ruby '2.3.3'
 gem 'carrierwave'
 gem 'fog'
 
+gem 'active_model_serializers'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use postgresql as the database for Active Record
@@ -36,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'database_cleaner'
+
 end
 
 group :development do
@@ -60,5 +63,7 @@ gem 'devise'
 gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
 gem 'coveralls', group: [:test], require: false
-gem 'shoulda'
-gem 'dotenv-rails'
+gem 'dotenv-rails', group: [:development, :test]
+gem 'shoulda', group: [:test]
+
+gem 'sendgrid-ruby'

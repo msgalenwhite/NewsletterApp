@@ -3,6 +3,7 @@
 <head>
   <title>Family Newsletter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -42,5 +43,8 @@
 
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>
+  <div>
+    <%= render 'layouts/footer' %>
+  </div>
 </body>
 </html>

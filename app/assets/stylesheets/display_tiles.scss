@@ -1,20 +1,37 @@
 @import 'colors';
 
 .newsletter-display-tile {
-
-  //TRIGGER THE COLOR GRADIENT WHEN I CLICK THE BUTTON TO SEE THE ENTRY FORM!!!
-
-  //OTHERWISE, USE JUST THAT TURQUOISE
   background-color: white; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(top, $robin-egg-blue); /* For Safari 5.1 to 6.0 */ /* For Opera 11.1 to 12.0 */ /* For Firefox 3.6 to 15 */
-  background: -webkit-linear-gradient(top, $robin-egg-blue);
-  background: black linear-gradient($robin-egg-blue 0, $almost-white 100%); /* Standard syntax */
+  background: -webkit-linear-gradient(top, $darker-robin);
+  background: black linear-gradient($darker-robin 0, $almost-white 100%); /* Standard syntax */
 
-  width: 30%;
-  border-radius: 5px;
-  padding: 15px 0;
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: auto;
 
-  img {
-    max-width: 150px;
+  .general-button {
+    background-color: $purple-navy;
+    font-weight: bold;
+    color: white;
+    line-height: normal;
+    margin: 10px;
+  }
+}
+
+.news-title {
+  text-align: center;
+}
+
+.news-desc {
+  margin: auto;
+  text-align: left;
+}
+
+.button-div {
+  margin-top: .6em;
+  a, button {
+    display: inline-block;
   }
 }

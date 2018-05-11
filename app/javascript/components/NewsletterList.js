@@ -25,8 +25,8 @@ const NewsletterList = props => {
 
       return (
         <NewsletterDisplayTile
-          key={newsletterObject["id"]}
-          id={newsletterObject["id"]}
+          key={id}
+          id={id}
           title={newsletterObject["title"]}
           description={newsletterObject["description"]}
           pic_url={newsletterObject["thumb_photo"]["url"]}

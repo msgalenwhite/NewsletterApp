@@ -88,8 +88,7 @@ $include-html-global-classes: $include-html-classes;
 
 // We use these to define default font stacks
 $font-family-sans-serif: "Lato", sans-serif;
-// $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-// $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
+
 
 // We use these to define default font weights
 // $font-weight-normal: normal;
@@ -118,10 +117,10 @@ $font-family-sans-serif: "Lato", sans-serif;
 // We use these as default colors throughout
 $primary-color: $robin-egg-blue;
 $secondary-color: $darker-robin;
-$alert-color: $light-purple;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$alert-color: $purple-navy;
+$success-color: $purple-navy;
+$warning-color: $purple-navy;
+$info-color: $purple-navy;
 
 // We use these to control various global styles
 $body-bg: $almost-white;
@@ -140,7 +139,7 @@ $body-font-color: $jet;
 // $last-child-float: $opposite-direction;
 
 // We use these to make sure border radius matches unless we want it different.
-// $global-radius: 3px;
+// $global-radius: 5px;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
@@ -350,7 +349,7 @@ $body-font-color: $jet;
 // $include-html-alert-classes: $include-html-classes;
 
 // We use this to control alert padding.
-// $alert-padding-top: rem-calc(14);
+// $alert-padding-top: .3em;
 // $alert-padding-default-float: $alert-padding-top;
 // $alert-padding-opposite-direction: $alert-padding-top + rem-calc(10);
 // $alert-padding-bottom: $alert-padding-top;
@@ -358,16 +357,14 @@ $body-font-color: $jet;
 // We use these to control text style.
 // $alert-font-weight: $font-weight-normal;
 // $alert-font-size: rem-calc(13);
-// $alert-font-color: $white;
+$alert-font-color: white;
 // $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
+// $alert-test-align: center;
 
 // We use this for close hover effect.
 // $alert-function-factor: -14%;
 
 // We use these to control border styles.
-// $alert-border-style: solid;
-// $alert-border-width: 1px;
-// $alert-border-color: scale-color($primary-color, $lightness: $alert-function-factor);
 // $alert-bottom-margin: rem-calc(20);
 
 // We use these to style the close buttons
@@ -381,7 +378,7 @@ $body-font-color: $jet;
 // $alert-close-background: inherit;
 
 // We use this to control border radius
-// $alert-radius: $global-radius;
+$alert-radius: 0;
 
 // $alert-transition-speed: 300ms;
 // $alert-transition-ease: ease-out;
