@@ -8,7 +8,10 @@ const InviteFormContainer = props => {
     )
   })
 
-  const submitEmails = () => { props.handleSubmit() }
+  const submitEmails = () => {
+    props.handleSubmit()
+  }
+
   let codeOrButton;
 
   if (props.showCode) {

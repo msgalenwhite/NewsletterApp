@@ -135,32 +135,28 @@ class NewsletterShowPage extends Component {
     this.setState({
       showCode: true
     })
-    // const formPayload = this.createFormPayload()
-    //
-    // fetch("/api/v1/invitations.json", {
-    //   credentials: 'same-origin',
-    //   method: 'POST',
-    //   body: JSON.stringify(formPayload),
-    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-    // })
-    //   .then ( response => {
-    //     if ( response.ok ) {
-    //       return response;
-    //     } else {
-    //       let errorMessage = `${response.status} (${response.statusText})`;
-    //       let error = new Error(errorMessage);
-    //       throw(error);
-    //     }
-    //   })
-    //   .then ( response => response.json() )
-    //   .then ( response => {
-    //     if (response["error"]) {
-    //       this.props.setMessage(response["error"])
-    //     } else {
-    //       this.props.setMessage("Success!")
-    //     }
-    //   })
-    //   .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+    const formPayload = this.createFormPayload()
+
+    fetch("/api/v1/invitations.json", {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        console.log(response)
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
