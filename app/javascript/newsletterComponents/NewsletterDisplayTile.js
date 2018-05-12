@@ -1,6 +1,5 @@
 import React from 'react'
 import NewsletterTileDetails from './NewsletterTileDetails'
-
 import EntryFormContainer from '../forms/EntryFormContainer'
 
 const NewsletterDisplayTile = props => {
