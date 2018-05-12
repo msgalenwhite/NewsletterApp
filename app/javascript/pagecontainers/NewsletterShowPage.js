@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
-import NewsletterDetails from '../newsletterShowComponents/NewsletterDetails'
+import ShowContainer from '../newsletterShowComponents/ShowContainer'
 
+//won't be needed once show container is implemented
+import NewsletterDetails from '../newsletterShowComponents/NewsletterDetails'
 import InviteFormContainer from './InviteFormContainer'
 
 class NewsletterShowPage extends Component {
