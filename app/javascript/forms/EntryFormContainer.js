@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 
-
 class EntryFormContainer extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +10,33 @@ class EntryFormContainer extends Component {
       errorMessage: '',
       photo: []
     }
+    this.clearForm = this.clearForm.bind(this)
+    this.createFormPayload = this.createFormPayload.bind(this)
     this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onDrop = this.onDrop.bind(this)
     this.submitEntry = this.submitEntry.bind(this)
+  }
+
+  clearForm() {
+    this.setState({
+      title: '',
+      body: '',
+      errorMessage: '',
+      photo: []
+    })
+  }
+
+  createFormPayload() {
+    let formDataObject = new FormData()
+
+    formDataObject.append("title", this.state.title)
+    formDataObject.append("body", this.state.body)
+    formDataObject.append("photo", this.state.photo[0])
+    formDataObject.append("newsletter_id", this.props.newsletterId)
+
+    return formDataObject
   }
 
   formIsComplete() {
@@ -35,13 +56,7 @@ class EntryFormContainer extends Component {
     event.preventDefault()
 
     if (this.formIsComplete()) {
-      let formDataObject = new FormData()
-
-      formDataObject.append("title", this.state.title)
-      formDataObject.append("body", this.state.body)
-      formDataObject.append("photo", this.state.photo[0])
-      formDataObject.append("newsletter_id", this.props.newsletterId)
-
+      const formDataObject = this.createFormPayload()
       this.submitEntry(formDataObject)
     } else {
       this.setState({
@@ -78,7 +93,9 @@ class EntryFormContainer extends Component {
         if (response["error"]) {
           this.props.setMessage(response["error"])
         } else {
+          this.clearForm()
           this.props.setMessage("Success!")
+          this.props.showFormFunc()
         }
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
@@ -113,17 +130,25 @@ class EntryFormContainer extends Component {
             onChange={this.handleChange}
           />
 
-          <div className="dropzone">
-            <Dropzone onDrop={this.onDrop}>
-              <p className='dropzone-text'>Only one photo per entry: drag it here or click to upload!</p>
+          <div className='row'>
+            <div className='dropzone columns small-6'>
+              <Dropzone onDrop={this.onDrop}>
+                <p className='dropzone-text'>Only one photo per entry: drag it here or click to upload!</p>
+
+              </Dropzone>
+            </div>
+            <div className='columns small-6'>
+              <h5>Preview:</h5>
               {preview}
-            </Dropzone>
+            </div>
           </div>
 
-          <input
-            type='submit'
-            value='Submit'
-            className='general-button'/>
+          <div className='row center'>
+            <input
+              type='submit'
+              value='Submit'
+              className='general-button'/>
+          </div>
         </form>
       </div>
     )

@@ -7,7 +7,7 @@ const ButtonBar = props => {
       <div className='row'>
         <button
           className='general-button'
-          onClick={props.onEntryButtonClick}>
+          onClick={props.showFormFunc}>
           Submit an Entry
         </button>
         <a href={`/newsletters/${props.id}`}

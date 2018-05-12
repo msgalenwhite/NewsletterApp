@@ -12,7 +12,7 @@ const NewsletterTileDetails = props => {
         {props.description}
       </p>
       <ButtonBar
-        onEntryButtonClick={props.onEntryButtonClick}
+        showFormFunc={props.showFormFunc}
       />
     </div>
   )
