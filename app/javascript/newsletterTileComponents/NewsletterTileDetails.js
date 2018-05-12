@@ -20,6 +20,7 @@ const NewsletterTileDetails = props => {
       </div>
       <ButtonBar
         showFormFunc={props.showFormFunc}
+        id={props.id}
       />
     </div>
   )

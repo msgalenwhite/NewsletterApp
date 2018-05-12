@@ -16,7 +16,8 @@ const NewsletterDisplayTile = props => {
       <NewsletterTileDetails
         description={props.details.description}
         photo={props.details.thumb_photo}
-        showFormFunc={props.showFormFunc} />
+        showFormFunc={props.showFormFunc}
+        id={props.id}/>
   }
 
   return (

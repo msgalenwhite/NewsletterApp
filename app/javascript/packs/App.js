@@ -10,8 +10,8 @@ const App = props => {
   return(
     <Router history={browserHistory} >
       <Route path='/' component={UserHomePage} />
-      <Route path='/newsletters/:newsletter_id/entries/:entry_id' component={EntryShowPage} />
       <Route path='/newsletters/:id' component={NewsletterShowPage} />
+      <Route path='/newsletters/:newsletter_id/entries/:entry_id' component={EntryShowPage} />
     </Router>
   )
 }
