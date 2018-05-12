@@ -61,6 +61,8 @@ form {
 }
 .dropzone {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .dropzone-text {
   padding: .2em;
