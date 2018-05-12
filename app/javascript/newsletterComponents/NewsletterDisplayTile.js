@@ -1,6 +1,7 @@
 import React from 'react'
+import NewsletterTileDetails from './NewsletterTileDetails'
 
-import EntryFormContainer from '../containers/EntryFormContainer'
+import EntryFormContainer from '../forms/EntryFormContainer'
 
 const NewsletterDisplayTile = props => {
   let displayItem;
@@ -14,27 +15,10 @@ const NewsletterDisplayTile = props => {
       />
   } else if (props.showNewsletterBoolean) {
     displayItem =
-    <div>
-      <p className='news-desc'>
-        A little about us:
-      </p>
-      <p className='news-desc'>
-        {props.description}
-      </p>
-      <div className='center button-div'>
-        <div className='row'>
-          <button
-            className='general-button'
-            onClick={props.handleClick}>
-            Submit an Entry
-          </button>
-          <a href={`/newsletters/${props.id}`}
-            className='general-button'>
-            View Newsletter
-          </a>
-        </div>
-      </div>
-    </div>
+      <NewsletterTileDetails
+        description={props.description}
+        onEntryButtonClick={props.handleClick}
+      />
   }
 
   return (

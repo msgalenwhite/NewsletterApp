@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
-
-
-import NewsletterList from '../components/NewsletterList'
+import NewsletterList from '../lists/NewsletterList'
 
 class UserHomePage extends Component {
   constructor(props){
