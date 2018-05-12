@@ -9,9 +9,7 @@ const NewsletterDisplayTile = props => {
     displayItem =
       <EntryFormContainer
         newsletterId={props.id}
-        userId={props.userId}
-        setMessage={props.setMessage}
-      />
+        setMessage={props.setMessage} />
   } else if (props.isOpen) {
     displayItem =
       <NewsletterTileDetails
