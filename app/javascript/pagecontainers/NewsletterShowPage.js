@@ -192,13 +192,15 @@ class NewsletterShowPage extends Component {
 
   render() {
     const founderTag = this.founderOptions()
-    let picAndDesc;
+    let moreInfo;
 
     if (!this.state.showInviteForm) {
-      picAndDesc =
+      moreInfo =
         <NewsletterDetails
           imageSrc={this.state.photo.url}
           description={this.state.description}
+          founderName={this.state.founderName}
+          isFounder={this.state.isFounder}
         />
     }
 
@@ -208,7 +210,7 @@ class NewsletterShowPage extends Component {
           title={this.state.title}
           flashMessage={this.state.flashMessage}
         />
-          {picAndDesc}
+          {moreInfo}
         <div className='row invites-div'>
           {founderTag}
         </div>
