@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
+import NewsletterDetails from '../newsletterShowComponents/NewsletterDetails'
 
 import InviteFormContainer from './InviteFormContainer'
 
@@ -195,14 +196,10 @@ class NewsletterShowPage extends Component {
 
     if (!this.state.showInviteForm) {
       picAndDesc =
-        <div className='row' data-equalizer>
-          <div className='columns small-6' data-equalizer-watch>
-            <img className='news-photo' src={this.state.photo.url} alt='Newsletter Photo' />
-          </div>
-          <div className='columns small-6' data-equalizer-watch>
-            <p className='news-desc'>{this.state.description}</p>
-          </div>
-        </div>
+        <NewsletterDetails
+          imageSrc={this.state.photo.url}
+          description={this.state.description}
+        />
     }
 
     return(

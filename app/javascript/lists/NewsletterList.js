@@ -1,5 +1,5 @@
 import React from 'react'
-import NewsletterDisplayTile from '../newsletterComponents/NewsletterDisplayTile'
+import NewsletterDisplayTile from '../newsletterTileComponents/NewsletterDisplayTile'
 
 const NewsletterList = props => {
   let newsletters;
