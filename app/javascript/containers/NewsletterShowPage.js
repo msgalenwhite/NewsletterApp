@@ -16,7 +16,8 @@ class NewsletterShowPage extends Component {
       newEmail: '',
       newName: '',
       flashMessage: null,
-      newsletterId: null
+      newsletterId: null,
+      entries: []
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
@@ -66,6 +67,7 @@ class NewsletterShowPage extends Component {
           title: response["newsletter_data"]["title"],
           description: response["newsletter_data"]["description"],
           photo: response["newsletter_data"]["thumb_photo"],
+          entries: response["entries"],
           founderName: response["newsletter_data"]["founder_name"],
           isFounder: response["is_founder"],
           newsletterId: newsletterId
@@ -223,7 +225,9 @@ class NewsletterShowPage extends Component {
         <div className='row invites-div'>
           {founderTag}
         </div>
-        <EntriesShowContainer />
+        <EntriesShowContainer
+          newsletterId={this.state.newsletterId}
+        />
       </div>
     )
   }

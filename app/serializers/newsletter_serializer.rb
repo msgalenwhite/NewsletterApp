@@ -4,4 +4,8 @@ class NewsletterSerializer < ActiveModel::Serializer
   def founder_name
     object.founder.full_name
   end
+
+  def entries
+    object.entries
+  end
 end

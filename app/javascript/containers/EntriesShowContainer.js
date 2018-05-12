@@ -1,21 +1,12 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class EntriesShowContainer extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
+const EntriesShowContainer = props => {
 
-    }
-  }
-
-  render() {
-
-    return(
-      <div>
-      what?
-      </div>
-    )
-  }
+  return(
+    <div>
+    hi
+    </div>
+  )
 }
 
 export default EntriesShowContainer

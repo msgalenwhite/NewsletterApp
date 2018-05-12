@@ -10,7 +10,8 @@ class Api::V1::NewslettersController < ApplicationController
     newsletter = Newsletter.find(newsletter_id)
     response = {
       newsletter_data: newsletter,
-      is_founder: current_user_is_founder?(newsletter)
+      is_founder: current_user_is_founder?(newsletter),
+      entries: newsletter.entries
     }
 
     render json: response
