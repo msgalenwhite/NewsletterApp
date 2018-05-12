@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import HeaderBar from '../everypagecomponents/HeaderBar'
-import FlashMessage from '../everypagecomponents/FlashMessage'
 
 
 import NewsletterList from '../components/NewsletterList'
@@ -81,8 +80,9 @@ class UserHomePage extends Component {
   render() {
     return(
       <div className='page'>
-        <FlashMessage flashMessage={this.state.flashMessage} />
-        <HeaderBar title='Your Subscriptions' />
+        <HeaderBar
+          title='Your Subscriptions'
+          flashMessage={this.state.flashMessage}/>
         <NewsletterList
           newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}

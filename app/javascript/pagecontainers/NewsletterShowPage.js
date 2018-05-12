@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import HeaderBar from
+
 import InviteFormContainer from './InviteFormContainer'
 
 class NewsletterShowPage extends Component {
@@ -189,16 +191,7 @@ class NewsletterShowPage extends Component {
 
   render() {
     const founderTag = this.founderOptions()
-    let message;
     let picAndDesc;
-
-    if (this.state.flashMessage) {
-      message =
-        <div data-alert className="alert-box">
-          {this.state.flashMessage}
-          <a href="#" className="close">&times;</a>
-        </div>
-    }
 
     if (!this.state.showInviteForm) {
       picAndDesc =
@@ -214,11 +207,11 @@ class NewsletterShowPage extends Component {
 
     return(
       <div className='page'>
-        <div className='show-container '>
-          {message}
-          <h1 className='page-header'>{this.state.title}</h1>
+        <HeaderBar
+          title={this.state.title}
+          flashMessage={this.state.flashMessage}
+        />
           {picAndDesc}
-        </div>
         <div className='row invites-div'>
           {founderTag}
         </div>
