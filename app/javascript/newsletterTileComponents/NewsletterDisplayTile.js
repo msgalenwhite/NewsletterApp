@@ -5,19 +5,19 @@ import EntryFormContainer from '../forms/EntryFormContainer'
 const NewsletterDisplayTile = props => {
   let displayItem;
 
-  if (props.showEntryForm) {
+  if (props.isOpen && props.showForm) {
     displayItem =
       <EntryFormContainer
         newsletterId={props.id}
         userId={props.userId}
         setMessage={props.setMessage}
       />
-  } else if (props.showNewsletterBoolean) {
+  } else if (props.isOpen) {
     displayItem =
       <NewsletterTileDetails
-        description={props.description}
-        onEntryButtonClick={props.handleClick}
-      />
+        description={props.details.description}
+        photo={props.details.thumb_photo}
+        showFormFunc={props.showFormFunc} />
   }
 
   return (
@@ -25,8 +25,8 @@ const NewsletterDisplayTile = props => {
       <div className='opaque-tile row' >
         <h4
           className='news-title'
-          onClick={props.showDetails}>
-          {props.title}
+          onClick={props.openMe}>
+          {props.details.title}
         </h4>
         {displayItem}
       </div>

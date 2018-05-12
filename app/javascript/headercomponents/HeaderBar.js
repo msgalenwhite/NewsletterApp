@@ -3,10 +3,14 @@ import HeaderLinkBar from './HeaderLinkBar'
 import FlashMessage from './FlashMessage'
 
 const HeaderBar = props => {
+  let flash;
+  if (props.flashMessage) {
+    flash = <FlashMessage flashMessage={props.flashMessage} />
+  }
 
   return(
     <div>
-      <FlashMessage flashMessage={props.flashMessage} />
+      {flash}
       <h1 className='page-header'>{props.title}</h1>
       <HeaderLinkBar />
     </div>

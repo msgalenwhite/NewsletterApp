@@ -1,23 +1,17 @@
-import React from 'react'
-// newsletters={this.state.subscribedNewsletters}
-// showForm={this.displayOrHideForm}
-// newsletterNeedingEntry={this.state.newsletterNeedingEntry}
-// setMessage={this.setMessage}
-// displayOrHideNewsletterInfo={this.displayOrHideNewsletterInfo}
-// selectedNewsletter={this.state.selectedNewsletter}
-import NewsletterDisplayTile from '../newsletterTileComponents/NewsletterDisplayTile'
-
 import React, {Component} from 'react'
+import NewsletterDisplayTile from '../newsletterTileComponents/NewsletterDisplayTile'
 
 class NewsletterList extends Component {
   constructor(props){
     super(props);
     this.state = {
       newsletters: [],
-      openNewsletter: null
+      openNewsletter: null,
+      showForm: false
     }
     this.generateNewsletterTiles = this.generateNewsletterTiles.bind(this)
     this.openANewsletter = this.openANewsletter.bind(this)
+    this.showTheForm = this.showTheForm.bind(this)
   }
 
   componentDidMount() {
@@ -46,34 +40,51 @@ class NewsletterList extends Component {
     const tiles = this.state.newsletters.map((newsletter) => {
 
       let isOpen;
+      let showForm;
       if (newsletter.id === this.state.openNewsletter) {
         isOpen = true;
+        showForm = this.state.showForm
       }
 
       const openMe = () => {
         this.openANewsletter(newsletter.id)
       }
 
+      const showFormFunc = () => { this.showTheForm() }
+
       return (
         <NewsletterDisplayTile
+          key={newsletter.id}
+          id={newsletter.id}
           details={newsletter}
           isOpen={isOpen}
           openMe={openMe}
           setMessage={this.props.setMessage}
+          showForm={showForm}
+          showFormFunc={showFormFunc}
         />
       )
     })
+    return tiles;
   }
 
   openANewsletter(id) {
     if (id === this.state.openNewsletter) {
-      this.setState({ openNewsletter: null })
+      this.setState({
+        openNewsletter: null,
+        showForm: false
+      })
     } else {
       this.setState({ openNewsletter: id })
     }
   }
 
+  showTheForm() {
+    this.setState({ showForm: !this.state.showForm })
+  }
+
   render() {
+    console.log(this.state)
     const tiles = this.generateNewsletterTiles()
 
     return(
@@ -85,54 +96,3 @@ class NewsletterList extends Component {
 }
 
 export default NewsletterList
-
-
-//
-// const NewsletterList = props => {
-//   let newsletters;
-//
-//   if (props.newsletters.length > 0) {
-//     newsletters = props.newsletters.map((newsletterObject) => {
-//       let showEntryForm;
-//       let showNewsletterBoolean;
-//       const id = newsletterObject["id"]
-//
-//       if (id === props.newsletterNeedingEntry) {
-//         showEntryForm = true
-//       }
-//       if (id === props.selectedNewsletter) {
-//         showNewsletterBoolean = true
-//       }
-//
-//       const handleSelectNewsletter = () => {
-//         props.displayOrHideNewsletterInfo(id)
-//       }
-//
-//       const handleButtonClick = () => { props.showForm(id) }
-//
-//       return (
-//         <NewsletterDisplayTile
-//           key={id}
-//           id={id}
-//           title={newsletterObject["title"]}
-//           description={newsletterObject["description"]}
-//           pic_url={newsletterObject["thumb_photo"]["url"]}
-//           handleClick={handleButtonClick}
-//           showEntryForm={showEntryForm}
-//           userId={props.userId}
-//           setMessage={props.setMessage}
-//           showDetails={handleSelectNewsletter}
-//           showNewsletterBoolean={showNewsletterBoolean}
-//         />
-//       )
-//     })
-//   }
-//
-//   return(
-//     <ul>
-//       {newsletters}
-//     </ul>
-//   )
-// }
-//
-// export default NewsletterList

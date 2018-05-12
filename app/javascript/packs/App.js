@@ -1,9 +1,9 @@
 import React from 'react'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 
-import UserHomePage from '../pagecontainers/UserHomePage'
-import NewsletterShowPage from '../pagecontainers/NewsletterShowPage'
-import EntryShowPage from '../pagecontainers/EntryShowPage'
+import UserHomePage from '../pageContainers/UserHomePage'
+import NewsletterShowPage from '../pageContainers/NewsletterShowPage'
+import EntryShowPage from '../pageContainers/EntryShowPage'
 
 const App = props => {
 

@@ -1,13 +1,19 @@
 import React from 'react'
-import headerLinkList from '../constants/headerLinkList'
 
 const HeaderLinkBar = props => {
 
-  let links = linkList.map((listObject) => {
+  const headerLinkList = [
+    {
+      destination: '/newsletters/new',
+      text: 'Create a Newsletter'
+    }
+  ]
+
+  const links = headerLinkList.map((linkObject) => {
     return(
-      <a href={linkObject.destination} >
+      <a href={linkObject.destination} key={linkObject.destination}>
         <h3 className='sub-header'>
-          {listObject.text}
+          {linkObject.text}
         </h3>
       </a>
     )

@@ -4,7 +4,7 @@ import ShowContainer from '../newsletterShowComponents/ShowContainer'
 
 //won't be needed once show container is implemented
 import NewsletterDetails from '../newsletterShowComponents/NewsletterDetails'
-import InviteFormContainer from './InviteFormContainer'
+import InviteFormContainer from '../forms/InviteFormContainer'
 
 class NewsletterShowPage extends Component {
   constructor(props){
