@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import HeaderBar from
+import HeaderBar from '../headerComponents/HeaderBar'
 
 import InviteFormContainer from './InviteFormContainer'
 

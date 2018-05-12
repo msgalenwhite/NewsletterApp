@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import HeaderBar from '../everypagecomponents/HeaderBar'
+import HeaderBar from '../headerComponents/HeaderBar'
 
 
 import NewsletterList from '../components/NewsletterList'
