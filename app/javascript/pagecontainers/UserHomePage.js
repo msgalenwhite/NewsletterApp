@@ -1,4 +1,8 @@
 import React, {Component} from 'react'
+import HeaderBar from '../everypagecomponents/HeaderBar'
+import FlashMessage from '../everypagecomponents/FlashMessage'
+
+
 import NewsletterList from '../components/NewsletterList'
 
 class UserHomePage extends Component {
@@ -75,29 +79,10 @@ class UserHomePage extends Component {
   }
 
   render() {
-    let message;
-
-    if (this.state.flashMessage) {
-      message =
-        <div data-alert className="alert-box">
-          {this.state.flashMessage}
-          <a href="#" className="close">&times;</a>
-        </div>
-    }
-
     return(
       <div className='page'>
-        {message}
-        <h1 className='page-header'>Your Subscriptions</h1>
-        <div className='row'>
-          <div className='columns small-12, medium-6'>
-            <a href='/newsletters/new' >
-              <h3 className='sub-header'>
-                Create a Newsletter
-              </h3>
-            </a>
-          </div>
-        </div>
+        <FlashMessage flashMessage={this.state.flashMessage} />
+        <HeaderBar title='Your Subscriptions' />
         <NewsletterList
           newsletters={this.state.subscribedNewsletters}
           showForm={this.displayOrHideForm}
