@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import InviteFormContainer from './InviteFormContainer'
+import EntriesShowContainer from './EntriesShowContainer'
 
 class NewsletterShowPage extends Component {
   constructor(props){
@@ -222,6 +223,7 @@ class NewsletterShowPage extends Component {
         <div className='row invites-div'>
           {founderTag}
         </div>
+        <EntriesShowContainer />
       </div>
     )
   }
