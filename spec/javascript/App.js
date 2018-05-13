@@ -1,5 +1,5 @@
 import App from '../../app/javascript/packs/App'
-import UserHomePage from '../../app/javascript/pageContainers/UserHomePage'
+import UserHomePage from '../../app/javascript/containers/UserHomePage'
 import { Route } from 'react-router'
 
 it('renders correct routes', () => {
