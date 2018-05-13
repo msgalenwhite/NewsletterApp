@@ -3,11 +3,9 @@ class Api::V1::EntriesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    current_year = Date.today.year
-    current_month = Date.today.month
-    current_month_entries = Entry.with_year_and_month(current_year, current_month)
+    applicable_entries = current_month_entries.where(newsletter_id: params["newsletter_id"].to_i)
 
-    render json: current_month_entries.where(newsletter_id: params["newsletter_id"].to_i)
+    render json: applicable_entries
   end
 
   def create
@@ -27,5 +25,11 @@ class Api::V1::EntriesController < ApplicationController
 
   def entries_params
     params.permit(:title, :body, :photo)
+  end
+
+  def current_month_entries
+    current_year = Date.today.year
+    current_month = Date.today.month
+    Entry.with_year_and_month(current_year, current_month)
   end
 end
