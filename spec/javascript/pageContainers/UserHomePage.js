@@ -1,80 +1,25 @@
-import fetchMock from 'fetch-mock'
-
 import UserHomePage from '../../../app/javascript/pageContainers/UserHomePage'
+import HeaderBar from '../../../app/javascript/headerComponents/HeaderBar'
 import NewsletterList from '../../../app/javascript/lists/NewsletterList'
 
 describe ('UserHomePage', () => {
   let wrapper;
-  let fetchedData;
 
   beforeEach(() => {
-    fetchedData = [
-      {
-        "description": "desc",
-        "thumb_photo": {
-          "url": "https://newsletter-app-development.s3.amazonaws.com/uploads/newsletter/thumb_photo/1/blue_flowers.jpg"
-        },
-        "title": "New",
-        "founder_name": "test user"
-      },
-      {
-        "description": "desc2",
-        "thumb_photo": {
-          "url": "https://newsletter-app-development.s3.amazonaws.com/uploads/newsletter/thumb_photo/1/blue_flowers.jpg"
-        },
-        "title": "Another",
-        "founder_name": "not the test user"
-      },
-    ]
-
-    fetchMock.get('/api/v1/newsletters.json', {
-      status: 200,
-      body: fetchedData
-    });
     wrapper = mount(<UserHomePage />)
   })
 
-  afterEach(fetchMock.restore)
-
-  describe('fetch statement', () => {
-    it ('initializes with the correct state', () => {
-      expect(wrapper.state()).toEqual({
-        subscribedNewsletters: [],
-        newsletterNeedingEntry: null,
-        selectedNewsletter: null,
-        flashMessage: null
-      })
-    })
-
-    it ('changes state to reflect the content of an api call', (done) => {
-      setTimeout(() => {
-        expect(wrapper.state()).toEqual({
-          subscribedNewsletters: fetchedData,
-          newsletterNeedingEntry: null,
-          selectedNewsletter: null,
-          flashMessage: null
-        })
-        done();
-      }, 0)
-    })
-
-    it ('passes the correct props to NewsletterList', () => {
-      expect(wrapper.find(NewsletterList)).toHaveProp(
-        'newsletters',
-        wrapper.state('subscribedNewsletters')
-      )
+  it ("initializes with the correct state", () => {
+    expect(wrapper.state()).toEqual({
+      flashMessage: null
     })
   })
 
-  describe('rendered components', () => {
-    it('contains a header', () => {
-      expect(wrapper.text()).toContain('Your Subscriptions')
-    })
-    it('has a "link" to create a Newsletter', () => {
-      expect(wrapper.find('a').text()).toContain('Create a Newsletter')
-    })
-    it ('has a list of newsletters', () => {
-      expect(wrapper.find(NewsletterList)).toBePresent()
-    })
+  it ("renders a Header Bar", () => {
+    expect(wrapper.find(HeaderBar)).toBePresent()
+  })
+
+  it ("renders a NewsletterList", () => {
+    expect(wrapper.find(NewsletterList)).toBePresent()
   })
 })
