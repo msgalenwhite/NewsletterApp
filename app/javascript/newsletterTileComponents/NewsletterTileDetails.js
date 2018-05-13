@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonBar from './ButtonBar'
+import TileButtonBar from './TileButtonBar'
 
 const NewsletterTileDetails = props => {
 
@@ -18,7 +18,7 @@ const NewsletterTileDetails = props => {
           src={props.photo.url}
           alt='Newsletter Photo' />
       </div>
-      <ButtonBar
+      <TileButtonBar
         showFormFunc={props.showFormFunc}
         id={props.id}
       />

@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import EntryTile from '../entryTileComponents.js'
+import EntryTile from '../entryTileComponents/EntryTile.js'
 
 class EntryList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      entries = []
+      entries: []
     }
     this.makeTiles = this.makeTiles.bind(this)
   }
@@ -22,8 +22,8 @@ class EntryList extends Component {
   }
 
   render() {
-    const Entries = this.makeTiles()
-    
+    const entries = this.makeTiles()
+
     return(
       <div>
         {entries}

@@ -1,26 +1,36 @@
-import React, {Component} from 'react'
+import React from 'react'
+import InviteFormContainer from '../forms/InviteFormContainer'
+import EntryFormContainer from '../forms/EntryFormContainer'
+import NewsletterDetails from './NewsletterDetails'
 
-class ShowContainer extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-
-    }
+const ShowContainer = props => {
+  let renderedComponent;
+  if (props.showInviteForm) {
+    renderedComponent =
+      <InviteFormContainer
+        setMessage={props.setMessage} />
+  } else if (props.showEntryForm) {
+    renderedComponent =
+      <EntryFormContainer
+        newsletterId={props.id}
+        setMessage={props.setMessage} />
+  } else {
+    renderedComponent =
+      <NewsletterDetails
+        imageSrc={props.imageSrc}
+        description={props.description} />
   }
 
-  /*
-  logic for whether to show form container OR newsletter details
-  state to remember which is showing
-  */
+  // <div className='columns small-6'>
+  //   <h3 className='sub-header'>Changed your mind?</h3>
+  //   <button className='general-button' onClick={this.props.hideMe}>Nevermind!</button>
+  // </div>
 
-  render() {
-
-    return(
-      <div>
-        ShowContainer
-      </div>
-    )
-  }
+  return(
+    <div>
+      {renderedComponent}
+    </div>
+  )
 }
 
 export default ShowContainer

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
 import ShowContainer from '../newsletterShowComponents/ShowContainer'
+import EntryList from '../lists/EntryList'
 
 //won't be needed once show container is implemented
 import NewsletterDetails from '../newsletterShowComponents/NewsletterDetails'
@@ -15,37 +16,24 @@ class NewsletterShowPage extends Component {
       photo: {},
       founderName: '',
       isFounder: null,
-      showInviteForm: false,
-      invitedEmails: [],
-      newEmail: '',
-      newName: '',
+      showInviteForm: true,
+      showEntryForm: false,
       flashMessage: null,
       newsletterId: null
     }
-    this.addToInvites = this.addToInvites.bind(this)
+    this.setMessage = this.setMessage.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
-    this.formIsComplete = this.formIsComplete.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.sendEmails = this.sendEmails.bind(this)
+
+
+
     this.showInviteForm = this.showInviteForm.bind(this)
-    this.validateEmail = this.validateEmail.bind(this)
+
+  }
+  setMessage(message) {
+    this.setState({ flashMessage: message })
   }
 
-  addToInvites(){
-    if (this.formIsComplete()){
-      const currentInvites = this.state.invitedEmails
-      const newInvite = {
-        email: this.state.newEmail,
-        name: this.state.newName
-      }
 
-      this.setState({
-        invitedEmails: currentInvites.concat(newInvite),
-        newEmail: '',
-        newName: ''
-      })
-    }
-  }
 
   componentDidMount() {
     const newsletterId = parseInt(this.props.params["id"])
@@ -78,144 +66,78 @@ class NewsletterShowPage extends Component {
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
-  createFormPayload() {
-    const formPayload = {
-      emails: this.state.invitedEmails,
-      newsletterId: parseInt(this.props.params["id"])
-    }
-    return formPayload
-  }
 
-  formIsComplete() {
-    if (
-      !this.validateEmail(this.state.newEmail)
-    ) {
-      this.setState({flashMessage: 'Please enter a valid email.'})
-      return false
-    } else if (this.state.newEmail === '' ||
-    this.state.newName === '') {
-      this.setState({ flashMessage: 'Please enter an email and a name' })
-      return false
-    } else {
-      this.setState({ flashMessage: null })
-      return true
-    }
-  }
 
   founderOptions() {
-    const handleClick = () => { this.showInviteForm() }
-    let returnedComponent;
-
-    if (this.state.isFounder && !this.state.showInviteForm) {
-      returnedComponent =
-        <button
-          className='general-button'
-          onClick={handleClick}
-        >
-          Send Invites
-        </button>
-
-    } else if (!this.state.isFounder){
-      returnedComponent = <h4>Founded by: {this.state.founderName}</h4>
+    let text;
+    if (this.state.isFounder) {
+      text = 'You are the founder'
     } else {
-      returnedComponent =
-        <InviteFormContainer
-          hideMe={handleClick}
-          invitedEmails={this.state.invitedEmails}
-          currentEmail={this.state.newEmail}
-          currentName={this.state.newName}
-          handleChange={this.handleChange}
-          addEmail={this.addToInvites}
-          handleSubmit={this.sendEmails}
-          newsletterId={this.state.newsletterId}
-        />
-
+      text = `Founded by ${this.state.founderName}`
     }
-    return returnedComponent
+
+    return (
+      <h3>{text}</h3>
+    )
+
+    // const handleClick = () => { this.showInviteForm() }
+    // let returnedComponent;
+    //
+    // if (this.state.isFounder && !this.state.showInviteForm) {
+    //   returnedComponent =
+    //     <button
+    //       className='general-button'
+    //       onClick={handleClick}
+    //     >
+    //       Send Invites
+    //     </button>
+    //
+    // } else if (!this.state.isFounder){
+    //   returnedComponent = <h4>Founded by: {this.state.founderName}</h4>
+    // } else {
+    //   returnedComponent =
+    //     <InviteFormContainer
+    //       hideMe={handleClick}
+    //       invitedEmails={this.state.invitedEmails}
+    //       currentEmail={this.state.newEmail}
+    //       currentName={this.state.newName}
+    //       handleChange={this.handleChange}
+    //       addEmail={this.addToInvites}
+    //       handleSubmit={this.sendEmails}
+    //       newsletterId={this.state.newsletterId}
+    //     />
+    //
+    // }
+    // return returnedComponent
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+
 
   showInviteForm() {
     this.setState({ showInviteForm: !this.state.showInviteForm })
   }
 
-  sendEmails() {
-    const formPayload = this.createFormPayload()
-
-    fetch("/api/v1/invitations.json", {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(formPayload),
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-    })
-      .then ( response => {
-        if ( response.ok ) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`;
-          let error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then ( response => response.json() )
-      .then ( response => {
-        if (response.errors.length == 0) {
-          this.setState({
-            flashMessage: "Your emails were successfully sent!",
-            showInviteForm: false,
-            invitedEmails: [],
-            newEmail: '',
-            newName: ''
-          })
-        } else {
-          let errors;
-
-          Object.entries(response.errors).forEach((miniArray) => {
-            errors += `\n${miniArray[0]}: ${miniArray[1]}`
-          })
-
-          this.setState({
-            flashMessage: `I'm sorry, your emails were unable to be sent.\n\n${errors}`
-          })
-        }
-      })
-      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
-  }
-
-  validateEmail(email) {
-    const regex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-    return regex.test(email.toLowerCase())
-  }
+  //NEEDED - a FUNCTION and a TRIGGER to set the showInviteForm and showEntryForm in state
 
   render() {
     const founderTag = this.founderOptions()
-    let moreInfo;
-
-    if (!this.state.showInviteForm) {
-      moreInfo =
-        <NewsletterDetails
-          imageSrc={this.state.photo.url}
-          description={this.state.description}
-          founderName={this.state.founderName}
-          isFounder={this.state.isFounder}
-        />
-    }
 
     return(
       <div className='page'>
         <HeaderBar
           title={this.state.title}
-          flashMessage={this.state.flashMessage}
-        />
-          {moreInfo}
+          flashMessage={this.state.flashMessage} />
         <div className='row invites-div'>
           {founderTag}
         </div>
+        <ShowContainer
+          imgSrc={this.state.photo.url}
+          description={this.state.description}
+          newsletterId={this.state.newsletterId}
+          setMessage={this.setMessage}
+          showInviteForm={this.state.showInviteForm}
+          showEntryForm={this.state.showEntryForm} />
+        <EntryList />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ButtonBar = props => {
+const TileButtonBar = props => {
 
   return(
     <div className='center button-div'>
@@ -19,4 +19,4 @@ const ButtonBar = props => {
   )
 }
 
-export default ButtonBar
+export default TileButtonBar
