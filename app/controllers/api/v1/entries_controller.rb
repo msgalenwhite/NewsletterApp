@@ -2,6 +2,11 @@ class Api::V1::EntriesController < ApplicationController
   # protect_from_forgery unless: -> { request.format.json? }
   skip_before_action :verify_authenticity_token
 
+  def index
+    #find this months' entries
+    
+  end
+
   def create
     entry = Entry.new(entries_params)
     entry.user = current_user
