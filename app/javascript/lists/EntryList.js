@@ -10,9 +10,26 @@ class EntryList extends Component {
     this.makeTiles = this.makeTiles.bind(this)
   }
   componentDidMount() {
-    /*
-      fetch entries for this.props.newsletterId
-    */
+    const newsletterId = props.newsletterId
+    fetch(`/api/v1/newsletters/${newsletterId}/entries.json`, {
+      credentials: 'same-origin',
+      method: 'GET',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        debugger
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   makeTiles() {
