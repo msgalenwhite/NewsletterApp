@@ -57,7 +57,7 @@ class NewsletterShowPage extends Component {
         this.setState({
           title: response["newsletter_data"]["title"],
           description: response["newsletter_data"]["description"],
-          photo: response["newsletter_data"]["thumb_photo"],
+          photo: response["newsletter_data"]["thumb_photo"]["url"],
           founderName: response["newsletter_data"]["founder_name"],
           isFounder: response["is_founder"],
           newsletterId: newsletterId
@@ -131,7 +131,7 @@ class NewsletterShowPage extends Component {
           {founderTag}
         </div>
         <ShowContainer
-          imgSrc={this.state.photo.url}
+          imgSrc={this.state.photo}
           description={this.state.description}
           newsletterId={this.state.newsletterId}
           setMessage={this.setMessage}

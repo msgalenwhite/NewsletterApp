@@ -8,7 +8,8 @@ const ShowContainer = props => {
   if (props.showInviteForm) {
     renderedComponent =
       <InviteFormContainer
-        setMessage={props.setMessage} />
+        setMessage={props.setMessage}
+        newsletterId={props.id} />
   } else if (props.showEntryForm) {
     renderedComponent =
       <EntryFormContainer
