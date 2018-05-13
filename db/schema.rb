@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_11_012752) do
+ActiveRecord::Schema.define(version: 2018_05_13_164718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2018_05_11_012752) do
     t.string "title", null: false
     t.text "body", null: false
     t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["newsletter_id"], name: "index_entries_on_newsletter_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
