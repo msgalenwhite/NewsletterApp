@@ -89,12 +89,6 @@ class NewsletterShowPage extends Component {
 
   render() {
     const founderTag = this.founderOptions()
-    let entries;
-    if (this.state.newsletterId) {
-      entries =
-        <EntryList
-          newsletterId={this.state.newsletterId} />
-    }
 
     return(
       <div className='page'>
@@ -112,7 +106,7 @@ class NewsletterShowPage extends Component {
           openInvites={this.showInviteForm}
           openEntry={this.showEntryForm}
           closeAllForms={this.closeAllForms} />
-        {entries}
+        <EntryList />
       </div>
     )
   }
