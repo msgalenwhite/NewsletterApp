@@ -42,7 +42,7 @@ class EntryList extends Component {
             title={entryInfo.title}
             body={entryInfo.body}
             authorPhoto={entryInfo.author_photo_url}
-            author={entryInfo.author}
+            authorName={entryInfo.author}
             date={entryInfo.date}/>
         </div>
        )
