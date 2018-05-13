@@ -13,7 +13,7 @@ class Api::V1::InvitationsController < ApplicationController
     })
 
     if @batch.dispatch
-      render json: @batch
+      render json: @batch, status: :created
     else
       render json: @batch
     end
