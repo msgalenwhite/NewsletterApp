@@ -15,7 +15,7 @@ class NewsletterShowPage extends Component {
       showInviteForm: false,
       showEntryForm: false,
       flashMessage: null,
-      newsletterId: null
+      newsletterId: parseInt(this.props.params["id"])
     }
     this.closeAllForms = this.closeAllForms.bind(this)
     this.setMessage = this.setMessage.bind(this)
@@ -32,9 +32,7 @@ class NewsletterShowPage extends Component {
   }
 
   componentDidMount() {
-    const newsletterId = parseInt(this.props.params["id"])
-
-    fetch(`/api/v1/newsletters/${newsletterId}.json`, {
+    fetch(`/api/v1/newsletters/${this.state.newsletterId}.json`, {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
@@ -55,8 +53,7 @@ class NewsletterShowPage extends Component {
           description: response["newsletter_data"]["description"],
           photo: response["newsletter_data"]["thumb_photo"]["url"],
           founderName: response["newsletter_data"]["founder_name"],
-          isFounder: response["is_founder"],
-          newsletterId: newsletterId
+          isFounder: response["is_founder"]
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
@@ -89,12 +86,6 @@ class NewsletterShowPage extends Component {
 
   render() {
     const founderTag = this.founderOptions()
-    let entries;
-    if (this.state.newsletterId) {
-      entries =
-        <EntryList
-          newsletterId={this.state.newsletterId} />
-    }
 
     return(
       <div className='page'>
@@ -112,7 +103,8 @@ class NewsletterShowPage extends Component {
           openInvites={this.showInviteForm}
           openEntry={this.showEntryForm}
           closeAllForms={this.closeAllForms} />
-        {entries}
+        <EntryList
+          newsletterId={this.state.newsletterId} />
       </div>
     )
   }

@@ -3,8 +3,11 @@ class Api::V1::EntriesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    #find this months' entries
-    
+    current_year = Date.today.year
+    current_month = Date.today.month
+    current_month_entries = Entry.with_year_and_month(current_year, current_month)
+
+    render json: current_month_entries.where(newsletter_id: params["newsletter_id"].to_i)
   end
 
   def create
