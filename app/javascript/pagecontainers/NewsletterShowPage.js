@@ -48,11 +48,12 @@ class NewsletterShowPage extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
+        debugger
         this.setState({
-          title: response["newsletter_data"]["title"],
-          description: response["newsletter_data"]["description"],
-          photo: response["newsletter_data"]["thumb_photo"]["url"],
-          founderName: response["newsletter_data"]["founder_name"],
+          title: response["title"],
+          description: response["description"],
+          photo: response["photo"],
+          founderName: response["founder_name"],
           isFounder: response["is_founder"]
         })
       })
