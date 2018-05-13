@@ -42,10 +42,11 @@ cinderella = User.create!(
   current_state: 'Kentucky'
 )
 
-newsletter = Newsletter.find_or_create_by!(
+newsletter = Newsletter.create!(
   description: 'To help everyone keep in touch!',
   title: 'Charming Family Newsletter',
-  founder_id: cinderella.id
+  founder_id: cinderella.id,
+  remote_thumb_photo_url: "https://vignette.wikia.nocookie.net/disney/images/6/6c/Cinderella-2015.jpg/revision/latest?cb=20150216231944"
 )
 
 users = [gus, jaq, cinderella]
