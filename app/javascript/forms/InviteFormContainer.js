@@ -29,7 +29,7 @@ class InviteFormContainer extends Component {
         invitedEmails: currentInvites.concat(newInvite),
         newEmail: '',
         newName: '',
-        errorMessage: ''
+        errorMessage: null
       })
     }
   }
@@ -46,12 +46,18 @@ class InviteFormContainer extends Component {
     if (
       !this.validateEmail(this.state.newEmail)
     ) {
-      this.setState({errorMessage: 'Please enter a valid email.'})
+      this.setState({
+        errorMessage: 'Please enter a valid email.'
+      })
       return false
+
     } else if (this.state.newEmail === '' ||
     this.state.newName === '') {
-      this.setState({ errorMessage: 'Please enter an email and a name' })
+      this.setState({
+        errorMessage: 'Please enter an email and a name'
+      })
       return false
+
     } else {
       this.setState({ errorMessage: null })
       return true
@@ -61,7 +67,9 @@ class InviteFormContainer extends Component {
   generateEmailTags() {
     const emailComponents = this.state.invitedEmails.map((emailObject) => {
       return (
-        <li key={emailObject.email}>{emailObject.name} ({emailObject.email})</li>
+        <div key={emailObject.email}>
+          {emailObject.name} ( {emailObject.email} )
+        </div>
       )
     })
     return emailComponents
@@ -102,13 +110,14 @@ class InviteFormContainer extends Component {
 
           this.props.setMessage('Your emails were successfully sent!')
         } else {
-          let errors;
+          let errors = ''
 
-          // THIS IS WRONG:
+          response.errors.forEach((errorObject) => {
+            if (errorObject.length > 0) {
+              errors += `${errorObject.name}: ${errorObject.errors.join(", and ")}`
+            }
+          })
 
-          // Object.entries(response.errors).forEach((miniArray) => {
-          //   errors += `\n${miniArray[0]}: ${miniArray[1]}`
-          // })
           this.setState({
             errorMessage: `I'm sorry, your emails were unable to be sent.\n\n${errors}`
           })
@@ -124,7 +133,7 @@ class InviteFormContainer extends Component {
 
   render() {
     const emailComponents = this.generateEmailTags()
-
+    console.log(this.state)
     return(
       <div>
         <div className='row data-equalizer'>
@@ -138,7 +147,7 @@ class InviteFormContainer extends Component {
                 type='email'
                 className='email-input'
                 name='newEmail'
-                value={this.state.currentEmail}
+                value={this.state.newEmail}
                 onChange={this.handleChange}
               />
             </div>
@@ -148,12 +157,12 @@ class InviteFormContainer extends Component {
                 type='text'
                 className='email-name-input'
                 name='newName'
-                value={this.state.currentName}
+                value={this.state.newName}
                 onChange={this.handleChange}
               />
             </div>
             <div className='center'>
-                <button className='general-button' onClick={this.addEmail}>Add</button>
+                <button className='general-button' onClick={this.addToInvites}>Add</button>
             </div>
           </div>
           <div className='columns small-12 medium-6 data-equalizer-watch'>
@@ -163,7 +172,7 @@ class InviteFormContainer extends Component {
         </div>
         <div className='row center'>
             <h3 className='sub-header'>Thought of everyone?</h3>
-            <button className='general-button' onClick={this.submitEmails}>Send the Invites!</button>
+            <button className='general-button' onClick={this.sendEmails}>Send the Invites!</button>
         </div>
       </div>
     )
