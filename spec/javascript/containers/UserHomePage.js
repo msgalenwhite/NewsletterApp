@@ -1,6 +1,13 @@
+<<<<<<< HEAD:spec/javascript/pageContainers/UserHomePage.js
 import UserHomePage from '../../../app/javascript/pageContainers/UserHomePage'
 import HeaderBar from '../../../app/javascript/headerComponents/HeaderBar'
 import NewsletterList from '../../../app/javascript/lists/NewsletterList'
+=======
+import fetchMock from 'fetch-mock'
+
+import UserHomePage from '../../../app/javascript/containers/UserHomePage'
+import NewsletterList from '../../../app/javascript/components/NewsletterList'
+>>>>>>> parent of 8f124c4... restructured spec folders:spec/javascript/containers/UserHomePage.js
 
 describe ('UserHomePage', () => {
   let wrapper;

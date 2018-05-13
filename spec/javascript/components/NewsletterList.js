@@ -1,6 +1,11 @@
+<<<<<<< HEAD:spec/javascript/lists/NewsletterList.js
 import NewsletterList from '../../../app/javascript/lists/NewsletterList'
 import NewsletterDisplayTile from '../../../app/javascript/newsletterTileComponents/NewsletterDisplayTile'
 import fetchMock from 'fetch-mock'
+=======
+import NewsletterList from '../../../app/javascript/components/NewsletterList'
+import NewsletterDisplayTile from '../../../app/javascript/components/NewsletterDisplayTile'
+>>>>>>> parent of 8f124c4... restructured spec folders:spec/javascript/components/NewsletterList.js
 
 describe ('NewsletterList', () => {
   let wrapper;
