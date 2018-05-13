@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock'
 
-import UserHomePage from '../../../app/javascript/containers/UserHomePage'
-import NewsletterList from '../../../app/javascript/components/NewsletterList'
+import UserHomePage from '../../../app/javascript/pageContainers/UserHomePage'
+import NewsletterList from '../../../app/javascript/lists/NewsletterList'
 
 describe ('UserHomePage', () => {
   let wrapper;
