@@ -1,8 +1,9 @@
 import React from 'react'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 
-import UserHomePage from '../containers/UserHomePage'
-import NewsletterShowPage from '../containers/NewsletterShowPage'
+import UserHomePage from '../pageContainers/UserHomePage'
+import NewsletterShowPage from '../pageContainers/NewsletterShowPage'
+import EntryShowPage from '../pageContainers/EntryShowPage'
 
 const App = props => {
 
@@ -10,6 +11,7 @@ const App = props => {
     <Router history={browserHistory} >
       <Route path='/' component={UserHomePage} />
       <Route path='/newsletters/:id' component={NewsletterShowPage} />
+      <Route path='/newsletters/:newsletter_id/entries/:entry_id' component={EntryShowPage} />
     </Router>
   )
 }

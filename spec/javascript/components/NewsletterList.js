@@ -1,5 +1,5 @@
-import NewsletterList from '../../../app/javascript/components/NewsletterList'
-import NewsletterDisplayTile from '../../../app/javascript/components/NewsletterDisplayTile'
+import NewsletterList from '../../../app/javascript/lists/NewsletterList'
+import NewsletterDisplayTile from '../../../app/javascript/newsletterTileComponents/NewsletterDisplayTile'
 
 describe ('NewsletterList', () => {
   let wrapper;
