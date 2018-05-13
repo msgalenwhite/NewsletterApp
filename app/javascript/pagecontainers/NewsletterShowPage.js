@@ -72,9 +72,7 @@ class NewsletterShowPage extends Component {
       text = `Founded by ${this.state.founderName}`
     }
 
-    return (
-      <h3>{text}</h3>
-    )
+    return text
   }
 
   setMessage(message) {
@@ -96,10 +94,8 @@ class NewsletterShowPage extends Component {
       <div className='page'>
         <HeaderBar
           title={this.state.title}
-          flashMessage={this.state.flashMessage} />
-        <div className='row invites-div'>
-          {founderTag}
-        </div>
+          flashMessage={this.state.flashMessage}
+          founder={founderTag}/>
         <ShowContainer
           imgSrc={this.state.photo}
           description={this.state.description}
