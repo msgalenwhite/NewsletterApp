@@ -9,11 +9,11 @@ class NewsletterShowPage extends Component {
     this.state = {
       title: '',
       description: '',
-      photo: {},
+      photo: '',
       founderName: '',
       isFounder: null,
       showInviteForm: false,
-      showEntryForm: true,
+      showEntryForm: false,
       flashMessage: null,
       newsletterId: null
     }
@@ -97,7 +97,7 @@ class NewsletterShowPage extends Component {
           flashMessage={this.state.flashMessage}
           founder={founderTag}/>
         <ShowContainer
-          imgSrc={this.state.photo}
+          imageSrc={this.state.photo}
           description={this.state.description}
           newsletterId={this.state.newsletterId}
           setMessage={this.setMessage}
