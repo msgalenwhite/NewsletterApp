@@ -1,0 +1,21 @@
+@import 'colors';
+
+.header-button-div {
+  display: flex;
+  justify-content: space-around;
+  font-size: .8em;
+  margin-bottom: 2em;
+}
+
+.header-bar {
+  min-height: 3em;
+
+  .page-header {
+    line-height: 2.5em;
+  }
+}
+.founder-tag {
+  text-align: right;
+  font-size: 1em;
+  margin-right: 1em;
+}

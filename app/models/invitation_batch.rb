@@ -32,7 +32,10 @@ class InvitationBatch
     else
       @invitations.each do |invite|
         if invite.errors
-          @errors << { invite.name => invite.errors.full_messages }
+          @errors << {
+            name => invite.name,
+            errors => invite.errors.full_messages 
+          }
         end
       end
       return false
