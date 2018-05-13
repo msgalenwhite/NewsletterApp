@@ -109,6 +109,7 @@ class InviteFormContainer extends Component {
           })
 
           this.props.setMessage('Your emails were successfully sent!')
+          this.props.showFormFunc()
         } else {
           let errors = ''
 

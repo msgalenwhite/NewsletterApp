@@ -9,7 +9,7 @@ const HeaderBar = props => {
   }
 
   return(
-    <div>
+    <div className='header-bar'>
       {flash}
       <h1 className='page-header'>{props.title}</h1>
       <HeaderLinkBar />

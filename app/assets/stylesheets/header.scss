@@ -1,0 +1,15 @@
+@import 'colors';
+
+.header-button-div {
+  display: flex;
+  justify-content: space-around;
+  font-size: .8em;
+}
+
+.header-bar {
+  min-height: 3em;
+
+  .page-header {
+    line-height: 2.5em;
+  }
+}

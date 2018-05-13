@@ -3,10 +3,6 @@ import HeaderBar from '../headerComponents/HeaderBar'
 import ShowContainer from '../newsletterShowComponents/ShowContainer'
 import EntryList from '../lists/EntryList'
 
-//won't be needed once show container is implemented
-import NewsletterDetails from '../newsletterShowComponents/NewsletterDetails'
-import InviteFormContainer from '../forms/InviteFormContainer'
-
 class NewsletterShowPage extends Component {
   constructor(props){
     super(props);
@@ -16,24 +12,24 @@ class NewsletterShowPage extends Component {
       photo: {},
       founderName: '',
       isFounder: null,
-      showInviteForm: true,
-      showEntryForm: false,
+      showInviteForm: false,
+      showEntryForm: true,
       flashMessage: null,
       newsletterId: null
     }
+    this.closeAllForms = this.closeAllForms.bind(this)
     this.setMessage = this.setMessage.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
-
-
-
+    this.showEntryForm = this.showEntryForm.bind(this)
     this.showInviteForm = this.showInviteForm.bind(this)
-
-  }
-  setMessage(message) {
-    this.setState({ flashMessage: message })
   }
 
-
+  closeAllForms() {
+    this.setState({
+      showInviteForm: false,
+      showEntryForm: false
+    })
+  }
 
   componentDidMount() {
     const newsletterId = parseInt(this.props.params["id"])
@@ -79,45 +75,19 @@ class NewsletterShowPage extends Component {
     return (
       <h3>{text}</h3>
     )
-
-    // const handleClick = () => { this.showInviteForm() }
-    // let returnedComponent;
-    //
-    // if (this.state.isFounder && !this.state.showInviteForm) {
-    //   returnedComponent =
-    //     <button
-    //       className='general-button'
-    //       onClick={handleClick}
-    //     >
-    //       Send Invites
-    //     </button>
-    //
-    // } else if (!this.state.isFounder){
-    //   returnedComponent = <h4>Founded by: {this.state.founderName}</h4>
-    // } else {
-    //   returnedComponent =
-    //     <InviteFormContainer
-    //       hideMe={handleClick}
-    //       invitedEmails={this.state.invitedEmails}
-    //       currentEmail={this.state.newEmail}
-    //       currentName={this.state.newName}
-    //       handleChange={this.handleChange}
-    //       addEmail={this.addToInvites}
-    //       handleSubmit={this.sendEmails}
-    //       newsletterId={this.state.newsletterId}
-    //     />
-    //
-    // }
-    // return returnedComponent
   }
 
-
+  setMessage(message) {
+    this.setState({ flashMessage: message })
+  }
 
   showInviteForm() {
     this.setState({ showInviteForm: !this.state.showInviteForm })
   }
 
-  //NEEDED - a FUNCTION and a TRIGGER to set the showInviteForm and showEntryForm in state
+  showEntryForm() {
+    this.setState({ showEntryForm: !this.state.showEntryForm })
+  }
 
   render() {
     const founderTag = this.founderOptions()
@@ -136,7 +106,10 @@ class NewsletterShowPage extends Component {
           newsletterId={this.state.newsletterId}
           setMessage={this.setMessage}
           showInviteForm={this.state.showInviteForm}
-          showEntryForm={this.state.showEntryForm} />
+          showEntryForm={this.state.showEntryForm}
+          openInvites={this.showInviteForm}
+          openEntry={this.showEntryForm}
+          closeAllForms={this.closeAllForms} />
         <EntryList />
       </div>
     )
