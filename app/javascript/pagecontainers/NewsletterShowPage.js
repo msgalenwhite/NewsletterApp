@@ -48,7 +48,6 @@ class NewsletterShowPage extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
-        debugger
         this.setState({
           title: response["title"],
           description: response["description"],
@@ -60,8 +59,6 @@ class NewsletterShowPage extends Component {
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
-
-
   founderOptions() {
     let text;
     if (this.state.isFounder) {
@@ -69,7 +66,6 @@ class NewsletterShowPage extends Component {
     } else {
       text = `Founded by ${this.state.founderName}`
     }
-
     return text
   }
 

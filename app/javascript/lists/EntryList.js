@@ -35,12 +35,15 @@ class EntryList extends Component {
   makeTiles() {
     const tiles = this.state.entries.map((entryInfo) => {
       return (
-        <EntryTile
-          key={entryInfo.id}
-          id={entryInfo.id}
-          title={entryInfo.title}
-          body={entryInfo.body}
-          photo={entryInfo.photo.url} />
+        <div className='row'>
+          <hr/>
+          <EntryTile
+            key={entryInfo.id}
+            id={entryInfo.id}
+            title={entryInfo.title}
+            body={entryInfo.body}
+            photo={entryInfo.photo} />
+        </div>
        )
     })
     return tiles
@@ -50,7 +53,7 @@ class EntryList extends Component {
     const entries = this.makeTiles()
 
     return(
-      <div>
+      <div className='entries-list'>
         {entries}
       </div>
     )
