@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import EntryFormContainer from './EntryFormContainer'
 import InviteFormContainer from './InviteFormContainer'
 
 class NewsletterShowPage extends Component {
@@ -11,6 +12,7 @@ class NewsletterShowPage extends Component {
       founderName: '',
       isFounder: null,
       showInviteForm: false,
+      showEntryForm: false,
       invitedEmails: [],
       newEmail: '',
       newName: '',
@@ -22,6 +24,8 @@ class NewsletterShowPage extends Component {
     this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.sendEmails = this.sendEmails.bind(this)
+    this.setMessage = this.setMessage.bind(this)
+    this.showEntryForm = this.showEntryForm.bind(this)
     this.showInviteForm = this.showInviteForm.bind(this)
     this.validateEmail = this.validateEmail.bind(this)
   }
@@ -135,6 +139,16 @@ class NewsletterShowPage extends Component {
     })
   }
 
+  setMessage(message) {
+    this.setState({
+      flashMessage: message
+    })
+  }
+
+  showEntryForm() {
+    this.setState({ showEntryForm: !this.state.showEntryForm })
+  }
+
   showInviteForm() {
     this.setState({ showInviteForm: !this.state.showInviteForm })
   }
@@ -194,8 +208,10 @@ class NewsletterShowPage extends Component {
 
   render() {
     const founderTag = this.founderOptions()
+    const showEntry = () => { this.showEntryForm() }
     let message;
     let picAndDesc;
+    let entryForm;
 
     if (this.state.flashMessage) {
       message =
@@ -205,7 +221,7 @@ class NewsletterShowPage extends Component {
         </div>
     }
 
-    if (!this.state.showInviteForm) {
+    if (!this.state.showInviteForm && !this.state.showEntryForm) {
       picAndDesc =
         <div className='row' data-equalizer>
           <div className='columns small-6' data-equalizer-watch>
@@ -217,15 +233,40 @@ class NewsletterShowPage extends Component {
         </div>
     }
 
+    if (this.state.showEntryForm) {
+      entryForm =
+        <div>
+          <h3 className='sub-header center'>Changed your mind?</h3>
+          <button className='general-button center' onClick={showEntry}>Nevermind!</button>
+          <EntryFormContainer
+            newsletterId={this.state.newsletterId}
+            setMessage={this.setMessage}
+            hideForm={this.showEntryForm}
+          />
+        </div>
+    } else {
+      entryForm =
+        <button
+          className='general-button'
+          onClick={showEntry}>
+          Submit an Entry
+        </button>
+    }
+
     return(
       <div className='page'>
         <div className='show-container '>
           {message}
           <h1 className='page-header'>{this.state.title}</h1>
+          <div className='row invites-div' data-equalizer>
+            <div className='columns small-12 medium-6 center' data-equalizer-watch>
+              {founderTag}
+            </div>
+            <div className='columns small-12 medium-6 center' data-equalizer-watch>
+              {entryForm}
+            </div>
+          </div>
           {picAndDesc}
-        </div>
-        <div className='row invites-div'>
-          {founderTag}
         </div>
       </div>
     )
