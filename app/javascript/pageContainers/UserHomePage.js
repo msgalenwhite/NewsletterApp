@@ -20,8 +20,8 @@ class UserHomePage extends Component {
     return(
       <div className='page'>
         <HeaderBar
-          title='Your Subscriptions'
-          flashMessage={this.state.flashMessage}/>
+          title='Welcome to the Family Newsletter!'
+          flashMessage={this.state.flashMessage} />
         <div className='row'>
           <div className='columns small-2'>
             <HomeSideBar />
