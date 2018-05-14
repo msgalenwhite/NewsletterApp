@@ -134,7 +134,7 @@ class InviteFormContainer extends Component {
 
   render() {
     const emailComponents = this.generateEmailTags()
-    console.log(this.state)
+
     return(
       <div>
         <div className='row data-equalizer'>
