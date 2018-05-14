@@ -11,12 +11,11 @@ class InvitationBatch
 
   def dispatch
     @invitations = @invitees.map do |payload|
-      invitation = Invitation.new do |invitation|
-        invitation.host = @host
-        invitation.newsletter = @newsletter
-        invitation.email = payload["email"]
-        invitation.name = payload["name"]
-      end
+      invitation = Invitation.new
+      invitation.host = @host
+      invitation.newsletter = @newsletter
+      invitation.email = payload["email"]
+      invitation.name = payload["name"]
 
       invitation.valid?
       invitation
