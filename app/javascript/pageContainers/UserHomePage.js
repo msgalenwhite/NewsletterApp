@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
 import NewsletterList from '../lists/NewsletterList'
+import HomeSideBar from '../headerComponents/HomeSideBar'
 
 class UserHomePage extends Component {
   constructor(props){
@@ -21,8 +22,15 @@ class UserHomePage extends Component {
         <HeaderBar
           title='Your Subscriptions'
           flashMessage={this.state.flashMessage}/>
-        <NewsletterList
-          setMessage={this.setMessage} />
+        <div className='row'>
+          <div className='columns small-2'>
+            <HomeSideBar />
+          </div>
+          <div className='columns small-10'>
+            <NewsletterList
+              setMessage={this.setMessage} />
+          </div>
+        </div>
       </div>
     )
   }
