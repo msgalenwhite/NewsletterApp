@@ -5,7 +5,7 @@ class Api::V1::EntriesController < ApplicationController
   def index
     applicable_entries = current_month_entries.where(newsletter_id: params["newsletter_id"].to_i)
 
-    ### have to know if the entry belongs to the current user so we know if they can edit/delte it
+    binding.pry
     render json: applicable_entries
   end
 
