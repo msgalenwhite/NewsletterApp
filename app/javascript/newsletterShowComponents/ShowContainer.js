@@ -35,14 +35,6 @@ const ShowContainer = props => {
       <NewsletterDetails
         imageSrc={props.imageSrc}
         description={props.description} />
-      <div className='row header-button-div center'>
-        <button className='general-button' onClick={props.openInvites}>
-          Invite some Friends
-        </button>
-        <button className='general-button' onClick={props.openEntry}>
-          Submit an Entry
-        </button>
-      </div>
     </div>
   }
 

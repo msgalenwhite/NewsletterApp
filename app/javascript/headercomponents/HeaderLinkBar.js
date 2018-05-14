@@ -16,10 +16,11 @@ const HeaderLinkBar = props => {
   const links = headerLinkList.map((linkObject) => {
     return(
       <a
-        className='general-button'
         href={linkObject.destination}
         key={linkObject.destination} >
+        <button className='general-button'>
           {linkObject.text}
+        </button>
       </a>
     )
   })
