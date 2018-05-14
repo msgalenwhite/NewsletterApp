@@ -39,7 +39,7 @@ const ShowContainer = props => {
         <button className='general-button' onClick={props.openInvites}>
           Invite some Friends
         </button>
-        <button className='general-button' onClick={props.openEntries}>
+        <button className='general-button' onClick={props.openEntry}>
           Submit an Entry
         </button>
       </div>
