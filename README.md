@@ -34,5 +34,3 @@ Before viewing the project on localhost, make sure you:
 
 1. Rspec tests can be run with 'rspec'
 2. React tests need to be run with 'npm test'
-
-Testing Codeship
