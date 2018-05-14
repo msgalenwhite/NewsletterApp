@@ -108,7 +108,7 @@ class NewsletterShowPage extends Component {
           newsletterId={this.state.newsletterId} />
     } else if (!this.state.showEntryForm && !this.state.showInviteForm) {
       entries =
-        <div className='center'>
+        <div className='center no-entries'>
           <h5>No one has submitted anything this month yet.<br/>Why don't you be the first?</h5>
           <button className='general-button' onClick={this.showEntryForm}>
             Submit an Entry
