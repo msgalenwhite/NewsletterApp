@@ -36,7 +36,6 @@ class EntryList extends Component {
     const tiles = this.state.entries.map((entryInfo) => {
       return (
         <div className='row' key={entryInfo.id}>
-          <hr/>
           <EntryTile
             id={entryInfo.id}
             title={entryInfo.title}
