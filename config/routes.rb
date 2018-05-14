@@ -5,10 +5,7 @@ Rails.application.routes.draw do
 
   resources :newsletters, only: [:new, :create, :show]
   resources :invitations, only: [:show]
-
-  resources :newsletters, only: [] do
-    resources :invitations, only: [:edit, :update]
-  end
+  resources :subscriptions, only: [:new, :create]
 
   namespace :api do
     namespace :v1 do
