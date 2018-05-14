@@ -11,11 +11,13 @@ class InvitationBatch
 
   def dispatch
     @invitations = @invitees.map do |payload|
-      invitation = Invitation.new
-      invitation.host = @host
-      invitation.newsletter = @newsletter
-      invitation.email = payload["email"]
-      invitation.name = payload["name"]
+      invitation = Invitation.new do |invitation|
+        binding.pry
+        invitation.host = @host
+        invitation.newsletter = @newsletter
+        invitation.email = payload["email"]
+        invitation.name = payload["name"]
+      end
 
       invitation.valid?
       invitation
@@ -25,13 +27,16 @@ class InvitationBatch
       @invitations.each {|i| i.save! }
 
       @invitations.each do |invite|
-        InvitationMailer.new_invite(invite).deliver_now
+        InvitationMailer.new_invite(invite).deliver
       end
       return true
     else
       @invitations.each do |invite|
         if invite.errors
-          @errors << { error: "It isn't working!" }
+          @errors << {
+            name => invite.name,
+            errors => invite.errors.full_messages
+          }
         end
       end
       return false
