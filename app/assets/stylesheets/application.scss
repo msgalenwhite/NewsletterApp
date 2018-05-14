@@ -35,11 +35,11 @@ body {
 }
 
 .additional-links-div {
+  color: $blue;
   text-align: right;
   width: 85%;
   margin-top: .5em;
-  line-height: 2.3
-  em;
+  line-height: 2.3em;
 
   .link-description {
     margin-right: .7em;
@@ -55,7 +55,7 @@ body {
 }
 
 .flash, .alert-box {
-  background-color: $purple-navy;
+  background-color: $blue;
   color: white;
   padding: .3em 0.9375rem;
 }
@@ -86,8 +86,6 @@ body {
 }
 
 #footer {
-  // position: fixed;
-  // bottom: 0px;
   width: 100%;
   margin-top: 3em;
   height: 30px;

@@ -84,7 +84,6 @@ class NewsletterList extends Component {
   }
 
   render() {
-    console.log(this.state)
     const tiles = this.generateNewsletterTiles()
 
     return(

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
 import ShowContainer from '../newsletterShowComponents/ShowContainer'
 import EntryList from '../lists/EntryList'
+import SideBar from '../newsletterShowComponents/SideBar'
 
 class NewsletterShowPage extends Component {
   constructor(props){
@@ -90,18 +91,27 @@ class NewsletterShowPage extends Component {
           title={this.state.title}
           flashMessage={this.state.flashMessage}
           founder={founderTag}/>
-        <ShowContainer
-          imageSrc={this.state.photo}
-          description={this.state.description}
-          newsletterId={this.state.newsletterId}
-          setMessage={this.setMessage}
-          showInviteForm={this.state.showInviteForm}
-          showEntryForm={this.state.showEntryForm}
-          openInvites={this.showInviteForm}
-          openEntry={this.showEntryForm}
-          closeAllForms={this.closeAllForms} />
-        <EntryList
-          newsletterId={this.state.newsletterId} />
+        <div className='row' data-equalizer>
+          <div data-equalizer-watch className='columns small-3, medium-2'>
+            <SideBar
+              openInvites={this.showInviteForm}
+              openEntry={this.showEntryForm} />
+          </div>
+          <div className='columns small-9, medium-10' data-equalizer-watch>
+            <ShowContainer
+              imageSrc={this.state.photo}
+              description={this.state.description}
+              newsletterId={this.state.newsletterId}
+              setMessage={this.setMessage}
+              showInviteForm={this.state.showInviteForm}
+              showEntryForm={this.state.showEntryForm}
+              closeAllForms={this.closeAllForms} />
+          </div>
+        </div>
+        <div className='row' data-equalizer>
+          <EntryList
+            newsletterId={this.state.newsletterId} />
+        </div>
       </div>
     )
   }
