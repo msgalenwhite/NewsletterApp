@@ -75,11 +75,17 @@ class NewsletterShowPage extends Component {
   }
 
   showInviteForm() {
-    this.setState({ showInviteForm: !this.state.showInviteForm })
+    this.setState({
+      showInviteForm: !this.state.showInviteForm,
+      showEntryForm: false
+    })
   }
 
   showEntryForm() {
-    this.setState({ showEntryForm: !this.state.showEntryForm })
+    this.setState({
+      showEntryForm: !this.state.showEntryForm ,
+      showInviteForm: false
+    })
   }
 
   render() {
