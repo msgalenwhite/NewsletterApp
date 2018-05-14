@@ -4,7 +4,6 @@ import HeaderBar from  '../../../app/javascript/headerComponents/HeaderBar'
 
 describe ('UserHomePage', () => {
   let wrapper;
-  let fetchedData;
 
   beforeEach(() => {
     wrapper = mount(<UserHomePage />)
