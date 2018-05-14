@@ -24,7 +24,7 @@ class InvitationBatch
 
     if all_valid?
       @invitations.each {|i| i.save! }
-binding.pry
+
       @invitations.each do |invite|
         InvitationMailer.new_invite(invite).deliver_now
       end
