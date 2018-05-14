@@ -16,6 +16,7 @@ class NewsletterShowPage extends Component {
       showInviteForm: false,
       showEntryForm: false,
       showEntries: false,
+      showArchives: false,
       flashMessage: null,
       newsletterId: parseInt(this.props.params["id"])
     }
@@ -80,7 +81,7 @@ class NewsletterShowPage extends Component {
     this.setState({
       showInviteForm: !this.state.showInviteForm,
       showEntryForm: false,
-      showEntries: false
+      showEntries: false,
     })
   }
 
@@ -88,7 +89,7 @@ class NewsletterShowPage extends Component {
     this.setState({
       showEntryForm: !this.state.showEntryForm ,
       showInviteForm: false,
-      showEntries: false
+      showEntries: false,
     })
   }
 
@@ -96,7 +97,7 @@ class NewsletterShowPage extends Component {
     this.setState({
       showEntries: !this.state.showEntries,
       showEntryForm: false,
-      showInviteForm: false
+      showInviteForm: false,
     })
   }
 

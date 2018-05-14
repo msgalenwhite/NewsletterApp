@@ -12,7 +12,10 @@ const SideBar = props => {
         Start a Newsletter
       </button></a>
       <button className='general-button' onClick={props.openInvites}>
-        Invite some Friends
+        Invite a Friend
+      </button>
+      <button className='general-button'>
+        Read the Archives
       </button>
       <button className='general-button' onClick={props.openEntry}>
         Submit an Entry
