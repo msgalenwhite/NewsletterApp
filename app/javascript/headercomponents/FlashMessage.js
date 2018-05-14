@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FlashMessages = props => {
+const FlashMessage = props => {
 
   return(
     <div data-alert className="alert-box">
@@ -10,4 +10,4 @@ const FlashMessages = props => {
   )
 }
 
-export default FlashMessages
+export default FlashMessage

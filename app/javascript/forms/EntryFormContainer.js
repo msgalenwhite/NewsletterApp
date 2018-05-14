@@ -113,9 +113,9 @@ class EntryFormContainer extends Component {
       <div className = 'form-div entries-form' >
         <form onSubmit = {this.handleSubmit}>
           <p>{this.state.errorMessage}</p>
-          <h3>Submit an Entry</h3>
+          <h3 className='sub-header'>Submit an Entry</h3>
 
-          <label htmlFor='title'>Title</label>
+          <label htmlFor='title' className='sub-header'>Title</label>
           <input
             type='text'
             name='title'
@@ -123,7 +123,7 @@ class EntryFormContainer extends Component {
             onChange={this.handleChange}
           />
 
-          <label htmlFor='body'>Entry Text</label>
+          <label htmlFor='body' className='sub-header'>Entry Text</label>
           <textarea
             name='body'
             value={this.state.body}

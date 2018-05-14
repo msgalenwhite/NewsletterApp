@@ -22,7 +22,6 @@ class UserHomePage extends Component {
           title='Your Subscriptions'
           flashMessage={this.state.flashMessage}/>
         <NewsletterList
-          newsletters={this.state.newsletters}
           setMessage={this.setMessage} />
       </div>
     )
