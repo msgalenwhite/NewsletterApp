@@ -10,22 +10,50 @@ class EntryList extends Component {
     this.makeTiles = this.makeTiles.bind(this)
   }
   componentDidMount() {
-    /*
-      fetch entries for this.props.newsletterId
-    */
+    const newsletterId = this.props.newsletterId
+    fetch(`/api/v1/newsletters/${newsletterId}/entries.json`, {
+      credentials: 'same-origin',
+      method: 'GET',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        this.setState({ entries: response })
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   makeTiles() {
     const tiles = this.state.entries.map((entryInfo) => {
-      <EntryTile />
+      return (
+        <div className='row' key={entryInfo.id}>
+          <EntryTile
+            id={entryInfo.id}
+            title={entryInfo.title}
+            body={entryInfo.body}
+            authorPhoto={entryInfo.author_photo_url}
+            authorName={entryInfo.author}
+            date={entryInfo.date}/>
+        </div>
+       )
     })
+    return tiles
   }
 
   render() {
     const entries = this.makeTiles()
 
     return(
-      <div>
+      <div className='entries-list'>
         {entries}
       </div>
     )

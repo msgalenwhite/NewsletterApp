@@ -9,7 +9,10 @@ class Api::V1::NewslettersController < ApplicationController
     newsletter_id = params["id"].to_i
     newsletter = Newsletter.find(newsletter_id)
     response = {
-      newsletter_data: newsletter,
+      title: newsletter.title,
+      description: newsletter.description,
+      founder_name: newsletter.founder.full_name,
+      photo: newsletter.thumb_photo.url,
       is_founder: current_user_is_founder?(newsletter)
     }
 

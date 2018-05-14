@@ -15,7 +15,7 @@ const NewsletterTileDetails = props => {
       </div>
       <div className='columns small-4'>
         <img
-          src={props.photo.url}
+          src={props.photo}
           alt='Newsletter Photo' />
       </div>
       <TileButtonBar
