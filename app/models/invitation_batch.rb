@@ -12,7 +12,7 @@ class InvitationBatch
   def dispatch
     @invitations = @invitees.map do |payload|
       invitation = Invitation.new do |invitation|
-        binding.pry
+
         invitation.host = @host
         invitation.newsletter = @newsletter
         invitation.email = payload["email"]
