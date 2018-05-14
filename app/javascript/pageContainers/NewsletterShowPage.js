@@ -96,25 +96,31 @@ class NewsletterShowPage extends Component {
     this.setState({
       showEntries: !this.state.showEntries,
       showEntryForm: false,
-      showInviteForm: false 
+      showInviteForm: false
     })
   }
 
   render() {
-    const founderTag = this.founderOptions()
     let entries;
     if (this.state.showEntries) {
       entries =
         <EntryList
           newsletterId={this.state.newsletterId} />
+    } else if (!this.state.showEntryForm && !this.state.showInviteForm) {
+      entries =
+        <div className='center'>
+          <h5>No one has submitted anything this month yet.<br/>Why don't you be the first?</h5>
+          <button className='general-button' onClick={this.showEntryForm}>
+            Submit an Entry
+          </button>
+        </div>
     }
 
     return(
       <div className='page'>
         <HeaderBar
           title={this.state.title}
-          flashMessage={this.state.flashMessage}
-          founder={founderTag}/>
+          flashMessage={this.state.flashMessage} />
         <div className='row' data-equalizer>
           <div data-equalizer-watch className='columns small-3, medium-2'>
             <SideBar
@@ -134,7 +140,7 @@ class NewsletterShowPage extends Component {
               openInvites={this.showInviteForm} />
           </div>
         </div>
-        <div className='row'>
+        <div className='row center'>
           {entries}
         </div>
       </div>
