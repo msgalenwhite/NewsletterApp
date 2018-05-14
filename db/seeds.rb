@@ -46,7 +46,7 @@ newsletter = Newsletter.create!(
   description: 'To help everyone keep in touch!',
   title: 'Charming Family Newsletter',
   founder_id: cinderella.id,
-  remote_thumb_photo_url: "https://vignette.wikia.nocookie.net/disney/images/6/6c/Cinderella-2015.jpg/revision/latest?cb=20150216231944"
+  remote_thumb_photo_url: "https://vignette.wikia.nocookie.net/disney/images/2/2a/Cinderella_Redesign_8.jpg/revision/latest/scale-to-width-down/640?cb=20140503180006"
 )
 
 users = [gus, jaq, cinderella]
@@ -69,32 +69,36 @@ Entry.find_or_create_by!(
   user_id: cinderella.id,
   newsletter_id: newsletter.id,
   title: "Notes from around the castle",
-  body: cinderella_entry
+  body: cinderella_entry,
+  photo: "http://disney.wikia.com/wiki/File:Cinderella-cinderella.jpg"
 )
 
 Entry.find_or_create_by!(
   user_id: gus.id,
   newsletter_id: newsletter.id,
   title: "Cheese!",
-  body: gus_entry
+  body: gus_entry,
+  photo: "https://giphy.com/gifs/disney-mouse-cheese-IBRObUYB3p9S0"
 )
 
 Entry.find_or_create_by!(
   user_id: jaq.id,
   newsletter_id: newsletter.id,
   title: "We miss you, Cinderella.",
-  body: jaq_entry
+  body: jaq_entry,
+  photo: "https://ohmy.disney.com/wp-content/uploads/2013/05/Cinderella-Clutch_JG_keydoor.jpg"
 )
 
 ### Previous Months' entries:
 
-old_entry = Entry.find_or_create_by!(
+old_entry = Entry.new(
   user_id: cinderella.id,
   newsletter_id: newsletter.id,
   title: "So many boxes!",
   body: "We just moved into the castle last week, and there are still boxes everywhere!  Servants keep appearing and trying to put things away for me, but you know I wouldn't let people do those kinds of things for me!  I don't let anyone dress me but birds and mice... although even my prince thinks that's silly.  Of course, he doesn't know any birds or mice."
 )
 old_entry.created_at = "2018-04-12 00:00:00"
+old_entry.save!
 
 old_entry2 = Entry.find_or_create_by!(
   user_id: jaq.id,
