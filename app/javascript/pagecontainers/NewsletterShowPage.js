@@ -90,16 +90,23 @@ class NewsletterShowPage extends Component {
           title={this.state.title}
           flashMessage={this.state.flashMessage}
           founder={founderTag}/>
-        <ShowContainer
-          imageSrc={this.state.photo}
-          description={this.state.description}
-          newsletterId={this.state.newsletterId}
-          setMessage={this.setMessage}
-          showInviteForm={this.state.showInviteForm}
-          showEntryForm={this.state.showEntryForm}
-          openInvites={this.showInviteForm}
-          openEntry={this.showEntryForm}
-          closeAllForms={this.closeAllForms} />
+        <div className='row'>
+          <div className='columns small-3, medium-2'>
+            
+          </div>
+          <div className='columns small-9, medium-10'>
+            <ShowContainer
+              imageSrc={this.state.photo}
+              description={this.state.description}
+              newsletterId={this.state.newsletterId}
+              setMessage={this.setMessage}
+              showInviteForm={this.state.showInviteForm}
+              showEntryForm={this.state.showEntryForm}
+              openInvites={this.showInviteForm}
+              openEntry={this.showEntryForm}
+              closeAllForms={this.closeAllForms} />
+          </div>
+        </div>
         <EntryList
           newsletterId={this.state.newsletterId} />
       </div>
