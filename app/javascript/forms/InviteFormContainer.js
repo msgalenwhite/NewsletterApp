@@ -10,6 +10,7 @@ class InviteFormContainer extends Component {
       errorMessage: null
     }
     this.addToInvites = this.addToInvites.bind(this)
+    this.clearEmails = this.clearEmails.bind(this)
     this.formIsComplete = this.formIsComplete.bind(this)
     this.generateEmailTags = this.generateEmailTags.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -32,6 +33,12 @@ class InviteFormContainer extends Component {
         errorMessage: null
       })
     }
+  }
+
+  clearEmails() {
+    this.setState({
+      invitedEmails: []
+    })
   }
 
   createFormPayload() {
@@ -169,6 +176,13 @@ class InviteFormContainer extends Component {
           <div className='columns small-12 medium-6 data-equalizer-watch'>
             <h3 className='sub-header center'>Invites to Send:</h3>
             {emailComponents}
+            <div className='center'>
+              <button
+                onClick={this.clearEmails}
+                className='general-button spaced'>
+                Clear
+              </button>
+            </div>
           </div>
         </div>
         <div className='row center'>

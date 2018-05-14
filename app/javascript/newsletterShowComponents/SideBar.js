@@ -17,6 +17,9 @@ const SideBar = props => {
       <button className='general-button' onClick={props.openEntry}>
         Submit an Entry
       </button>
+      <button className='general-button' onClick={props.showEntries}>
+        View Entries
+      </button>
     </div>
   )
 }
