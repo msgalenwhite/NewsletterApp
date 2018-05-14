@@ -108,7 +108,7 @@ class NewsletterShowPage extends Component {
               closeAllForms={this.closeAllForms} />
           </div>
         </div>
-        <div className='row'>
+        <div className='row' data-equalizer>
           <EntryList
             newsletterId={this.state.newsletterId} />
         </div>

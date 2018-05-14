@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
-import HeaderLinkBar from '../headerComponents/HeaderLinkBar'
 import NewsletterList from '../lists/NewsletterList'
 
 class UserHomePage extends Component {
@@ -22,7 +21,6 @@ class UserHomePage extends Component {
         <HeaderBar
           title='Your Subscriptions'
           flashMessage={this.state.flashMessage}/>
-        <HeaderLinkBar />
         <NewsletterList
           setMessage={this.setMessage} />
       </div>

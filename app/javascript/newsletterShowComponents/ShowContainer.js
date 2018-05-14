@@ -39,7 +39,7 @@ const ShowContainer = props => {
   }
 
   return(
-    <div>
+    <div className='show-container'>
       {renderedComponent}
     </div>
   )

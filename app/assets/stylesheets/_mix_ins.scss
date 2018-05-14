@@ -1,7 +1,7 @@
 @import 'colors';
 
 @mixin general-button {
-  background-color: $fun-purple;
+  background-color: $yellow;
   color: white;
   padding: .4em 1em .5em 1em;
   border-radius: .6em;
@@ -10,6 +10,6 @@
 }
 
 @mixin general-button-hover {
-  background-color: $robin-egg-blue;
+  background-color: $blue;
   color: white;
 }
