@@ -24,7 +24,7 @@ class InvitationBatch
 
     if all_valid?
       @invitations.each {|i| i.save! }
-
+binding.pry
       @invitations.each do |invite|
         InvitationMailer.new_invite(invite).deliver_now
       end
@@ -32,10 +32,7 @@ class InvitationBatch
     else
       @invitations.each do |invite|
         if invite.errors
-          @errors << {
-            name: invite.name,
-            errors: invite.errors.full_messages
-          }
+          @errors << { error: "It isn't working!" }
         end
       end
       return false
