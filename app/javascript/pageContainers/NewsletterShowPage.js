@@ -16,7 +16,6 @@ class NewsletterShowPage extends Component {
       showInviteForm: false,
       showEntryForm: false,
       showEntries: false,
-      showArchives: false,
       flashMessage: null,
       newsletterId: parseInt(this.props.params["id"])
     }
@@ -105,16 +104,8 @@ class NewsletterShowPage extends Component {
     let entries;
     if (this.state.showEntries) {
       entries =
-        <EntryList
-          newsletterId={this.state.newsletterId} />
-    } else if (!this.state.showEntryForm && !this.state.showInviteForm) {
-      entries =
-        <div className='center no-entries'>
-          <h5>No one has submitted anything this month yet.<br/>Why don't you be the first?</h5>
-          <button className='general-button' onClick={this.showEntryForm}>
-            Submit an Entry
-          </button>
-        </div>
+      <EntryList
+        newsletterId={this.state.newsletterId} />
     }
 
     return(
