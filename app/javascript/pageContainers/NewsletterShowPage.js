@@ -105,7 +105,8 @@ class NewsletterShowPage extends Component {
               setMessage={this.setMessage}
               showInviteForm={this.state.showInviteForm}
               showEntryForm={this.state.showEntryForm}
-              closeAllForms={this.closeAllForms} />
+              closeAllForms={this.closeAllForms}
+              openInvites={this.showInviteForm} />
           </div>
         </div>
         <div className='row' data-equalizer>
