@@ -9,6 +9,7 @@ class MapComponent extends Component {
     }
     this.initMap = this.initMap.bind(this)
     this.callMap = this.callMap.bind(this)
+    this.mapLocations = this.mapLocations.bind(this)
   }
 
   componentDidMount() {
@@ -18,7 +19,6 @@ class MapComponent extends Component {
   callMap() {
     window.initMap = this.initMap
     loadJS("https://maps.googleapis.com/maps/api/js?key=AIzaSyC668sqglnHBxF-VWPbu3FYTzQfdmXzu2k&callback=initMap")
-    console.log("callMapWorks?!")
   }
 
   initMap() {
@@ -40,16 +40,7 @@ class MapComponent extends Component {
       .then ( response => {
         this.setState({ users: response })
 
-        let locations = this.state.users.map ((user) => {
-
-          return (
-            {
-              lat: user.latitude,
-              lng: user.longitude,
-              name: user.first_name
-            }
-          )
-        })
+        const locations = this.mapLocations()
 
         let centerStats;
         if (this.state.users.length > 0) {
@@ -80,6 +71,21 @@ class MapComponent extends Component {
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
+
+  mapLocations() {
+    let locations = this.state.users.map ((user) => {
+
+      return (
+        {
+          lat: user.latitude,
+          lng: user.longitude,
+          name: user.first_name
+        }
+      )
+    })
+    return locations
+  }
+
   render() {
 
     return(
