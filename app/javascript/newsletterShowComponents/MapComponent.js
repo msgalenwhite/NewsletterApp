@@ -40,15 +40,6 @@ class MapComponent extends Component {
       .then ( response => {
         this.setState({ users: response })
 
-        //then create a map
-
-        let boston = {lat: 42.36008, lng: -71.05888}
-
-        this.map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 9,
-          center: boston
-        })
-
         let locations = this.state.users.map ((user) => {
 
           return (
@@ -58,6 +49,21 @@ class MapComponent extends Component {
               name: user.first_name
             }
           )
+        })
+
+        let centerStats;
+        if (this.state.users.length > 0) {
+          centerStats = {
+            lat: this.state.users[0].latitude,
+            lng: this.state.users[0].longitude
+          }
+        } else {
+          centerStats = { lat: 33.8366, lng: 117.9143 }
+        }
+
+        this.map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 9,
+          center: centerStats
         })
 
         let markers = []
