@@ -84,6 +84,7 @@ body {
 
 .page {
   margin-bottom: 4em;
+  padding-bottom: 4em;
 }
 
 #footer {
@@ -92,4 +93,8 @@ body {
   height: 30px;
   font-size: 13px;
   text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

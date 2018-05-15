@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       end
       resources :entries, only: [:create]
       resources :invitations, only: [:create]
-      resources :subscriptions, only: [:index]
+      resources :subscriptions, only: [:index, :create]
     end
   end
 

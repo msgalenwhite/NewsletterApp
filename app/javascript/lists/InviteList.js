@@ -9,9 +9,9 @@ const InviteList = props => {
     }
 
     return (
-      <div key={info.id}>
+      <div key={info.newsletter.id}>
         <InviteTile
-          id={info.id}
+          id={info.newsletter.id}
           host={info.host}
           newsletter={info.newsletter.title}
           addSubscription={addSubscription}
@@ -25,7 +25,7 @@ const InviteList = props => {
       <div className='sub-header invite-header'>Please select the invitations you would like to accept:</div>
       {tiles}
       <div className='row center'>
-        <button className='general-button'>
+        <button className='general-button' onClick={props.sendInvites}>
           Done
         </button>
       </div>

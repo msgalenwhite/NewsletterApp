@@ -15,6 +15,16 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def create
-    binding.pry
+    @subscriptions = []
+    params["_json"].each do |id|
+      invitation = Invitation.find_by_newsletter_id_and_email(id, current_user.email)
+      new_subscription = Subscription.create(
+        newsletter_id: id,
+        user: current_user
+      )
+      @subscriptions < new_subscription
+      invitation.destroy!
+    end
+    render json: @subscriptions
   end
 end

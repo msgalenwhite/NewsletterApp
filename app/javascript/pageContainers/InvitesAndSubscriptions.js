@@ -42,10 +42,13 @@ class InvitesAndSubscriptions extends Component {
   }
 
   sendInvites() {
-    fetch("/api/v1/subscriptions/create.json", {
+    const invitesToSend = this.state.selectedInvites
+
+    fetch("/api/v1/subscriptions.json", {
       credentials: 'same-origin',
       method: 'POST',
-      body: this.state.selectedInvites
+      body: JSON.stringify(invitesToSend),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     })
       .then ( response => {
         if ( response.ok ) {
@@ -58,13 +61,14 @@ class InvitesAndSubscriptions extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
+        debugger
         console.log(response)
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
-
+    console.log(this.state)
     return(
       <div className='page'>
         <HeaderBar
@@ -72,7 +76,8 @@ class InvitesAndSubscriptions extends Component {
         <div className='invite-page'>
           <InviteList
             invites={this.state.inviteInfo}
-            addToSelectedInvites={this.addToSelectedInvites} />
+            addToSelectedInvites={this.addToSelectedInvites}
+            sendInvites={this.sendInvites} />
         </div>
       </div>
     )
