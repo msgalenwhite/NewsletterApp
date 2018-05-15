@@ -11,6 +11,6 @@ class Api::V1::SubscriptionsController < ApplicationController
         newsletter: invite.newsletter
       }
     end
-    render json: inviteInfo
+    render json: inviteInfo, status: 200
   end
 end

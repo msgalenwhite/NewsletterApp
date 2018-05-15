@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import InviteList from '../lists/InviteList'
+import HeaderBar from '../headerComponents/HeaderBar'
 
 class InvitesAndSubscriptions extends Component {
   constructor(props){
@@ -11,7 +12,11 @@ class InvitesAndSubscriptions extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/subscriptions.json")
+    fetch("/api/v1/subscriptions.json", {
+      credentials: 'same-origin',
+      method: 'GET',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
       .then ( response => {
         if ( response.ok ) {
           return response;
@@ -31,8 +36,12 @@ class InvitesAndSubscriptions extends Component {
   render() {
 
     return(
-      <InviteList
-        invites={this.state.inviteInfo} />
+      <div className='page'>
+        <HeaderBar
+          title="Invitations" />
+        <InviteList
+          invites={this.state.inviteInfo} />
+      </div>
     )
   }
 }
