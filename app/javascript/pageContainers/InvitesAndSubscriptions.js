@@ -80,9 +80,11 @@ class InvitesAndSubscriptions extends Component {
     let continueButton;
     if (this.state.continueToHome) {
       continueButton =
-        <a href='/'><button className='general-button'>
-          Home
-        </button></a>
+        <div className='row center'>
+          <a href='/'><button className='general-button'>
+            Home
+          </button></a>
+        </div>
     }
 
     return(
