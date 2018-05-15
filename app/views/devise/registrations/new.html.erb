@@ -64,6 +64,20 @@
             <%= f.text_field :current_state %>
           </div>
 
+          <div class='extra-text-div'>
+            <p>Would you like to be represented on your Newsletters' maps?  Please enter your latitude and longitude to be included (this is optional.)</p>
+            <div class="field multi-field">
+              <div class='left-half'>
+                <%= f.label :latitude %>
+                <%= f.text_field :latitude %>
+              </div>
+
+              <div class='right-half'>
+                <%= f.label :longitude %>
+                <%= f.text_field :longitude %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </fieldset>

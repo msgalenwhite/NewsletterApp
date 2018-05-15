@@ -3,6 +3,7 @@ import HeaderBar from '../headerComponents/HeaderBar'
 import ShowContainer from '../newsletterShowComponents/ShowContainer'
 import EntryList from '../lists/EntryList'
 import SideBar from '../newsletterShowComponents/SideBar'
+import MapComponent from '../newsletterShowComponents/MapComponent'
 
 class NewsletterShowPage extends Component {
   constructor(props){
@@ -110,6 +111,7 @@ class NewsletterShowPage extends Component {
 
     return(
       <div className='page'>
+        <MapComponent />
         <HeaderBar
           title={this.state.title}
           flashMessage={this.state.flashMessage} />
