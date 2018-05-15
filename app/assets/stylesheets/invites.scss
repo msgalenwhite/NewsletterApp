@@ -3,7 +3,7 @@
 .invite-div {
   display: flex;
   margin: .4em;
-  
+
   .accept-button {
     margin-right: 1em;
   }
@@ -21,4 +21,14 @@
 .invite-header {
   margin-bottom: 1.5em;
   padding-left: 2em;
+}
+.description-div {
+  width: 80%;
+  margin: auto;
+  .sub-header {
+    padding-left: 2em;
+  }
+}
+.description-text {
+  font-size: 1em;
 }
