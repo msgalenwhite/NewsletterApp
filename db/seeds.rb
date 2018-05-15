@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+orlando_lat = 28.5383
+orlando_long = 81.3792
+
+anaheim_lat = 33.8366
+anaheim_long = 117.9143
 
 gus = User.create!(
   email: 'gus-gus@test.com',
@@ -14,8 +19,10 @@ gus = User.create!(
   last_name: 'Gus',
   remote_profile_photo_url: 'https://i.pinimg.com/originals/e8/50/4c/e8504cbdf519c12aa21016d52e81e289.jpg',
   bio: 'Cheese always makes me happy.',
-  current_city: 'Paris',
-  current_state: 'Kentucky'
+  current_city: 'Orlando',
+  current_state: 'Florida',
+  latitude: orlando_lat,
+  longitude: orlando_long
 )
 
 jaq = User.create!(
@@ -26,8 +33,10 @@ jaq = User.create!(
   last_name: 'the Friendly Mouse',
   remote_profile_photo_url: 'https://i.pinimg.com/originals/d8/93/a8/d893a87fb19fab6d6449cf2c2c2d3bea.jpg',
   bio: 'You should never trust a cat.',
-  current_city: 'Paris',
-  current_state: 'Kentucky'
+  current_city: 'Orlando',
+  current_state: 'Florida',
+  latitude: orlando_lat,
+  longitude: orlando_long
 )
 
 cinderella = User.create!(
@@ -38,8 +47,10 @@ cinderella = User.create!(
   last_name: 'Charming',
   remote_profile_photo_url: 'http://4.bp.blogspot.com/-5DcQEsKUVok/UyPubhot61I/AAAAAAAA2bM/RSPxGLpKjtQ/s1600/Cinderella_iconic.jpg',
   bio: 'A good pair of shoes is never a waste.',
-  current_city: 'Paris',
-  current_state: 'Kentucky'
+  current_city: 'Anaheim',
+  current_state: 'California',
+  latitude: anaheim_lat,
+  longitude: anaheim_long
 )
 
 newsletter = Newsletter.create!(
@@ -91,14 +102,14 @@ Entry.find_or_create_by!(
 
 ### Previous Months' entries:
 
-old_entry = Entry.new(
+old_entry = Entry.find_or_create_by(
   user_id: cinderella.id,
   newsletter_id: newsletter.id,
   title: "So many boxes!",
   body: "We just moved into the castle last week, and there are still boxes everywhere!  Servants keep appearing and trying to put things away for me, but you know I wouldn't let people do those kinds of things for me!  I don't let anyone dress me but birds and mice... although even my prince thinks that's silly.  Of course, he doesn't know any birds or mice."
 )
 old_entry.created_at = "2018-04-12 00:00:00"
-old_entry.save!
+
 
 old_entry2 = Entry.find_or_create_by!(
   user_id: jaq.id,
