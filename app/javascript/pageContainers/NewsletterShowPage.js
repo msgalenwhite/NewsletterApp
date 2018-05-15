@@ -80,7 +80,7 @@ class NewsletterShowPage extends Component {
     this.setState({
       showInviteForm: !this.state.showInviteForm,
       showEntryForm: false,
-      showEntries: false
+      showEntries: false,
     })
   }
 
@@ -88,7 +88,7 @@ class NewsletterShowPage extends Component {
     this.setState({
       showEntryForm: !this.state.showEntryForm ,
       showInviteForm: false,
-      showEntries: false
+      showEntries: false,
     })
   }
 
@@ -96,7 +96,7 @@ class NewsletterShowPage extends Component {
     this.setState({
       showEntries: !this.state.showEntries,
       showEntryForm: false,
-      showInviteForm: false
+      showInviteForm: false,
     })
   }
 
@@ -104,16 +104,8 @@ class NewsletterShowPage extends Component {
     let entries;
     if (this.state.showEntries) {
       entries =
-        <EntryList
-          newsletterId={this.state.newsletterId} />
-    } else if (!this.state.showEntryForm && !this.state.showInviteForm) {
-      entries =
-        <div className='center'>
-          <h5>No one has submitted anything this month yet.<br/>Why don't you be the first?</h5>
-          <button className='general-button' onClick={this.showEntryForm}>
-            Submit an Entry
-          </button>
-        </div>
+      <EntryList
+        newsletterId={this.state.newsletterId} />
     }
 
     return(
