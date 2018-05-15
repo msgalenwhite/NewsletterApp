@@ -18,9 +18,9 @@ const InviteList = props => {
   })
 
   return(
-    <div>
-    <div className='sub-header'>Please click on the letter to join:</div>
-    {tiles}
+    <div className='invite-list-div'>
+      <div className='sub-header invite-header'>Please select the invitations you would like to accept:</div>
+      {tiles}
     </div>
   )
 }

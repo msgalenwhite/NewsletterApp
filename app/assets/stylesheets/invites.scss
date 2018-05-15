@@ -1,0 +1,22 @@
+@import 'colors';
+
+.invite-div {
+  display: flex;
+  .accept-button {
+    margin-right: 1em;
+  }
+}
+.accept-label {
+  font-size: 1.3em;
+}
+.invite-list-div {
+  width: 80%;
+}
+.invite-page {
+  display: flex;
+  justify-content: center;
+}
+.invite-header {
+  margin-bottom: 1.5em;
+  padding-left: 2em;
+}

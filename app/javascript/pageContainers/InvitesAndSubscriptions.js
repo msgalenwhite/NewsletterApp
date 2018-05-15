@@ -39,8 +39,10 @@ class InvitesAndSubscriptions extends Component {
       <div className='page'>
         <HeaderBar
           title="Invitations" />
-        <InviteList
-          invites={this.state.inviteInfo} />
+        <div className='invite-page'>
+          <InviteList
+            invites={this.state.inviteInfo} />
+        </div>
       </div>
     )
   }
