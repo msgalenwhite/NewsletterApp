@@ -3,14 +3,15 @@ import InviteTile from '../inviteListComponents/InviteTile'
 
 const InviteList = props => {
 
-  const tiles = props.inviteList.map((info) => {
+  const tiles = props.invites.map((info) => {
     return (
       <div key={info.id}>
         <InviteTile
-        id={info.id}
-        host={info.host}
-        newsletter={info.newsletter.title}
-        />
+          id={info.id}
+          host={info.host}
+          newsletter={info.newsletter.title}
+          selected={false}
+          />
       </div>
     )
 
