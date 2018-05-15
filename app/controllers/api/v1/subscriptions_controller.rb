@@ -22,9 +22,13 @@ class Api::V1::SubscriptionsController < ApplicationController
         newsletter_id: id,
         user: current_user
       )
-      @subscriptions < new_subscription
+      @subscriptions << new_subscription
       invitation.destroy!
     end
-    render json: @subscriptions
+
+    subscriptions_for_message = @subscriptions.each { |s| s.newsletter.title }
+
+    flash[:alert] = "You are now subscribed to #{subscriptions_for_message.join(', ')}"
+    render json: subscriptions_for_message
   end
 end

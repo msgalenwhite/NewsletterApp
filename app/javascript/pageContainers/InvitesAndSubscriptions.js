@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Redirect from 'react-router'
 import InviteList from '../lists/InviteList'
 import HeaderBar from '../headerComponents/HeaderBar'
 
@@ -7,7 +8,9 @@ class InvitesAndSubscriptions extends Component {
     super(props);
     this.state = {
       inviteInfo: [],
-      selectedInvites: []
+      selectedInvites: [],
+      flashMessage: null,
+      continueToHome: false
     }
     this.addToSelectedInvites = this.addToSelectedInvites.bind(this)
     this.sendInvites = this.sendInvites.bind(this)
@@ -61,24 +64,39 @@ class InvitesAndSubscriptions extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
-        debugger
-        console.log(response)
+        if (response.length === this.state.selectedInvites.length) {
+          this.setState({ continueToHome: true })
+        } else {
+          this.setState({
+            message: "There was a problem with your invitations.  Try selecting them again.",
+            selectedInvites: []
+          })
+        }
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
-    console.log(this.state)
+    let continueButton;
+    if (this.state.continueToHome) {
+      continueButton =
+        <a href='/'><button className='general-button'>
+          Home
+        </button></a>
+    }
+
     return(
       <div className='page'>
         <HeaderBar
-          title="Invitations" />
+          title="Invitations"
+          flashMessage={this.state.message}/>
         <div className='invite-page'>
           <InviteList
             invites={this.state.inviteInfo}
             addToSelectedInvites={this.addToSelectedInvites}
             sendInvites={this.sendInvites} />
         </div>
+        {continueButton}
       </div>
     )
   }
