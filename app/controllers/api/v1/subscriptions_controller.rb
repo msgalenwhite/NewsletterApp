@@ -26,7 +26,8 @@ class Api::V1::SubscriptionsController < ApplicationController
       invitation.destroy!
     end
 
-    subscriptions_for_message = @subscriptions.each { |s| s.newsletter.title }
+    subscriptions_for_message = []
+    @subscriptions.each { |s| subscriptions_for_message << s.newsletter.title }
 
     flash[:alert] = "You are now subscribed to #{subscriptions_for_message.join(', ')}"
     render json: subscriptions_for_message

@@ -7,6 +7,12 @@ const InviteList = props => {
     const addSubscription = () => {
       props.addToSelectedInvites(info.newsletter.id)
     }
+    let text;
+    if (props.selectedInvites.includes(info.newsletter.id)){
+      text = "Accepted!"
+    } else {
+      text = "Accept"
+    }
 
     return (
       <div key={info.newsletter.id}>
@@ -15,6 +21,7 @@ const InviteList = props => {
           host={info.host}
           newsletter={info.newsletter.title}
           addSubscription={addSubscription}
+          buttonText={text}
           />
       </div>
     )
@@ -25,6 +32,7 @@ const InviteList = props => {
       <div className='sub-header invite-header'>Please select the invitations you would like to accept:</div>
       {tiles}
       <div className='row center'>
+        <p className='center'>Warning: no invitations have been fully accepted until you click 'Done'</p>
         <button className='general-button' onClick={props.sendInvites}>
           Done
         </button>

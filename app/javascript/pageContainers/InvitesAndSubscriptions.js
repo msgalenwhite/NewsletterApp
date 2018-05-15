@@ -96,7 +96,8 @@ class InvitesAndSubscriptions extends Component {
           <InviteList
             invites={this.state.inviteInfo}
             addToSelectedInvites={this.addToSelectedInvites}
-            sendInvites={this.sendInvites} />
+            sendInvites={this.sendInvites}
+            selectedInvites={this.state.selectedInvites} />
         </div>
         {continueButton}
       </div>
