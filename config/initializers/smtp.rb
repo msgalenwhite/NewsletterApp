@@ -6,7 +6,7 @@
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
+    :domain         => 'herokuapp.com',
     :enable_starttls_auto => true
   }
 # end
@@ -19,12 +19,12 @@
 #   }
 # end
 #
-# if !smtp_settings.empty?
-#   ActionMailer::Base.smtp_settings = smtp_settings
-#   ActionMailer::Base.delivery_method = :smtp
-#
-#   Rails.application.configure do
-#     config.action_mailer.smtp_settings = smtp_settings
-#     config.action_mailer.delivery_method = :smtp
-#   end
-# end
+if !smtp_settings.empty?
+  ActionMailer::Base.smtp_settings = smtp_settings
+  ActionMailer::Base.delivery_method = :smtp
+
+  Rails.application.configure do
+    config.action_mailer.smtp_settings = smtp_settings
+    config.action_mailer.delivery_method = :smtp
+  end
+end
