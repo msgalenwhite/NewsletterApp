@@ -4,7 +4,7 @@ const InviteTile = props => {
 
   return(
     <div className='invite-div'>
-        <button className='general-button accept-button'>
+        <button className='general-button accept-button' onClick={props.addSubscription}>
           Accept
         </button>
         <h3 className='accept-label'>{props.host} invites you to {props.newsletter}</h3>

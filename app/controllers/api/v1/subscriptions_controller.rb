@@ -13,4 +13,8 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
     render json: inviteInfo, status: 200
   end
+
+  def create
+    binding.pry
+  end
 end

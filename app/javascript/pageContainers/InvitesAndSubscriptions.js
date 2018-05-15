@@ -9,6 +9,14 @@ class InvitesAndSubscriptions extends Component {
       inviteInfo: [],
       selectedInvites: []
     }
+    this.addToSelectedInvites = this.addToSelectedInvites.bind(this)
+    this.sendInvites = this.sendInvites.bind(this)
+  }
+
+  addToSelectedInvites(newsletterId) {
+    if (!this.state.selectedInvites.includes(newsletterId)) {
+      this.setState({ selectedInvites: this.state.selectedInvites.concat(newsletterId) })
+    }
   }
 
   componentDidMount() {
@@ -33,6 +41,28 @@ class InvitesAndSubscriptions extends Component {
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
+  sendInvites() {
+    fetch("/api/v1/subscriptions/create.json", {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: this.state.selectedInvites
+    })
+      .then ( response => {
+        if ( response.ok ) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`;
+          let error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then ( response => response.json() )
+      .then ( response => {
+        console.log(response)
+      })
+      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+  }
+
   render() {
 
     return(
@@ -41,7 +71,8 @@ class InvitesAndSubscriptions extends Component {
           title="Invitations" />
         <div className='invite-page'>
           <InviteList
-            invites={this.state.inviteInfo} />
+            invites={this.state.inviteInfo}
+            addToSelectedInvites={this.addToSelectedInvites} />
         </div>
       </div>
     )
