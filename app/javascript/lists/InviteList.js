@@ -14,7 +14,6 @@ const InviteList = props => {
           />
       </div>
     )
-
   })
 
   return(
