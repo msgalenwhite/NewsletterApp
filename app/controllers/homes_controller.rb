@@ -6,6 +6,6 @@ class HomesController < ApplicationController
       redirect_to new_subscription_path
     else
       render :index
-    end 
+    end
   end
 end
