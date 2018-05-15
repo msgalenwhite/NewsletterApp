@@ -14,9 +14,6 @@ const SideBar = props => {
       <button className='general-button' onClick={props.openInvites}>
         Invite a Friend
       </button>
-      <button className='general-button'>
-        Read the Archives
-      </button>
       <button className='general-button' onClick={props.openEntry}>
         Submit an Entry
       </button>
