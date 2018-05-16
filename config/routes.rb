@@ -12,11 +12,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :newsletters, only: [:index, :show] do
         resources :entries, only: [:index]
+        resources :users, only: [:index]
+        resources :printed_newsletters, only: [:show]
       end
       resources :entries, only: [:create]
       resources :invitations, only: [:create]
       resources :subscriptions, only: [:index, :create]
-      resources :users, only: [:index]
     end
   end
 
