@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import EmailList from '../inviteListComponents/EmailList'
+import InviteForm from '../forms/InviteForm'
+import PopUp from '../inviteListComponents/PopUp'
 
 class InviteFormContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       newEmail: '',
@@ -19,8 +21,8 @@ class InviteFormContainer extends Component {
     this.validateEmail = this.validateEmail.bind(this)
   }
 
-  addToInvites(){
-    if (this.formIsComplete()){
+  addToInvites() {
+    if (this.formIsComplete()) {
       const currentInvites = this.state.invitedEmails
       const newInvite = {
         email: this.state.newEmail,
@@ -51,23 +53,23 @@ class InviteFormContainer extends Component {
   }
 
   formIsComplete() {
-    if (
-      !this.validateEmail(this.state.newEmail)
-    ) {
+    if (!this.validateEmail(this.state.newEmail)) {
       this.setState({
         errorMessage: 'Please enter a valid email.'
       })
       return false
 
     } else if (this.state.newEmail === '' ||
-    this.state.newName === '') {
+      this.state.newName === '') {
       this.setState({
         errorMessage: 'Please enter an email and a name'
       })
       return false
 
     } else {
-      this.setState({ errorMessage: null })
+      this.setState({
+        errorMessage: null
+      })
       return true
     }
   }
@@ -75,9 +77,8 @@ class InviteFormContainer extends Component {
   generateEmailTags() {
     const emailComponents = this.state.invitedEmails.map((emailObject) => {
       return (
-        <div key={emailObject.email}>
-          {emailObject.name} ( {emailObject.email} )
-        </div>
+        <div key = {emailObject.email}>
+        {emailObject.name} ( {emailObject.email} ) </div>
       )
     })
     return emailComponents
@@ -93,22 +94,25 @@ class InviteFormContainer extends Component {
     const formPayload = this.createFormPayload()
 
     fetch("/api/v1/invitations.json", {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(formPayload),
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-    })
-      .then ( response => {
-        if ( response.ok ) {
+        credentials: 'same-origin',
+        method: 'POST',
+        body: JSON.stringify(formPayload),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
           return response;
         } else {
           let errorMessage = `${response.status} (${response.statusText})`;
           let error = new Error(errorMessage);
-          throw(error);
+          throw (error);
         }
       })
-      .then ( response => response.json() )
-      .then ( response => {
+      .then(response => response.json())
+      .then(response => {
         if (response.errors.length == 0) {
           this.setState({
             invitedEmails: [],
@@ -117,7 +121,13 @@ class InviteFormContainer extends Component {
           })
 
           this.props.setMessage('Your emails were successfully sent!')
-          this.props.showFormFunc()
+
+          $(document).ready(function() {
+            setTimeout(function(){
+              $("#myModal").foundation('reveal', 'open');
+            }, 0);
+          });
+
         } else {
           let errors = ''
 
@@ -132,7 +142,7 @@ class InviteFormContainer extends Component {
           })
         }
       })
-      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   validateEmail(email) {
@@ -143,7 +153,10 @@ class InviteFormContainer extends Component {
   render() {
     const emailComponents = this.generateEmailTags()
 
-
+    const closeModal = () => {
+      this.props.showFormFunc()
+      window.location.href = "/"
+    }
 
     return(
       <div>
@@ -152,26 +165,11 @@ class InviteFormContainer extends Component {
           <div className='columns small-12 medium-6 data-equalizer-watch'>
             <h3 className='sub-header center'>Invite Someone New</h3>
             <p>{this.state.errorMessage}</p>
-            <div className='field'>
-              <h5>Email</h5>
-              <input
-                type='email'
-                className='email-input'
-                name='newEmail'
-                value={this.state.newEmail}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='field'>
-              <h5>Name</h5>
-              <input
-                type='text'
-                className='email-name-input'
-                name='newName'
-                value={this.state.newName}
-                onChange={this.handleChange}
-              />
-            </div>
+            <InviteForm
+              emailValue={this.state.newEmail}
+              nameValue={this.state.newName}
+              handleChange={this.handleChange}
+            />
             <div className='center'>
                 <button className='general-button' onClick={this.addToInvites}>Add</button>
             </div>
@@ -184,8 +182,18 @@ class InviteFormContainer extends Component {
           </div>
         </div>
         <div className='row center'>
-            <h3 className='sub-header'>Thought of everyone?</h3>
-            <button className='general-button' onClick={this.sendEmails}>Send the Invites!</button>
+          <h3 className='sub-header'>
+            Thought of everyone?
+          </h3>
+          <button
+            className='general-button'
+            onClick={this.sendEmails}
+            data-reveal-id="myModal">
+              Send the Invites!
+          </button>
+          <PopUp
+            closeFunc={closeModal}
+          />
         </div>
       </div>
     )
