@@ -4,8 +4,10 @@ class PrintableNewsletter extends Component {
   constructor(props){
     super(props);
     this.state = {
-
+      newsletter: {},
+      entries: []
     }
+    this.generateEntries = this.generateEntries.bind(this)
   }
 
   componentDidMount() {
@@ -29,16 +31,50 @@ class PrintableNewsletter extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
-        debugger
-        console.log(response)
+        this.setState({
+          newsletter: response["newsletter"],
+          entries: response["entries"]
+        })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
+  generateEntries() {
+    const entries = this.state.entries.map ((entry) => {
+      let photo;
+      if (entry.photo.url) {
+        photo =
+          <div>
+            <div class='columns small-4, medium-2'>
+              <img src={entry.photo.url} alt='Entry Photo'/>
+            </div>
+            <div class='columns small-8, medium-10'>
+              {entry.body}
+            </div>
+          </div>
+      } else {
+        photo =
+          <div class='columns small-12'>
+            {entry.body}
+          </div>
+      }
+      return (
+        <div class='row'>
+          {photo}
+        </div>
+      )
+    })
+  }
+
   render() {
+    const entries = this.generateEntries()
 
     return(
-      <div></div>
+      <div class='page'>
+        <h1 class='page-header'>{this.state.newsletter.title}</h1>
+        <h5>Founded by: {this.state.newsletter.founder.first_name}</h5>
+        {entries}
+      </div>
     )
   }
 }
