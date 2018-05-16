@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import EmailList from '../inviteListComponents/EmailList'
 import InviteForm from '../forms/InviteForm'
+import PopUp from '../inviteListComponents/PopUp'
 
 class InviteFormContainer extends Component {
   constructor(props) {
@@ -9,8 +10,7 @@ class InviteFormContainer extends Component {
       newEmail: '',
       newName: '',
       invitedEmails: [],
-      errorMessage: null,
-      modalIsOpen: false
+      errorMessage: null
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.clearEmails = this.clearEmails.bind(this)
@@ -18,7 +18,6 @@ class InviteFormContainer extends Component {
     this.generateEmailTags = this.generateEmailTags.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.sendEmails = this.sendEmails.bind(this)
-    this.showPopup = this.showPopup.bind(this)
     this.validateEmail = this.validateEmail.bind(this)
   }
 
@@ -123,13 +122,11 @@ class InviteFormContainer extends Component {
 
           this.props.setMessage('Your emails were successfully sent!')
 
-          //this triggers when the document has loaded - look up how to trigger it specifically
           $(document).ready(function() {
             setTimeout(function(){
               $("#myModal").foundation('reveal', 'open');
             }, 0);
           });
-
 
         } else {
           let errors = ''
@@ -148,10 +145,6 @@ class InviteFormContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  showPopup(status) {
-    this.setState({ modalIsOpen: status })
-  }
-
   validateEmail(email) {
     const regex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     return regex.test(email.toLowerCase())
@@ -160,19 +153,10 @@ class InviteFormContainer extends Component {
   render() {
     const emailComponents = this.generateEmailTags()
 
-    const buttonClick = () => {
-      this.sendEmails()
-      this.showPopup(true)
-    }
-
     const closeModal = () => {
-      this.showPopup(false)
       this.props.showFormFunc()
+      window.location.href = "/"
     }
-
-    const overlayStyle = {
-    'backgroundColor': 'rgba(33,10,10,.45)'
-    };
 
     return(
       <div>
@@ -203,16 +187,13 @@ class InviteFormContainer extends Component {
           </h3>
           <button
             className='general-button'
-            onClick={buttonClick}
+            onClick={this.sendEmails}
             data-reveal-id="myModal">
               Send the Invites!
           </button>
-          <div>
-            <div id="myModal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" className="reveal-modal text-center">
-
-              <h3>THIS IS A POPUP!</h3>
-            </div>
-          </div>
+          <PopUp
+            closeFunc={closeModal}
+          />
         </div>
       </div>
     )
