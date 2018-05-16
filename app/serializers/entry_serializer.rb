@@ -5,15 +5,15 @@ class EntrySerializer < ActiveModel::Serializer
     object.user.full_name
   end
 
-  def photo
-    object.photo.url
-  end
-
   def author_photo_url
     object.user.profile_photo.url
   end
 
   def date
     object.created_at.strftime("%m-%d")
+  end
+
+  def photo
+    object.photo.url
   end
 end

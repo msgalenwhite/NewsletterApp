@@ -31,6 +31,7 @@ class PrintableNewsletter extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
+        debugger
         this.setState({
           newsletter: response["newsletter"],
           entries: response["entries"]
@@ -45,21 +46,21 @@ class PrintableNewsletter extends Component {
       if (entry.photo.url) {
         photo =
           <div>
-            <div class='columns small-4, medium-2'>
+            <div className='columns small-4, medium-2'>
               <img src={entry.photo.url} alt='Entry Photo'/>
             </div>
-            <div class='columns small-8, medium-10'>
+            <div className='columns small-8, medium-10'>
               {entry.body}
             </div>
           </div>
       } else {
         photo =
-          <div class='columns small-12'>
+          <div className='columns small-12'>
             {entry.body}
           </div>
       }
       return (
-        <div class='row'>
+        <div className='row'>
           {photo}
         </div>
       )
@@ -70,9 +71,8 @@ class PrintableNewsletter extends Component {
     const entries = this.generateEntries()
 
     return(
-      <div class='page'>
-        <h1 class='page-header'>{this.state.newsletter.title}</h1>
-        <h5>Founded by: {this.state.newsletter.founder.first_name}</h5>
+      <div className='page'>
+        <h1 className='page-header'>{this.state.newsletter.title}</h1>
         {entries}
       </div>
     )
