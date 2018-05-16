@@ -108,7 +108,7 @@ old_entry = Entry.find_or_create_by(
   title: "So many boxes!",
   body: "We just moved into the castle last week, and there are still boxes everywhere!  Servants keep appearing and trying to put things away for me, but you know I wouldn't let people do those kinds of things for me!  I don't let anyone dress me but birds and mice... although even my prince thinks that's silly.  Of course, he doesn't know any birds or mice."
 )
-old_entry.created_at = "2018-04-12 00:00:00"
+old_entry.created_at = DateTime.parse("2018-04-12T00:00:00")
 
 
 old_entry2 = Entry.find_or_create_by!(
@@ -117,4 +117,4 @@ old_entry2 = Entry.find_or_create_by!(
   title: "Just isn't the same around here.",
   body: "We really miss having you around, Cinderella.  No one else recognizes us when we try to give them fashion advice.  Why, just last week your stepsister left the house in an outfit so hideous, she spilled jam on herself and everyone thought it was an improvement!"
 )
-old_entry2.created_at = "2018-04-18 00:00:00"
+old_entry2.created_at = DateTime.parse("2018-04-12T00:00:00")
