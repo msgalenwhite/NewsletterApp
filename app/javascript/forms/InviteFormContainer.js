@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import QRCodeContainer from '../inviteListComponents/QRCodeContainer'
 
 class InviteFormContainer extends Component {
   constructor(props) {
@@ -146,7 +145,9 @@ class InviteFormContainer extends Component {
 
   render() {
     const emailComponents = this.generateEmailTags()
+
     let renderedComponent;
+
     if (this.showCode) {
       renderedComponent =
       <div className='center'>
@@ -160,6 +161,7 @@ class InviteFormContainer extends Component {
           bgColor='#FFFFFF'
           fgColor='#000000'
         />
+      </div>
     } else {
       renderedComponent =
       <div>
@@ -175,57 +177,43 @@ class InviteFormContainer extends Component {
     }
 
     return (
-      <div >
-        <div className='row data-equalizer' >
-          <div className='columns small-12 obligatory-empty-div data-equalizer-watch' ></div>
-          <div className='columns small-12 medium-6 data-equalizer-watch' >
-            <h3 className='sub-header center' >
-              Invite Someone New
-            </h3>
-            <p> {this.state.errorMessage} </p>
-
-            <div className='field' >
+      <div>
+        <div className='row data-equalizer'>
+          <div className='columns small-12 obligatory-empty-div data-equalizer-watch'></div>
+          <div className='columns small-12 medium-6 data-equalizer-watch'>
+            <h3 className='sub-header center'>Invite Someone New</h3>
+            <p>{this.state.errorMessage}</p>
+            <div className='field'>
               <h5>Email</h5>
               <input
                 type='email'
                 className='email-input'
                 name='newEmail'
                 value={this.state.newEmail}
-                onChange={this.handleChange}/>
+                onChange={this.handleChange}
+              />
             </div>
-
-            <div className='field' >
+            <div className='field'>
               <h5>Name</h5>
               <input
                 type='text'
                 className='email-name-input'
                 name='newName'
                 value={this.state.newName}
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+              />
             </div>
-
-            <div className='center' >
-              <button
-                className='general-button'
-                onClick={this.addToInvites}>
-                Add
-              </button>
+            <div className='center'>
+                <button className='general-button' onClick={this.addToInvites}>Add</button>
             </div>
           </div>
-
-          <div className='columns small-12 medium-6 data-equalizer-watch' >
+          <div className='columns small-12 medium-6 data-equalizer-watch'>
             {renderedComponent}
           </div>
         </div>
         <div className='row center'>
-          <h3 className='sub-header'>
-            Thought of everyone?
-          </h3>
-          <button
-            className='general-button'
-            onClick={this.sendEmails}>
-            Send the Invites!
-          </button>
+            <h3 className='sub-header'>Thought of everyone?</h3>
+            <button className='general-button' onClick={this.sendEmails}>Send the Invites!</button>
         </div>
       </div>
     )

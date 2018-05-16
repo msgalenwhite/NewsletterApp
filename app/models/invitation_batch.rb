@@ -34,8 +34,8 @@ class InvitationBatch
       @invitations.each do |invite|
         if invite.errors
           @errors << {
-            name => invite.name,
-            errors => invite.errors.full_messages
+            name: invite.name,
+            errors: invite.errors.full_messages
           }
         end
       end
