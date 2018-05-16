@@ -17,7 +17,7 @@ class PrintableNewsletter extends Component {
     const month = parseInt(this.props.params.month)
     const year = parseInt(this.props.params.year)
 
-    fetch(`/api/v1/newsletters/${newsletterId}/printed_newsletters/month=${month}&year=${year}.json`, {
+    fetch(`/api/v1/newsletters/${newsletterId}/printed_newsletters/?month=${month}&year=${year}.json`, {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
