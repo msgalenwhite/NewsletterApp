@@ -13,11 +13,11 @@ Rails.application.routes.draw do
       resources :newsletters, only: [:index, :show] do
         resources :entries, only: [:index]
         resources :users, only: [:index]
+        resources :printed_newsletters, only: [:show]
       end
       resources :entries, only: [:create]
       resources :invitations, only: [:create]
       resources :subscriptions, only: [:index, :create]
-      resources :printed_newsletters, only: [:show]
     end
   end
 
