@@ -11,6 +11,7 @@
     "google-maps-react": "^2.0.2",
     "npm": "^6.0.0",
     "prop-types": "~15.6.0",
+    "qrcode.react": "^0.8.0",
     "react": "~15.4.2",
     "react-dom": "~15.4.2",
     "react-dropzone": "^4.2.9",

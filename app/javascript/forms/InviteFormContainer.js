@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import EmailList from '../inviteListComponents/EmailList'
+import InviteForm from '../forms/InviteForm'
 
 class InviteFormContainer extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class InviteFormContainer extends Component {
       newName: '',
       invitedEmails: [],
       errorMessage: null,
-      showCode: false
+      modalIsOpen: false
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.clearEmails = this.clearEmails.bind(this)
@@ -17,6 +18,7 @@ class InviteFormContainer extends Component {
     this.generateEmailTags = this.generateEmailTags.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.sendEmails = this.sendEmails.bind(this)
+    this.showPopup = this.showPopup.bind(this)
     this.validateEmail = this.validateEmail.bind(this)
   }
 
@@ -116,12 +118,19 @@ class InviteFormContainer extends Component {
           this.setState({
             invitedEmails: [],
             newEmail: '',
-            newName: '',
-            showCode: true
+            newName: ''
           })
 
           this.props.setMessage('Your emails were successfully sent!')
-          this.props.showFormFunc()
+
+          //this triggers when the document has loaded - look up how to trigger it specifically
+          $(document).ready(function() {
+            setTimeout(function(){
+              $("#myModal").foundation('reveal', 'open');
+            }, 0);
+          });
+
+
         } else {
           let errors = ''
 
@@ -139,6 +148,10 @@ class InviteFormContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  showPopup(status) {
+    this.setState({ modalIsOpen: status })
+  }
+
   validateEmail(email) {
     const regex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     return regex.test(email.toLowerCase())
@@ -147,6 +160,20 @@ class InviteFormContainer extends Component {
   render() {
     const emailComponents = this.generateEmailTags()
 
+    const buttonClick = () => {
+      this.sendEmails()
+      this.showPopup(true)
+    }
+
+    const closeModal = () => {
+      this.showPopup(false)
+      this.props.showFormFunc()
+    }
+
+    const overlayStyle = {
+    'backgroundColor': 'rgba(33,10,10,.45)'
+    };
+
     return(
       <div>
         <div className='row data-equalizer'>
@@ -154,26 +181,11 @@ class InviteFormContainer extends Component {
           <div className='columns small-12 medium-6 data-equalizer-watch'>
             <h3 className='sub-header center'>Invite Someone New</h3>
             <p>{this.state.errorMessage}</p>
-            <div className='field'>
-              <h5>Email</h5>
-              <input
-                type='email'
-                className='email-input'
-                name='newEmail'
-                value={this.state.newEmail}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='field'>
-              <h5>Name</h5>
-              <input
-                type='text'
-                className='email-name-input'
-                name='newName'
-                value={this.state.newName}
-                onChange={this.handleChange}
-              />
-            </div>
+            <InviteForm
+              emailValue={this.state.newEmail}
+              nameValue={this.state.newName}
+              handleChange={this.handleChange}
+            />
             <div className='center'>
                 <button className='general-button' onClick={this.addToInvites}>Add</button>
             </div>
@@ -186,8 +198,21 @@ class InviteFormContainer extends Component {
           </div>
         </div>
         <div className='row center'>
-            <h3 className='sub-header'>Thought of everyone?</h3>
-            <button className='general-button' onClick={this.sendEmails}>Send the Invites!</button>
+          <h3 className='sub-header'>
+            Thought of everyone?
+          </h3>
+          <button
+            className='general-button'
+            onClick={buttonClick}
+            data-reveal-id="myModal">
+              Send the Invites!
+          </button>
+          <div>
+            <div id="myModal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" className="reveal-modal text-center">
+
+              <h3>THIS IS A POPUP!</h3>
+            </div>
+          </div>
         </div>
       </div>
     )
