@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
+import EmailList from '../inviteListComponents/EmailList'
 
 class InviteFormContainer extends Component {
   constructor(props) {
@@ -146,37 +147,7 @@ class InviteFormContainer extends Component {
   render() {
     const emailComponents = this.generateEmailTags()
 
-    let renderedComponent;
-
-    if (this.showCode) {
-      renderedComponent =
-      <div className='center'>
-        <h3 className='sub-header'>
-          You could share this QR code, too:
-        </h3>
-        <QRCode
-          value={`https://familynewsletter.herokuapp.com/invitation/${props.newsletterId}`}
-          renderAs='canvas'
-          size='128'
-          bgColor='#FFFFFF'
-          fgColor='#000000'
-        />
-      </div>
-    } else {
-      renderedComponent =
-      <div>
-        <h3 className='sub-header center'> Invites to Send: </h3>
-          {emailComponents}
-        <div className='center' >
-          <button onClick={this.clearEmails}
-          className='general-button spaced' >
-            Clear
-          </button>
-        </div>
-      </div>
-    }
-
-    return (
+    return(
       <div>
         <div className='row data-equalizer'>
           <div className='columns small-12 obligatory-empty-div data-equalizer-watch'></div>
@@ -208,7 +179,10 @@ class InviteFormContainer extends Component {
             </div>
           </div>
           <div className='columns small-12 medium-6 data-equalizer-watch'>
-            {renderedComponent}
+            <EmailList
+              clearEmails={this.clearEmails}
+              emailComponents={emailComponents}
+            />
           </div>
         </div>
         <div className='row center'>
