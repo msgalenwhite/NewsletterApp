@@ -3,7 +3,7 @@ import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 
 import UserHomePage from '../pageContainers/UserHomePage'
 import NewsletterShowPage from '../pageContainers/NewsletterShowPage'
-import EntryShowPage from '../pageContainers/EntryShowPage'
+import InvitesAndSubscriptions from '../pageContainers/InvitesAndSubscriptions'
 
 const App = props => {
 
@@ -11,7 +11,7 @@ const App = props => {
     <Router history={browserHistory} >
       <Route path='/' component={UserHomePage} />
       <Route path='/newsletters/:id' component={NewsletterShowPage} />
-      <Route path='/newsletters/:newsletter_id/entries/:entry_id' component={EntryShowPage} />
+      <Route path='/subscriptions/new' component={InvitesAndSubscriptions} />
     </Router>
   )
 }

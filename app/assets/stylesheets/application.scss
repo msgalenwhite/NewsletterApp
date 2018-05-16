@@ -58,6 +58,7 @@ body {
   background-color: $blue;
   color: white;
   padding: .3em 0.9375rem;
+  height: auto;
 }
 
 .sub-header {
@@ -83,12 +84,18 @@ body {
 
 .page {
   margin-bottom: 4em;
+  padding-bottom: 4em;
 }
 
 #footer {
   width: 100%;
   margin-top: 3em;
+  
   height: 30px;
   font-size: 13px;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
