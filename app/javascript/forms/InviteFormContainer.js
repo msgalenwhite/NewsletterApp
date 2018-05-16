@@ -1,13 +1,15 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import QRCodeContainer from '../inviteListComponents/QRCodeContainer'
 
 class InviteFormContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       newEmail: '',
       newName: '',
       invitedEmails: [],
-      errorMessage: null
+      errorMessage: null,
+      showCode: false
     }
     this.addToInvites = this.addToInvites.bind(this)
     this.clearEmails = this.clearEmails.bind(this)
@@ -18,8 +20,8 @@ class InviteFormContainer extends Component {
     this.validateEmail = this.validateEmail.bind(this)
   }
 
-  addToInvites(){
-    if (this.formIsComplete()){
+  addToInvites() {
+    if (this.formIsComplete()) {
       const currentInvites = this.state.invitedEmails
       const newInvite = {
         email: this.state.newEmail,
@@ -50,23 +52,23 @@ class InviteFormContainer extends Component {
   }
 
   formIsComplete() {
-    if (
-      !this.validateEmail(this.state.newEmail)
-    ) {
+    if (!this.validateEmail(this.state.newEmail)) {
       this.setState({
         errorMessage: 'Please enter a valid email.'
       })
       return false
 
     } else if (this.state.newEmail === '' ||
-    this.state.newName === '') {
+      this.state.newName === '') {
       this.setState({
         errorMessage: 'Please enter an email and a name'
       })
       return false
 
     } else {
-      this.setState({ errorMessage: null })
+      this.setState({
+        errorMessage: null
+      })
       return true
     }
   }
@@ -74,9 +76,8 @@ class InviteFormContainer extends Component {
   generateEmailTags() {
     const emailComponents = this.state.invitedEmails.map((emailObject) => {
       return (
-        <div key={emailObject.email}>
-          {emailObject.name} ( {emailObject.email} )
-        </div>
+        <div key = {emailObject.email}>
+        {emailObject.name} ( {emailObject.email} ) </div>
       )
     })
     return emailComponents
@@ -92,27 +93,31 @@ class InviteFormContainer extends Component {
     const formPayload = this.createFormPayload()
 
     fetch("/api/v1/invitations.json", {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(formPayload),
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-    })
-      .then ( response => {
-        if ( response.ok ) {
+        credentials: 'same-origin',
+        method: 'POST',
+        body: JSON.stringify(formPayload),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
           return response;
         } else {
           let errorMessage = `${response.status} (${response.statusText})`;
           let error = new Error(errorMessage);
-          throw(error);
+          throw (error);
         }
       })
-      .then ( response => response.json() )
-      .then ( response => {
+      .then(response => response.json())
+      .then(response => {
         if (response.errors.length == 0) {
           this.setState({
             invitedEmails: [],
             newEmail: '',
-            newName: ''
+            newName: '',
+            showCode: true
           })
 
           this.props.setMessage('Your emails were successfully sent!')
@@ -131,7 +136,7 @@ class InviteFormContainer extends Component {
           })
         }
       })
-      .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   validateEmail(email) {
@@ -141,53 +146,86 @@ class InviteFormContainer extends Component {
 
   render() {
     const emailComponents = this.generateEmailTags()
-
-    return(
+    let renderedComponent;
+    if (this.showCode) {
+      renderedComponent =
+      <div className='center'>
+        <h3 className='sub-header'>
+          You could share this QR code, too:
+        </h3>
+        <QRCode
+          value={`https://familynewsletter.herokuapp.com/invitation/${props.newsletterId}`}
+          renderAs='canvas'
+          size='128'
+          bgColor='#FFFFFF'
+          fgColor='#000000'
+        />
+    } else {
+      renderedComponent =
       <div>
-        <div className='row data-equalizer'>
-          <div className='columns small-12 obligatory-empty-div data-equalizer-watch'></div>
-          <div className='columns small-12 medium-6 data-equalizer-watch'>
-            <h3 className='sub-header center'>Invite Someone New</h3>
-            <p>{this.state.errorMessage}</p>
-            <div className='field'>
+        <h3 className='sub-header center'> Invites to Send: </h3>
+          {emailComponents}
+        <div className='center' >
+          <button onClick={this.clearEmails}
+          className='general-button spaced' >
+            Clear
+          </button>
+        </div>
+      </div>
+    }
+
+    return (
+      <div >
+        <div className='row data-equalizer' >
+          <div className='columns small-12 obligatory-empty-div data-equalizer-watch' ></div>
+          <div className='columns small-12 medium-6 data-equalizer-watch' >
+            <h3 className='sub-header center' >
+              Invite Someone New
+            </h3>
+            <p> {this.state.errorMessage} </p>
+
+            <div className='field' >
               <h5>Email</h5>
               <input
                 type='email'
                 className='email-input'
                 name='newEmail'
                 value={this.state.newEmail}
-                onChange={this.handleChange}
-              />
+                onChange={this.handleChange}/>
             </div>
-            <div className='field'>
+
+            <div className='field' >
               <h5>Name</h5>
               <input
                 type='text'
                 className='email-name-input'
                 name='newName'
                 value={this.state.newName}
-                onChange={this.handleChange}
-              />
+                onChange={this.handleChange} />
             </div>
-            <div className='center'>
-                <button className='general-button' onClick={this.addToInvites}>Add</button>
-            </div>
-          </div>
-          <div className='columns small-12 medium-6 data-equalizer-watch'>
-            <h3 className='sub-header center'>Invites to Send:</h3>
-            {emailComponents}
-            <div className='center'>
+
+            <div className='center' >
               <button
-                onClick={this.clearEmails}
-                className='general-button spaced'>
-                Clear
+                className='general-button'
+                onClick={this.addToInvites}>
+                Add
               </button>
             </div>
           </div>
+
+          <div className='columns small-12 medium-6 data-equalizer-watch' >
+            {renderedComponent}
+          </div>
         </div>
         <div className='row center'>
-            <h3 className='sub-header'>Thought of everyone?</h3>
-            <button className='general-button' onClick={this.sendEmails}>Send the Invites!</button>
+          <h3 className='sub-header'>
+            Thought of everyone?
+          </h3>
+          <button
+            className='general-button'
+            onClick={this.sendEmails}>
+            Send the Invites!
+          </button>
         </div>
       </div>
     )
