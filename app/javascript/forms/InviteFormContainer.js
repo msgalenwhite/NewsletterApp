@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import EmailList from '../inviteListComponents/EmailList'
 
 class InviteFormContainer extends Component {
   constructor(props){
@@ -142,6 +143,8 @@ class InviteFormContainer extends Component {
   render() {
     const emailComponents = this.generateEmailTags()
 
+
+
     return(
       <div>
         <div className='row data-equalizer'>
@@ -174,15 +177,10 @@ class InviteFormContainer extends Component {
             </div>
           </div>
           <div className='columns small-12 medium-6 data-equalizer-watch'>
-            <h3 className='sub-header center'>Invites to Send:</h3>
-            {emailComponents}
-            <div className='center'>
-              <button
-                onClick={this.clearEmails}
-                className='general-button spaced'>
-                Clear
-              </button>
-            </div>
+            <EmailList
+              clearEmails={this.clearEmails}
+              emailComponents={emailComponents}
+            />
           </div>
         </div>
         <div className='row center'>
