@@ -22,7 +22,7 @@ class MapComponent extends Component {
   }
 
   initMap() {
-    fetch("/api/v1/users.json", {
+    fetch(`/api/v1/newsletters/${this.props.newsletterId}/users.json`, {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }

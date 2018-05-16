@@ -111,7 +111,7 @@ class NewsletterShowPage extends Component {
 
     return(
       <div className='page'>
-        <MapComponent />
+        <MapComponent newsletterId={this.state.newsletterId} />
         <HeaderBar
           title={this.state.title}
           flashMessage={this.state.flashMessage} />
