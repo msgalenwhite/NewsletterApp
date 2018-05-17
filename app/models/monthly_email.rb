@@ -9,7 +9,7 @@ class MonthlyEmail
     #FOR EACH NEWSLETTER:
     newsletters.each do |newsletter|
       # get all applicable entries
-      entries = newsletter.formatted_specific_entries(date.year, date.month)
+      entries = newsletter.formatted_specific_entries(date[:year], date[:month])
       # get all subscribers
       subscribers = newsletter.subscriber_info
 

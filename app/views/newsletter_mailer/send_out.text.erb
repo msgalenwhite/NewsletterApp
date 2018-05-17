@@ -5,11 +5,11 @@ https://familynewsletter.herokuapp.com/printed_newsletters/<%= @id %>/<%= @newsl
 <%= Date::MONTHNAMES[@newsletter_month] %>, <%= @newsletter_year %>
 
 <% @entries.each do |entry| %>
-  <%= entry.title %>
+  <%= entry[:title] %>
 
-  <%= entry.body %>
+  <%= entry[:body] %>
 
-      ~ <%= entry.author %>
+      ~ <%= entry[:author] %>
 <% end %>
 
 ~~~~~
