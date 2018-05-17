@@ -1,7 +1,5 @@
 class NewsletterMailer < ApplicationMailer
-  def send_out(newsletter_id, recipient_info)
-    newsletter = Newsletter.find(newsletter_id)
-
+  def send_out(newsletter, recipient_info)
     if Date.today.month == 1
       @newsletter_month = 12
       @newsletter_year = Date.today.year - 1
