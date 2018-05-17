@@ -17,4 +17,12 @@ class Newsletter < ApplicationRecord
     end
     subscriber_info
   end
+
+  def formatted_specific_entries(year, month)
+    formatted_entries = []
+    entries.with_year_and_month(year, month).each do |entry|
+      formatted_entries << entry.info_with_author
+    end
+    formatted_entries
+  end
 end

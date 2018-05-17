@@ -11,11 +11,8 @@ class NewsletterMailer < ApplicationMailer
 
 
     @newsletter = Newsletter.find(newsletter_id)
-    @recipients = @newsletter.users, serializer: MemberSerializer
-    @entries = @newsletter.entries.with_year_and_month(newsletter_year, newsletter_month)
+    @recipients = @newsletter.subscriber_info
 
-    # @invite = invite
-    # @email = @invite.email
-    # mail(to: @email)
+    entries = @newsletter.entries.with_year_and_month(newsletter_year, newsletter_month)
   end
 end

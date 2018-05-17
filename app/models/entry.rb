@@ -10,4 +10,13 @@ class Entry < ApplicationRecord
   scope :with_year_and_month, ->(year, month) {
     where(created_at: Date.new(year,month,1)..Date.new(year,month,-1))
   }
+
+  def info_with_author
+    {
+      author: user.full_name,
+      title: title,
+      body: body,
+      photo: photo.url
+    }
+  end
 end
