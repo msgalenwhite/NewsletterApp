@@ -1,6 +1,6 @@
 class InvitationBatch
   attr_reader :errors, :invitees
-  #may require some additional context around the newsletter
+
   def initialize(options)
     @invitees = options[:invitees]
     @host = options[:host]

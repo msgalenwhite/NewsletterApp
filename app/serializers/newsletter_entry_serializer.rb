@@ -1,7 +1,7 @@
 class NewsletterEntrySerializer < ActiveModel::Serializer
   attributes :title, :founder_name
 
-  has_many :specific_entries, serializer: EntrySerializer
+  has_many :specific_entries
 
   def founder_name
     object.founder.full_name
