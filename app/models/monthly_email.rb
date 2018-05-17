@@ -1,5 +1,5 @@
 class MonthlyEmail
-  def send_out
+  def self.send_out
     #get all of the newsletters
     newsletters = Newsletter.all
 
@@ -16,12 +16,12 @@ class MonthlyEmail
       # FOR EACH SUBSCRIBER
       subscribers.each do |subscriber|
       # call NewsletterMailer.send_out(newsletter, recipient_info)
-        NewsletterMailer.send_out(date, subscriber, entries, newsletter.title)
+        NewsletterMailer.send_out(date, subscriber, entries, newsletter.title, newsletter.id)
       end
     end
   end
 
-  def get_month_and_year
+  def self.get_month_and_year
     if Date.today.month == 1
       newsletter_month = 12
       newsletter_year = Date.today.year - 1
