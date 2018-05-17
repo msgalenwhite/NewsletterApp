@@ -142,7 +142,12 @@ class InviteFormContainer extends Component {
           })
         }
       })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
+      .catch(error => {
+        console.error(`Error in fetch: ${error.message}`)
+        this.setState({
+          errorMessage: "Emails could not be sent.  Please double-check the addresses and try again."
+        })
+      });
   }
 
   validateEmail(email) {
