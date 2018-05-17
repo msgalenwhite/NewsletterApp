@@ -1,5 +1,5 @@
 class NewsletterMailer < ApplicationMailer
-  def send_out(newsletter, recipient_info)
+  def send_out(newsletter_title, entries, recipient_info)
     if Date.today.month == 1
       @newsletter_month = 12
       @newsletter_year = Date.today.year - 1
@@ -9,8 +9,8 @@ class NewsletterMailer < ApplicationMailer
     end
 
     @recipient_name = recipient_info.name
-    @entries = newsletter.formatted_specific_entries(@newsletter_year, @newsletter_month)
-    @newsletter_title = newsletter.title
+    @entries = entries
+    @newsletter_title = newsletter_title
 
     mail(to: recipient_info.email)
   end
