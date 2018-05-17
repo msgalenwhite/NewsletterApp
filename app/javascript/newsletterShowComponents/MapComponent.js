@@ -60,13 +60,15 @@ class MapComponent extends Component {
         let markers = []
 
         locations.forEach((place) => {
-          let marker = new google.maps.Marker({
-            position: { lat: place.lat, lng: place.lng },
-            label: place.name
-          })
+          if (place.lat && place.lng) {
+            let marker = new google.maps.Marker({
+              position: { lat: place.lat, lng: place.lng },
+              label: place.name
+            })
 
-          markers.push(marker)
-          marker.setMap(this.map)
+            markers.push(marker)
+            marker.setMap(this.map)
+          }
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
