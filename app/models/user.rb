@@ -24,4 +24,8 @@ class User < ApplicationRecord
   def full_name
     first_name + " " + last_name
   end
+
+  def name_and_email
+    {name: full_name, email: email}
+  end
 end
