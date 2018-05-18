@@ -48,10 +48,10 @@ class PrintableNewsletter extends Component {
       if (entry.photo) {
         photoAndBody =
           <div>
-            <div className='columns small-4, medium-2'>
+            <div className='columns small-12, medium-4'>
               <img src={entry.photo} alt='Entry Photo'/>
             </div>
-            <div className='columns small-8, medium-10'>
+            <div className='columns small-12, medium-8'>
               {entry.body}
             </div>
           </div>
