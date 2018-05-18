@@ -15,7 +15,7 @@ disney_lat = 28.3852
 disney_lng = 81.5639
 
 me = User.create!(
-  email: 'me@test.com',
+  email: 'galen.h.white@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   first_name: 'Galen',
@@ -95,34 +95,34 @@ grandma_entry = "Dear Folks-\n\nDecember was fast paced and great!  Bruce and St
 
 cat_entry = "Purr Purr Mew Meow Purr Food Meow"
 
-Entry.find_or_create_by!(
+Entry.create!(
   user_id: me.id,
   newsletter_id: newsletter.id,
   title: "After 10 weeks of furiously learning about React and Rails... I'm ready to do it for real!",
   body: me_entry,
-  photo: "http://disney.wikia.com/wiki/File:Cinderella-cinderella.jpg"
+  remote_photo_url: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/31265226_10101997353858698_1446578116670521344_n.jpg?_nc_cat=0&oh=ad00a7021abe961e7030486fe351a702&oe=5B7D09A3"
 )
 
-Entry.find_or_create_by!(
+Entry.create!(
   user_id: grandma.id,
   newsletter_id: newsletter.id,
   title: "A Throwback entry from 1979",
   body: grandma_entry,
-  photo: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/15747349_837569773065035_2032646559029738644_n.jpg?_nc_cat=0&oh=d7fccdd16201258f78e17eb9ff7f8a6e&oe=5B87A9AE"
+  remote_photo_url: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/15747349_837569773065035_2032646559029738644_n.jpg?_nc_cat=0&oh=d7fccdd16201258f78e17eb9ff7f8a6e&oe=5B87A9AE"
 )
 
-Entry.find_or_create_by!(
+Entry.create!(
   user_id: brother.id,
   newsletter_id: newsletter.id,
   title: "React is Awesome!",
   body: brother_entry,
-  photo: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/27654913_10159752822420136_3577068070488302447_n.jpg?_nc_cat=0&oh=6d20f57c851bc7f63049654a5e10ce1f&oe=5B8408BD"
+  remote_photo_url: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/27654913_10159752822420136_3577068070488302447_n.jpg?_nc_cat=0&oh=6d20f57c851bc7f63049654a5e10ce1f&oe=5B8408BD"
 )
 
-Entry.find_or_create_by!(
+Entry.create!(
   user_id: cat.id,
   newsletter_id: newsletter.id,
   title: "Meow Meow, Purrrr",
   body: cat_entry,
-  photo: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/28166576_10101936427051508_2358890169218290630_n.jpg?_nc_cat=0&oh=570dc5561826db3aa2e7206c812a01ac&oe=5B7AD72F"
+  remote_photo_url: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/28166576_10101936427051508_2358890169218290630_n.jpg?_nc_cat=0&oh=570dc5561826db3aa2e7206c812a01ac&oe=5B7AD72F"
 )

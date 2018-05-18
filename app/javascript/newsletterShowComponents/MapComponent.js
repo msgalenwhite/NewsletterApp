@@ -46,7 +46,7 @@ class MapComponent extends Component {
       if (place.lat && place.lng) {
         let marker = new google.maps.Marker({
           position: { lat: place.lat, lng: place.lng },
-          label: place.name
+          label: ""
         })
 
         markers.push(marker)
