@@ -27,7 +27,7 @@ class InvitationBatch
       @invitations.each {|i| i.save! }
 
       @invitations.each do |invite|
-        InvitationMailer.new_invite(invite).deliver
+        InvitationMailer.new_invite(invite).deliver_later
       end
       return true
     else
