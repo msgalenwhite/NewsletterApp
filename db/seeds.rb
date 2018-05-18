@@ -72,7 +72,7 @@ grandma = User.create!(
 
 newsletter = Newsletter.create!(
   description: 'This newsletter began as a way for the Tompkins family to keep in touch once they had left the farm and scattered across the country.  Thankfully, we no longer have to copy each letter by hand!',
-  title: 'Tompkins Family Newsletter',
+  title: 'Tomkins Family Newsletter',
   founder_id: grandma.id,
   remote_thumb_photo_url: "https://scontent.fbed1-2.fna.fbcdn.net/v/t1.0-9/30415285_10156309373472277_4734845743238479872_n.jpg?_nc_cat=0&oh=40e7a1387bf4e89e42684516b135a18e&oe=5B8942B8"
 )
