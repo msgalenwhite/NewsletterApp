@@ -65,10 +65,10 @@ class PrintableNewsletter extends Component {
         <div key={entry.id} className='printable-entry'>
           <div className='row'>
             {photoAndBody}
-            <div>
-              <img src={entry.author_photo_url} alt='Author Image' className='entry-tile-author-pic'/>
-              <span className='entry-author-text'>{entry.author}</span>
-            </div>
+          </div>
+          <div className='row'>
+            <img src={entry.author_photo_url} alt='Author Image' className='entry-tile-author-pic'/>
+            <span className='entry-author-text'>{entry.author}</span>
           </div>
         </div>
       )
