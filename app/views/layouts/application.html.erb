@@ -13,37 +13,38 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
 </head>
 <body>
-
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">the Family Newsletter</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
+  <main class='wrapper'>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">the Family Newsletter</a></h1>
+        </li>
       </ul>
-    </section>
-  </nav>
 
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
+      <section class="top-bar-section">
+        <ul class="right">
+          <%- if current_user -%>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <%- else -%>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <%- end -%>
+        </ul>
+      </section>
+    </nav>
 
-  <%= yield %>
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
+    <%- end -%>
 
-  <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
+    <%= yield %>
 
+    <%= javascript_include_tag 'application' %>
+    <%= yield :extra_footer %>
+    <div class='push'></div>
+  </main>
   <%= render 'layouts/footer' %>
 </body>
 </html>

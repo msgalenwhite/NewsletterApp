@@ -17,7 +17,7 @@
  */
 
 @import 'mix_ins';
-body {
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -87,15 +87,18 @@ body {
   padding-bottom: 4em;
 }
 
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -30px;
+}
+
+.footer, .push {
+  height: 100px;
+}
+
 #footer {
   width: 100%;
-  margin-top: 3em;
-  
   height: 30px;
   font-size: 13px;
   text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
