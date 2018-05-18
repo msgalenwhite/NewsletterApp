@@ -15,7 +15,7 @@ disney_lat = 28.3852
 disney_lng = 81.5639
 
 me = User.create!(
-  email: 'galen.h.white@gmail.com',
+  email: 'me@test.com',
   password: 'password',
   password_confirmation: 'password',
   first_name: 'Galen',
