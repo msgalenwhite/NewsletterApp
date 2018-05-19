@@ -67,3 +67,4 @@ gem 'dotenv-rails', group: [:development, :test]
 gem 'shoulda', group: [:test]
 
 gem 'sendgrid-ruby'
+gem 'sidekiq'
