@@ -17,12 +17,14 @@ My Draw.io [ER diagram](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_b
 
 I used a Rails backend and React frontend, styled with Scss and Foundation.
 
-QR code generation - package called 'qrcode-react'
-Photo uploading - Carrierwave and Amazon S3
-Photo submitting in React - Dropzone
-Maps - Google Maps API
-Email - ActiveMailer and Sendgrid
-Monthly Newsletter - Heroku Scheduler, Sidekiq, and custom rake task
+Other Resources:
+
+1. QR code generation - package called 'qrcode-react'
+2. Photo uploading - Carrierwave and Amazon S3
+3. Photo submitting in React - Dropzone
+4. Maps - Google Maps API
+5. Email - ActiveMailer and Sendgrid
+6. Monthly Newsletter - Heroku Scheduler, Sidekiq, and custom rake task
 
 ### Initialize the database
 
