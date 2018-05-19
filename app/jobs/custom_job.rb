@@ -6,6 +6,8 @@ class CustomJob < ActiveJob::Base
     #get newsletter's year and month
     date = get_month_and_year
 
+    date[:month] = 5
+
     #FOR EACH NEWSLETTER:
     newsletters.each do |newsletter|
       # get all applicable entries
