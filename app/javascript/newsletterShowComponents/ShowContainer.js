@@ -26,7 +26,8 @@ const ShowContainer = props => {
         <EntryFormContainer
           newsletterId={props.newsletterId}
           setMessage={props.setMessage}
-          showFormFunc={props.openEntry} />
+          showFormFunc={props.openEntry}
+          entryToPass={props.entryToPass} />
         {closeFormButton}
       </div>
   } else {

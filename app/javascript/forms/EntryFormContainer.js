@@ -8,10 +8,13 @@ class EntryFormContainer extends Component {
       title: '',
       body: '',
       errorMessage: '',
-      photo: []
+      photo: [],
+      edit: false,
+      id: null
     }
     this.clearForm = this.clearForm.bind(this)
     this.createFormPayload = this.createFormPayload.bind(this)
+    this.fillForm = this.fillForm.bind(this)
     this.formIsComplete = this.formIsComplete.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,8 +27,16 @@ class EntryFormContainer extends Component {
       title: '',
       body: '',
       errorMessage: '',
-      photo: []
+      photo: [],
+      edit: false,
+      id: null
     })
+  }
+
+  componentDidMount() {
+    if (this.props.entryToPass) {
+      this.fillForm()
+    }
   }
 
   createFormPayload() {
@@ -35,8 +46,19 @@ class EntryFormContainer extends Component {
     formDataObject.append("body", this.state.body)
     formDataObject.append("photo", this.state.photo[0])
     formDataObject.append("newsletter_id", this.props.newsletterId)
+    formDataObject.append("entry_id", this.props.id)
 
     return formDataObject
+  }
+
+  fillForm() {
+    this.setState({
+      title: this.props.entryToPass.title,
+      body: this.props.entryToPass.body,
+      edit: true,
+      id: this.props.entryToPass.id,
+      errorMessage: "Your entry's picture has already been saved.  If you would like to change it, select a new one."
+    })
   }
 
   formIsComplete() {
@@ -54,10 +76,14 @@ class EntryFormContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    const formDataObject = this.createFormPayload()
 
     if (this.formIsComplete()) {
-      const formDataObject = this.createFormPayload()
-      this.submitEntry(formDataObject)
+      if (this.state.edit === true) {
+        this.submitEntry(formDataObject, 'PATCH', `/api/v1/entries/${this.state.id}`)
+      } else {
+        this.submitEntry(formDataObject, 'POST', "/api/v1/entries")
+      }
     } else {
       this.setState({
         errorMessage: 'Please complete the form before submitting!'
@@ -73,10 +99,10 @@ class EntryFormContainer extends Component {
     }
   }
 
-  submitEntry(formDataObject) {
-    fetch("/api/v1/entries", {
+  submitEntry(formDataObject, method, path) {
+    fetch(path, {
       credentials: 'same-origin',
-      method: 'POST',
+      method: method,
       body: formDataObject
     })
       .then ( response => {
@@ -90,6 +116,7 @@ class EntryFormContainer extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
+        debugger
         if (response["error"]) {
           this.props.setMessage(response["error"])
         } else {
