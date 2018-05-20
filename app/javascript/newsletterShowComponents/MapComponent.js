@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Map, InfoWindow, Marker, MarkerCluserer, GoogleApiWrapper } from 'google-maps-react'
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 
 class MapComponent extends Component {
   constructor(props){
@@ -36,7 +36,7 @@ class MapComponent extends Component {
     }
 
     this.map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 1,
+      zoom: 2,
       center: centerStats
     })
 
@@ -44,10 +44,8 @@ class MapComponent extends Component {
 
     locations.forEach((place) => {
       let marker = new google.maps.Marker({
-        position: { lat: place.lat, lng: place.lng },
-        label: place.name
+        position: { lat: place.lat, lng: place.lng }
       })
-
       markers.push(marker)
       marker.setMap(this.map)
     })
