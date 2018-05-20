@@ -68,3 +68,5 @@ gem 'shoulda', group: [:test]
 
 gem 'sendgrid-ruby'
 gem 'sidekiq'
+
+gem 'omniauth-facebook'
