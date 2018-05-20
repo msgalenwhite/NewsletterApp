@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe User, :type => :model do
+  let(:test_user) { FactoryBot.create(:user) }
+
   context 'validations' do
     it { should have_valid(:first_name).when("name") }
     it { should_not have_valid(:first_name).when(nil, "") }
