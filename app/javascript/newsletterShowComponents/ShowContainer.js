@@ -38,7 +38,6 @@ const ShowContainer = props => {
         description={props.description} />
     </div>
   }
-
   return(
     <div className='show-container'>
       {renderedComponent}

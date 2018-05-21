@@ -143,7 +143,8 @@ class NewsletterShowPage extends Component {
               showInviteForm={this.state.showInviteForm}
               showEntryForm={this.state.showEntryForm}
               closeAllForms={this.closeAllForms}
-              openInvites={this.showInviteForm} />
+              openInvites={this.showInviteForm}
+              openEntry={this.showEntryForm}/>
           </div>
         </div>
         <div className='row center'>

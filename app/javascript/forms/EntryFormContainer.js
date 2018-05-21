@@ -136,8 +136,6 @@ class EntryFormContainer extends Component {
     } else if (this.state.photo.length > 0) {
       preview = <img className='drop-zone-preview' src={this.state.photo[0].preview} />
     }
-
-    console.log(this.state)
     return (
       <div className = 'form-div entries-form' >
         <form onSubmit = {this.handleSubmit}>
