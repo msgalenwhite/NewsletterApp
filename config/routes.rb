@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         resources :users, only: [:index]
         resources :printed_newsletters, only: [:index]
       end
-      resources :entries, only: [:create]
+      resources :entries, only: [:create, :update]
       resources :invitations, only: [:create]
       resources :subscriptions, only: [:index, :create]
     end

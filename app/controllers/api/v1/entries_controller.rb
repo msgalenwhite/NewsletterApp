@@ -4,7 +4,7 @@ class Api::V1::EntriesController < ApplicationController
   def index
     applicable_entries = current_month_entries.where(newsletter_id: params["newsletter_id"].to_i)
 
-    render json: applicable_entries
+    render json: applicable_entries, each_serializer: EntrySerializer, user: current_user
   end
 
   def create
@@ -17,6 +17,17 @@ class Api::V1::EntriesController < ApplicationController
     else
       flash[:message] = "Your entry could not be submitted."
       render json: entry.errors.full_messages.join(" // ")
+    end
+  end
+
+  def update
+    entry = Entry.find(params["id"].to_i)
+
+    if entry.update(entries_params)
+      render json: entry
+    else
+      flash[:message] = "Your entry could not be edited."
+      render json: old_entry.errors.full_messages.join(" // ")
     end
   end
 

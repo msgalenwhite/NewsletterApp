@@ -26,7 +26,8 @@ const ShowContainer = props => {
         <EntryFormContainer
           newsletterId={props.newsletterId}
           setMessage={props.setMessage}
-          showFormFunc={props.openEntry} />
+          showFormFunc={props.openEntry}
+          entryToPass={props.entryToPass} />
         {closeFormButton}
       </div>
   } else {
@@ -37,7 +38,6 @@ const ShowContainer = props => {
         description={props.description} />
     </div>
   }
-
   return(
     <div className='show-container'>
       {renderedComponent}

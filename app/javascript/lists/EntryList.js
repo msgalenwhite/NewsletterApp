@@ -9,6 +9,7 @@ class EntryList extends Component {
     }
     this.makeTiles = this.makeTiles.bind(this)
   }
+
   componentDidMount() {
     const newsletterId = this.props.newsletterId
     fetch(`/api/v1/newsletters/${newsletterId}/entries.json`, {
@@ -42,7 +43,10 @@ class EntryList extends Component {
             body={entryInfo.body}
             authorPhoto={entryInfo.author_photo_url}
             authorName={entryInfo.author}
-            date={entryInfo.date}/>
+            date={entryInfo.date}
+            photo={entryInfo.photo}
+            selfSubmitted={entryInfo.self_submitted}
+            editEntry={this.props.editEntry}/>
         </div>
        )
     })

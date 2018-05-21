@@ -18,9 +18,11 @@ class NewsletterShowPage extends Component {
       showEntryForm: false,
       showEntries: false,
       flashMessage: null,
-      newsletterId: parseInt(this.props.params["id"])
+      newsletterId: parseInt(this.props.params["id"]),
+      entryToPass: null
     }
     this.closeAllForms = this.closeAllForms.bind(this)
+    this.editEntry = this.editEntry.bind(this)
     this.setMessage = this.setMessage.bind(this)
     this.founderOptions = this.founderOptions.bind(this)
     this.showEntryForm = this.showEntryForm.bind(this)
@@ -61,6 +63,14 @@ class NewsletterShowPage extends Component {
         })
       })
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
+  }
+
+  editEntry(entryInfo) {
+    this.setState({
+      showEntries: false,
+      showEntryForm: true,
+      entryToPass: entryInfo
+    })
   }
 
   founderOptions() {
@@ -106,7 +116,8 @@ class NewsletterShowPage extends Component {
     if (this.state.showEntries) {
       entries =
       <EntryList
-        newsletterId={this.state.newsletterId} />
+        newsletterId={this.state.newsletterId}
+        editEntry={this.editEntry}/>
     }
 
     return(
@@ -127,11 +138,13 @@ class NewsletterShowPage extends Component {
               imageSrc={this.state.photo}
               description={this.state.description}
               newsletterId={this.state.newsletterId}
+              entryToPass={this.state.entryToPass}
               setMessage={this.setMessage}
               showInviteForm={this.state.showInviteForm}
               showEntryForm={this.state.showEntryForm}
               closeAllForms={this.closeAllForms}
-              openInvites={this.showInviteForm} />
+              openInvites={this.showInviteForm}
+              openEntry={this.showEntryForm}/>
           </div>
         </div>
         <div className='row center'>

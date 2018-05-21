@@ -1,6 +1,21 @@
 import React from 'react'
 
 const EntryTile = props => {
+  let button;
+  let editEntryFunc;
+
+  if (props.selfSubmitted) {
+    editEntryFunc = () => {
+      props.editEntry(props)
+    }
+
+    button =
+    <div className='row'>
+      <button className='general-button edit-button' onClick={editEntryFunc}>
+        Edit
+      </button>
+    </div>
+  }
 
   return(
     <div className='entry-tile'>
@@ -14,6 +29,7 @@ const EntryTile = props => {
           {props.authorName}  {props.date}
         </div>
       </div>
+      {button}
     </div>
   )
 }
