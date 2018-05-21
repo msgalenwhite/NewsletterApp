@@ -4,7 +4,7 @@ describe('HomeSideBar', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<HomeSideBar />)
+    wrapper = shallow(<HomeSideBar />)
   })
 
   it("asks what's next", () => {
