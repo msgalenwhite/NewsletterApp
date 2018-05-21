@@ -1,6 +1,6 @@
 import EntryTile from '../../../app/javascript/entryTileComponents/EntryTile'
 
-describe ('entryTile', () => {
+describe ('EntryTile', () => {
   let wrapper;
 
   beforeEach(() => {
