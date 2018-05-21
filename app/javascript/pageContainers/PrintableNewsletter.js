@@ -51,7 +51,7 @@ class PrintableNewsletter extends Component {
         photoAndBody =
           <div>
             <div className='columns small-12, medium-4'>
-              <img src={entry.photo} alt='Entry Photo'/>
+              <img src={entry.photo.url} alt='Entry Photo'/>
             </div>
             <div className='columns small-12, medium-8'>
               {entry.body}

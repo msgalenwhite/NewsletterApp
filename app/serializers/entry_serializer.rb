@@ -13,10 +13,6 @@ class EntrySerializer < ActiveModel::Serializer
     object.created_at.strftime("%m-%d")
   end
 
-  def photo
-    object.photo.url
-  end
-
   def self_submitted
     @instance_options[:user] == object.user
   end
