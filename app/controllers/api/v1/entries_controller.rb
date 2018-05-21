@@ -21,17 +21,14 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def update
-    old_entry = Entry.find(params["id"].to_i)
-    new_entry = Entry.new(entries_params)
+    entry = Entry.find(params["id"].to_i)
 
-    new_entry.attributes.each do |attribute_name, attribute_value|
-      if !attribute_value.nil? && attribute_value == old_entry[attribute_name]
-        old_entry[attribute_name] = attribute_value
-        old_entry.save!
-      end
+    if entry.update(entries_params)
+      render json: entry
+    else
+      flash[:message] = "Your entry could not be edited."
+      render json: old_entry.errors.full_messages.join(" // ")
     end
-
-    render json: old_entry
   end
 
   private

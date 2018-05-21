@@ -55,6 +55,7 @@ class EntryFormContainer extends Component {
     this.setState({
       title: this.props.entryToPass.title,
       body: this.props.entryToPass.body,
+      photo: [this.props.entryToPass.photo],
       edit: true,
       id: this.props.entryToPass.id,
       errorMessage: "Your entry's picture has already been saved.  If you would like to change it, select a new one."
@@ -116,7 +117,6 @@ class EntryFormContainer extends Component {
       })
       .then ( response => response.json() )
       .then ( response => {
-        debugger
         if (response["error"]) {
           this.props.setMessage(response["error"])
         } else {
@@ -131,12 +131,14 @@ class EntryFormContainer extends Component {
   render() {
     let preview;
 
-    if (this.state.photo.length > 0) {
+    if (this.state.photo.length > 0 && this.state.edit) {
+      preview = <img className='drop-zone-preview' src={this.state.photo[0].url} />
+    } else if (this.state.photo.length > 0) {
       preview = <img className='drop-zone-preview' src={this.state.photo[0].preview} />
     }
 
+    console.log(this.state)
     return (
-
       <div className = 'form-div entries-form' >
         <form onSubmit = {this.handleSubmit}>
           <p>{this.state.errorMessage}</p>
@@ -159,9 +161,8 @@ class EntryFormContainer extends Component {
 
           <div className='row'>
             <div className='dropzone columns small-6'>
-              <Dropzone onDrop={this.onDrop}>
+              <Dropzone onDrop={this.onDrop} multiple={false}>
                 <p className='dropzone-text'>Only one photo per entry: drag it here or click to upload!</p>
-
               </Dropzone>
             </div>
             <div className='columns small-6'>

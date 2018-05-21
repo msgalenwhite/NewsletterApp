@@ -44,6 +44,7 @@ class EntryList extends Component {
             authorPhoto={entryInfo.author_photo_url}
             authorName={entryInfo.author}
             date={entryInfo.date}
+            photo={entryInfo.photo}
             selfSubmitted={entryInfo.self_submitted}
             editEntry={this.props.editEntry}/>
         </div>
