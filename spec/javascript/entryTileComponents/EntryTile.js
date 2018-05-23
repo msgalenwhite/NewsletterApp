@@ -32,11 +32,11 @@ describe ('EntryTile', () => {
   describe ('button renders conditionally', () => {
     it('creates a button if selfSubmitted is true', () => {
       wrapper.setProps({selfSubmitted: true})
-      expect(wrapper.find('button')).toBePresent()
+      expect(wrapper.find('img.edit-button')).toBePresent()
     })
     it('does not render a button if selfSubmitted is false', () => {
       wrapper.setProps({selfSubmitted: false})
-      expect(wrapper.find('button').exists()).toEqual(false)
+      expect(wrapper.find('img.edit-button').exists()).toEqual(false)
     })
   })
 })
