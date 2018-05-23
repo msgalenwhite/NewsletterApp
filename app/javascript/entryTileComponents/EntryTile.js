@@ -10,11 +10,12 @@ const EntryTile = props => {
     }
 
     button =
-    <div className='row'>
-      <button className='general-button edit-button' onClick={editEntryFunc}>
-        Edit
-      </button>
-    </div>
+      <div className='row'>
+        <img
+          src='https://png.icons8.com/metro/50/000000/edit.png'
+          onClick={editEntryFunc}
+          className='edit-button'/>
+      </div>
   }
 
   return(
