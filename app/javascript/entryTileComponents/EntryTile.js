@@ -1,21 +1,21 @@
 import React from 'react'
+import UserButtonBar from './UserButtonBar'
 
 const EntryTile = props => {
-  let button;
-  let editEntryFunc;
+  let buttonBar;
 
   if (props.selfSubmitted) {
-    editEntryFunc = () => {
+    const editEntryFunc = () => {
       props.editEntry(props)
     }
+    const deleteEntryFunc = () => {
+      props.deleteEntry(props)
+    }
 
-    button =
-      <div className='row'>
-        <img
-          src='https://png.icons8.com/metro/50/000000/edit.png'
-          onClick={editEntryFunc}
-          className='edit-button'/>
-      </div>
+    buttonBar =
+      <UserButtonBar
+        editEntryFunc={editEntryFunc}
+        deleteEntryFunc={deleteEntryFunc} />
   }
 
   return(
@@ -30,7 +30,7 @@ const EntryTile = props => {
           {props.authorName}  {props.date}
         </div>
       </div>
-      {button}
+      {buttonBar}
     </div>
   )
 }

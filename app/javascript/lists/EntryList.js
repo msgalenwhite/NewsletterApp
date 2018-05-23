@@ -8,6 +8,7 @@ class EntryList extends Component {
       entries: []
     }
     this.makeTiles = this.makeTiles.bind(this)
+    this.deleteEntry = this.deleteEntry.bind(this)
   }
 
   componentDidMount() {
@@ -33,6 +34,10 @@ class EntryList extends Component {
       .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
+  deleteEntry() {
+    // do a fetch call to delete the entry
+  }
+
   makeTiles() {
     const tiles = this.state.entries.map((entryInfo) => {
       return (
@@ -46,7 +51,8 @@ class EntryList extends Component {
             date={entryInfo.date}
             photo={entryInfo.photo}
             selfSubmitted={entryInfo.self_submitted}
-            editEntry={this.props.editEntry}/>
+            editEntry={this.props.editEntry}
+            deleteEntry={this.deleteEntry} />
         </div>
        )
     })
