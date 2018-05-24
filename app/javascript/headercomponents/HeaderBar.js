@@ -1,7 +1,5 @@
 import React from 'react'
 import FlashMessage from './FlashMessage'
-// <i className="far fa-envelope letter-icon"></i>
-// <i className="far fa-envelope-open letter-icon"></i>
 
 const HeaderBar = props => {
   let flash;

@@ -17,8 +17,10 @@ const PopUp = props => {
       </div>
 
       <button className='general-button center' onClick={props.closeFunc}>
-        Back to Newsletters
+      Back to Newsletters
       </button>
+
+      <div className="fb-share-button" data-href="http://familynewsletter.herokuapp.com/" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffamilynewsletter.herokuapp.com%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
     </div>
   )
 }

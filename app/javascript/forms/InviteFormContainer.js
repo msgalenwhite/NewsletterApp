@@ -137,6 +137,10 @@ class InviteFormContainer extends Component {
             }
           })
 
+          if (errors = ''){
+            errors = "It's possible that an invitation has already been sent."
+          }
+
           this.setState({
             errorMessage: `I'm sorry, your emails were unable to be sent.\n\n${errors}`
           })

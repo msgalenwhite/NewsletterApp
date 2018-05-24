@@ -1,0 +1,24 @@
+<h1 class='page-header'>Thank you for being a part of the Family Newsletter, <%= @recipient_name %>!</h1>
+
+<h3 class='sub-header'>Here is your monthly update for <%= @newsletter_title %>.  To view entries complete with all of your beautiful pictures, please visit https://familynewsletter.herokuapp.com/printed_newsletters/<%= @id %>/<%= @newsletter_month %>/<%= @newsletter_year %></h3>
+<br/>
+<br/>
+<h1 class='page-header'><%= Date::MONTHNAMES[@newsletter_month] %>, <%= @newsletter_year %></h1>
+
+<% @entries.each do |entry| %>
+  <hr/>
+  <br/>
+  <h3 class='sub-header'><%= entry[:title] %></h3>
+
+  <p><%= entry[:body] %></p>
+
+  <p>    ~ <%= entry[:author] %></p>
+  <br/>
+<% end %>
+<br/>
+<hr/>
+
+<p>It's never too soon to begin submitting to the next newsletter.
+Thanks for keeping your family up to date!</p>
+
+<p>https://familynewsletter.herokuapp.com</p>

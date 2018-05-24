@@ -36,22 +36,18 @@ class MapComponent extends Component {
     }
 
     this.map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 9,
+      zoom: 2,
       center: centerStats
     })
 
     let markers = []
 
     locations.forEach((place) => {
-      if (place.lat && place.lng) {
-        let marker = new google.maps.Marker({
-          position: { lat: place.lat, lng: place.lng },
-          label: ""
-        })
-
-        markers.push(marker)
-        marker.setMap(this.map)
-      }
+      let marker = new google.maps.Marker({
+        position: { lat: place.lat, lng: place.lng }
+      })
+      markers.push(marker)
+      marker.setMap(this.map)
     })
   }
 
@@ -79,15 +75,16 @@ class MapComponent extends Component {
   }
 
   mapLocations() {
-    let locations = this.state.users.map ((user) => {
-
-      return (
-        {
-          lat: user.latitude,
-          lng: user.longitude,
-          name: user.first_name
-        }
-      )
+    const locations = this.state.users.map ((user) => {
+      if (user.latitude && user.longitude) {
+        return (
+          {
+            lat: user.latitude,
+            lng: user.longitude,
+            name: user.first_name
+          }
+        )
+      }
     })
     return locations
   }

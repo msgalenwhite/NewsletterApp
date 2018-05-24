@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import HeaderBar from '../headerComponents/HeaderBar'
+import MapComponent from '../newsletterShowComponents/MapComponent'
 
 class PrintableNewsletter extends Component {
   constructor(props){
@@ -7,13 +8,14 @@ class PrintableNewsletter extends Component {
     this.state = {
       title: "",
       founder: "",
-      entries: []
+      entries: [],
+      newsletterId: parseInt(this.props.params.id)
     }
     this.generateEntries = this.generateEntries.bind(this)
   }
 
   componentDidMount() {
-    const newsletterId = parseInt(this.props.params.id)
+    const newsletterId = this.state.newsletterId
     const month = parseInt(this.props.params.month)
     const year = parseInt(this.props.params.year)
 
@@ -49,7 +51,7 @@ class PrintableNewsletter extends Component {
         photoAndBody =
           <div>
             <div className='columns small-12, medium-4'>
-              <img src={entry.photo} alt='Entry Photo'/>
+              <img src={entry.photo.url} alt='Entry Photo'/>
             </div>
             <div className='columns small-12, medium-8'>
               {entry.body}
@@ -82,6 +84,8 @@ class PrintableNewsletter extends Component {
 
     return(
       <div className='page'>
+        <MapComponent
+          newsletterId={this.state.newsletterId}/>
         <HeaderBar title={this.state.title} />
         <h5 className='sub-header'>{this.state.founder}</h5>
         {entries}
