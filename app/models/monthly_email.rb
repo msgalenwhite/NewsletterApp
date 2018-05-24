@@ -1,22 +1,17 @@
-class MonthlyEmail
-  def send_out
-    #get all of the newsletters
+class CustomJob < ActiveJob::Base
+  def perform
     newsletters = Newsletter.all
 
-    #get newsletter's year and month
     date = get_month_and_year
 
-    #FOR EACH NEWSLETTER:
     newsletters.each do |newsletter|
-      # get all applicable entries
-      entries = newsletter.formatted_specific_entries(date.year, date.month)
-      # get all subscribers
+
+      entries = newsletter.formatted_specific_entries(date[:year], date[:month])
+
       subscribers = newsletter.subscriber_info
 
-      # FOR EACH SUBSCRIBER
       subscribers.each do |subscriber|
-      # call NewsletterMailer.send_out(newsletter, recipient_info)
-        NewsletterMailer.send_out(date, subscriber, entries, newsletter.title)
+        NewsletterMailer.send_out(date, subscriber, entries, newsletter.title, newsletter.id).deliver_later
       end
     end
   end
