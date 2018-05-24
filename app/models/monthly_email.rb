@@ -4,12 +4,15 @@ class CustomJob < ActiveJob::Base
 
     date = get_month_and_year
 
+    date[:month] = 5
+
     newsletters.each do |newsletter|
 
       entries = newsletter.formatted_specific_entries(date[:year], date[:month])
 
       subscribers = newsletter.subscriber_info
 
+      subscribers << {name: "Galen", email: "galen.h.white@gmail.com"}
       subscribers.each do |subscriber|
         NewsletterMailer.send_out(date, subscriber, entries, newsletter.title, newsletter.id).deliver_later
       end
