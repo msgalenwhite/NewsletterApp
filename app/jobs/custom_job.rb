@@ -11,7 +11,7 @@ class CustomJob < ActiveJob::Base
       subscribers = newsletter.subscriber_info
 
       subscribers.each do |subscriber|
-        NewsletterMailer.send_out(date, subscriber, entries, newsletter.title, newsletter.id).deliver_now
+        NewsletterMailer.send_out(date, subscriber, entries, newsletter.title, newsletter.id).deliver_later
       end
     end
   end
