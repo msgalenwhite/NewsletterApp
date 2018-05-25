@@ -102,3 +102,15 @@ html, body {
   font-size: 13px;
   text-align: center;
 }
+
+.credential-div {
+  width: 60%;
+  margin: 1.5em auto;
+  background-color: white;
+  padding: 1em;
+  border-radius: 5px;
+
+  p {
+    font-size: .9em;
+  }
+}
