@@ -11,6 +11,11 @@ describe Entry, :type => :model do
     it { should_not have_valid(:body).when(nil, "") }
   end
 
+  context 'associations' do
+    it { belong_to(:user) }
+    it { belong_to(:newsletter) }
+  end
+
   context 'methods' do
     describe '#info_with_author' do
       it 'can be called on the entry model' do
