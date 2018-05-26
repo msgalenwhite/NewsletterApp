@@ -29,7 +29,7 @@ describe User, :type => :model do
       it { expect(test_user).to respond_to(:name_and_email) }
       it { expect(test_user.name_and_email).to eq(
         { name: test_user.full_name, email: test_user.email }
-        ) }
+      )}
     end
   end
 end

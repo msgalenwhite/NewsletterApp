@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Newsletter, :type => :model do
   let(:test_newsletter) { FactoryBot.create(:newsletter) }
+  let(:test_newsletter_with_entries) { FactoryBot.create(:newsletter_with_entries) }
 
   context 'validations' do
     it { should have_valid(:title).when("title") }
@@ -18,8 +19,9 @@ describe Newsletter, :type => :model do
     end
 
     describe '#formatted_specific_entries' do
-      it { expect(test_newsletter).to respond_to(:formatted_specific_entries) }
-      it { expect(test_newsletter.formatted_specific_entries(Date.today.year, Date.today.month).class).to eq(Array) }
+      it { expect(test_newsletter_with_entries).to respond_to(:formatted_specific_entries) }
+      it { expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).class).to eq(Array) }
+      it { expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).length).to eq(test_newsletter_with_entries.entries.length) }
     end
   end
 end
