@@ -19,9 +19,20 @@ describe Newsletter, :type => :model do
     end
 
     describe '#formatted_specific_entries' do
-      it { expect(test_newsletter_with_entries).to respond_to(:formatted_specific_entries) }
-      it { expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).class).to eq(Array) }
-      it { expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).length).to eq(test_newsletter_with_entries.entries.length) }
+      it 'can be called on the newsletter model' do
+        expect(test_newsletter_with_entries).to respond_to(:formatted_specific_entries)
+      end
+      it 'creates an array of the correct length when called' do
+        expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).class).to eq(Array)
+        expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).length).to eq(test_newsletter_with_entries.entries.length)
+      end
+      it 'returns entries that are formatted correctly' do
+        first_entry = test_newsletter_with_entries.entries[0]
+        result = test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month)
+
+        expect(result.length).to eq(test_newsletter_with_entries.entries.length)
+        expect(first_entry.info_with_author).to eq(result[0])
+      end
     end
   end
 end

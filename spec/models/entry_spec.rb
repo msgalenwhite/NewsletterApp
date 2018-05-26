@@ -13,16 +13,17 @@ describe Entry, :type => :model do
 
   context 'methods' do
     describe '#info_with_author' do
-      it { expect(sample_entry).to respond_to(:info_with_author) }
-      it { expect(sample_entry.info_with_author.class).to eq(Hash) }
-      it { expect(sample_entry.info_with_author).to eq(
-        {
+      it 'can be called on the entry model' do
+        expect(sample_entry).to respond_to(:info_with_author)
+      end
+      it 'returns the entry\'s information formatted correctly' do
+        expect(sample_entry.info_with_author).to eq({
           author: sample_entry.user.full_name,
           title: sample_entry.title,
           body: sample_entry.body,
           photo: sample_entry.photo.url
-        }
-      )}
+        })
+      end
     end
   end
 end
