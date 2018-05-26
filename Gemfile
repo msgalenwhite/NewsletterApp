@@ -49,7 +49,6 @@ end
 
 group :test do
   gem 'timecop'
-  gem 'shoulda'
 end
 
 
@@ -70,4 +69,5 @@ gem 'webpacker', '~> 3.3'
 gem 'coveralls', group: [:test], require: false
 gem 'dotenv-rails', group: [:development, :test]
 gem 'sendgrid-ruby'
+gem 'shoulda', group: [:test]
 gem 'sidekiq'
