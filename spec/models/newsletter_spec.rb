@@ -15,6 +15,7 @@ describe Newsletter, :type => :model do
   context 'associations' do
     it { belong_to(:founder) }
     it { have_many(:users) }
+    it { have_many(:subscriptions) }
     it { have_many(:entries) }
   end
 

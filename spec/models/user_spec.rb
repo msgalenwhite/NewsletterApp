@@ -19,6 +19,13 @@ describe User, :type => :model do
     it { should_not have_valid(:current_state).when(nil, "") }
   end
 
+  context 'associations' do
+    it { have_many(:newsletters) }
+    it { have_many(:subscriptions) }
+    it { have_many(:invitations) }
+    it { have_many(:entries) }
+  end
+
   context 'methods' do
     describe '#full_name' do
       it 'returns a formatted string with first and last name' do
