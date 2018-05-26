@@ -12,6 +12,12 @@ describe Newsletter, :type => :model do
     it { should_not have_valid(:description).when(nil, "") }
   end
 
+  context 'associations' do
+    it { belong_to(:founder) }
+    it { have_many(:users) }
+    it { have_many(:entries) }
+  end
+
   context 'methods' do
     describe '#subscriber_info' do
       it { expect(test_newsletter).to respond_to(:subscriber_info) }
