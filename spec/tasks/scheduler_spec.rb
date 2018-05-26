@@ -12,7 +12,7 @@ describe 'rake send_newsletter', :type => :task do
   end
 
   it 'if not the first of the month, it only logs that it is checking the date' do
-    Timecop.freeze(Date.new(2018, 1, 10)+1)
+    Timecop.freeze(Date.new(2018, 1, 10))
 
     expect{ task.execute }.to output("Checking date...\n").to_stdout
     expect{ task.execute }.not_to output("Sending Newsletter...\n").to_stdout
@@ -20,7 +20,7 @@ describe 'rake send_newsletter', :type => :task do
 
   context 'on the first of the month' do
     before(:each) do
-      Timecop.freeze(Date.new(2018, 1, 1)+1)
+      Timecop.freeze(Date.new(2018, 1, 1))
     end
 
     it 'logs both that it is checking the date and that it is sending a newsletter' do
