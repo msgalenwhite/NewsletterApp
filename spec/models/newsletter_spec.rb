@@ -19,7 +19,7 @@ describe Newsletter, :type => :model do
 
     describe '#formatted_specific_entries' do
       it { expect(test_newsletter).to respond_to(:formatted_specific_entries) }
-      it { expect(test_newsletter.formatted_specific_entries(2018, 5).class).to eq(Array) }
+      it { expect(test_newsletter.formatted_specific_entries(Date.today.year, Date.today.month).class).to eq(Array) }
     end
   end
 end
