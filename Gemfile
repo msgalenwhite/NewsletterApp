@@ -47,6 +47,11 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
+group :test do
+  gem 'timecop'
+  gem 'shoulda'
+end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -64,8 +69,5 @@ gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
 gem 'coveralls', group: [:test], require: false
 gem 'dotenv-rails', group: [:development, :test]
-gem 'shoulda', group: [:test]
-
 gem 'sendgrid-ruby'
 gem 'sidekiq'
-gem 'timecop', group: [:test]

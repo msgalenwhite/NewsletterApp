@@ -8,6 +8,8 @@ describe NewsletterMailer, :type => :mailer do
   let (:date) { {year: Date.today.year, month: Date.today.month} }
   let (:entries) { newsletter.formatted_specific_entries(date[:year], date[:month]) }
 
+  # NOTE: for these test I am running the mailer with deliver_now, to make sure the emails can be sent.
+
   before (:each) do
     NewsletterMailer.send_out(subscriber, date, entries, newsletter).deliver_now
     @test_newsletter = ActionMailer::Base.deliveries[0]
@@ -15,12 +17,7 @@ describe NewsletterMailer, :type => :mailer do
 
   describe "#send_out" do
     it "sends an email" do
-      expect { NewsletterMailer.send_out(
-        subscriber,
-        date,
-        newsletter.formatted_specific_entries(date[:year], date[:month]),
-        newsletter
-      ).deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect { NewsletterMailer.send_out(subscriber, date, entries, newsletter).deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
 
     it "renders an email with the correct headers" do
@@ -40,7 +37,7 @@ describe NewsletterMailer, :type => :mailer do
         expect(@test_newsletter.body.encoded).to match(entry[:title])
         expect(@test_newsletter.body.encoded).to match(entry[:body])
         expect(@test_newsletter.body.encoded).to match(entry[:author])
-      end 
+      end
     end
   end
 end

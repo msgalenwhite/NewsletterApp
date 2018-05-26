@@ -22,13 +22,4 @@ describe FormatNewsletter do
       expect(formatted_newsletter.get_month_and_year).to eq({ year: 2018, month: 6 })
     end
   end
-
-  describe '#send_email' do
-    it 'sends an email' do
-      #there is a problem here because it is looking for Redis:
-
-      # Error connecting to Redis
-      # expect{ formatted_newsletter.send_email }.to change { ActionMailer::Base.deliveries.count }.by 1
-    end
-  end
 end
