@@ -1,7 +1,7 @@
 class FormatNewsletter
   def initialize (newsletter)
     @newsletter = newsletter
-    @newsletter_entries = newsletter.formatted_specific_entries(date[:year], date[:month])
+    @newsletter_entries = get_correct_entries
     @subscribers = newsletter.subscriber_info
   end
 
@@ -9,6 +9,11 @@ class FormatNewsletter
     @subscribers.each do |subscriber|
       NewsletterMailer.send_out(subscriber, get_month_and_year, @newsletter_entries, @newsletter).deliver_later
     end
+  end
+
+  def get_correct_entries
+    date = get_month_and_year
+    @newsletter.formatted_specific_entries(date[:year], date[:month])
   end
 
   def get_month_and_year
