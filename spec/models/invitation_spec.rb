@@ -8,4 +8,9 @@ describe Invitation, :type =>  :model do
     it { should have_valid(:name).when("name") }
     it { should_not have_valid(:name).when(nil, "") }
   end
+
+  context 'associations' do
+    it { belong_to(:host) }
+    it { belong_to(:newsletter) }
+  end
 end

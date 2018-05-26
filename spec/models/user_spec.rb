@@ -19,17 +19,26 @@ describe User, :type => :model do
     it { should_not have_valid(:current_state).when(nil, "") }
   end
 
+  context 'associations' do
+    it { have_many(:newsletters) }
+    it { have_many(:subscriptions) }
+    it { have_many(:invitations) }
+    it { have_many(:entries) }
+  end
+
   context 'methods' do
     describe '#full_name' do
-      it { expect(test_user).to respond_to(:full_name) }
-      it { expect(test_user.full_name).to eq("#{test_user.first_name} #{test_user.last_name}") }
+      it 'returns a formatted string with first and last name' do
+        expect(test_user.full_name).to eq("#{test_user.first_name} #{test_user.last_name}")
+      end
     end
 
     describe '#name_and_email' do
-      it { expect(test_user).to respond_to(:name_and_email) }
-      it { expect(test_user.name_and_email).to eq(
-        { name: test_user.full_name, email: test_user.email }
-        ) }
+      it 'returns a hash with the user\'s full name and email' do
+        expect(test_user.name_and_email).to eq(
+          { name: test_user.full_name, email: test_user.email }
+        )
+      end
     end
   end
 end
