@@ -24,6 +24,7 @@ describe User, :type => :model do
     it { have_many(:subscriptions) }
     it { have_many(:invitations) }
     it { have_many(:entries) }
+    it { have_many(:founded_newsletters) }
   end
 
   context 'methods' do

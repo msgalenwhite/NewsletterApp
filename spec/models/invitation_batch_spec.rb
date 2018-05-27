@@ -23,8 +23,14 @@ describe InvitationBatch do
     host: user,
     newsletter: newsletter
   }) }
+  let(:test_invitation) { FactoryBot.create(:invitation) }
 
-  describe '#allvalid?' do
+  it 'has attr_readers for errors and invitees' do
+    expect(good_batch.errors).to be_a(Array)
+    expect(good_batch.invitees).to be_a(Array)
+  end
+
+  describe '#all_valid?' do
     it 'returns false if invitee array has errors' do
       expect(bad_batch.all_valid?).to eq(false)
     end
@@ -43,6 +49,15 @@ describe InvitationBatch do
     it 'does not create an entry if the invite is valid' do
       bad_batch.form_errors
       expect(bad_batch.errors.length).to eq 2
+    end
+  end
+
+  describe '#form_invitations' do
+    it 'creates an array of Invitation objects where host is @host and newsletter is @newsletter' do
+      expect(good_batch.form_invitations).to be_a(Array)
+      expect(good_batch.form_invitations[0]).to be_a(Invitation)
+      expect(good_batch.form_invitations[0].host).to eq(user)
+      expect(good_batch.form_invitations[0].newsletter).to eq(newsletter)
     end
   end
 end

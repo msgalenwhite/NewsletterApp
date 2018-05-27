@@ -30,15 +30,15 @@ class InvitationBatch
   def form_invitations
     invites = []
     @invitees.each do |person_array|
-      new = Invitation.new(
+      new_invite = Invitation.new(
         host: @host,
         newsletter: @newsletter,
         name: person_array[:name],
         email: person_array[:email]
       )
 
-      new.valid?
-      invites << new
+      new_invite.valid?
+      invites << new_invite
     end
     invites
   end
