@@ -21,14 +21,14 @@ describe Newsletter, :type => :model do
 
   context 'methods' do
     describe '#subscriber_info' do
-      it { expect(test_newsletter).to respond_to(:subscriber_info) }
-      it { expect(test_newsletter.subscriber_info.class).to eq(Array) }
+      it 'returns an array of user info hashes' do
+        test_user = test_newsletter_with_entries.users[0]
+        expect(test_newsletter_with_entries.subscriber_info[0]).to eq(test_user.name_and_email)
+        expect(test_newsletter_with_entries.subscriber_info.length).to eq(test_newsletter_with_entries.users.length)
+      end
     end
 
     describe '#formatted_specific_entries' do
-      it 'can be called on the newsletter model' do
-        expect(test_newsletter_with_entries).to respond_to(:formatted_specific_entries)
-      end
       it 'creates an array of the correct length when called' do
         expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).class).to eq(Array)
         expect(test_newsletter_with_entries.formatted_specific_entries(Date.today.year, Date.today.month).length).to eq(test_newsletter_with_entries.entries.length)

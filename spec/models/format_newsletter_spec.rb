@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe FormatNewsletter do
-  let(:last_year) { Date.today.year - 1 }
   let(:newsletter) { FactoryBot.create(:newsletter_with_entries) }
-  let(:old_entry) { FactoryBot.create(:entry, newsletter: newsletter, created_at: Date.new(last_year, Date.today.month, Date.today.day)) }
   let(:formatted_newsletter) { FormatNewsletter.new(newsletter) }
 
   after(:each) do

@@ -1,4 +1,6 @@
 class FormatNewsletter
+  attr_reader :newsletter_entries
+  
   def initialize (newsletter)
     @newsletter = newsletter
     @newsletter_entries = get_correct_entries
