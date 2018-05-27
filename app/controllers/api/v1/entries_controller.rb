@@ -23,7 +23,7 @@ class Api::V1::EntriesController < ApplicationController
   def update
     entry = Entry.find(params["id"].to_i)
 
-    if entry.update(entries_params)
+    if entry.user == current_user && entry.update(entries_params)
       render json: entry
     else
       flash[:message] = "Your entry could not be edited."

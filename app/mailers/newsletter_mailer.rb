@@ -1,12 +1,12 @@
 class NewsletterMailer < ApplicationMailer
-  def send_out(date, recipient_info, entries, newsletter_title, newsletter_id)
+  def send_out(subscriber, date, entries, newsletter)
     @newsletter_month = date[:month]
     @newsletter_year = date[:year]
-    @recipient_name = recipient_info[:name]
-    @recipient_email = recipient_info[:email]
+    @recipient_name = subscriber[:name]
+    @recipient_email = subscriber[:email]
     @entries = entries
-    @newsletter_title = newsletter_title
-    @id = newsletter_id
+    @newsletter_title = newsletter.title
+    @id = newsletter.id
 
     mail(
       to: @recipient_email,
