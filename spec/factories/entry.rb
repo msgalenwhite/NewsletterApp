@@ -6,5 +6,6 @@ FactoryBot.define do
     newsletter
     title 'title'
     body 'body'
+    photo { Rack::Test::UploadedFile.new ("#{Rails.root}/spec/support/images/purple_flowers.jpg") }
   end
 end

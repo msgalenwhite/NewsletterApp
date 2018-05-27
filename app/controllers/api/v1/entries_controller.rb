@@ -13,21 +13,20 @@ class Api::V1::EntriesController < ApplicationController
     entry.newsletter_id = params["newsletter_id"].to_i
 
     if entry.save
-      render json: entry
+      render json: entry, status: 201
     else
-      flash[:message] = "Your entry could not be submitted."
+      flash[:error] = "Your entry could not be submitted."
       render json: entry.errors.full_messages.join(" // ")
     end
   end
 
   def update
     entry = Entry.find(params["id"].to_i)
-
     if entry.user == current_user && entry.update(entries_params)
       render json: entry
     else
-      flash[:message] = "Your entry could not be edited."
-      render json: old_entry.errors.full_messages.join(" // ")
+      flash[:error] = "Your entry could not be edited."
+      render json: entry.errors.full_messages.join(" // ")
     end
   end
 
