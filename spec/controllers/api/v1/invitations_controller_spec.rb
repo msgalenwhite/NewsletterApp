@@ -12,12 +12,10 @@ describe Api::V1::InvitationsController, :type => :controller do
       post :create, params: { newsletterId: newsletter.id, emails: emails }
 
       expect(Invitation.count).to eq(prev_count + emails.length)
-      expect(JSON.parse(response.body).keys).to eq(["invitees", "host", "newsletter", "errors"])
+      expect(JSON.parse(response.body).keys).to eq(["invitees", "host", "newsletter", "invitations", "errors"])
 
       expect(response.status).to eq 201
       expect(response.content_type).to eq("application/json")
-
-      #error connecting to Redis?
     end
   end
 end
